@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { allergyOrNotAction, changeStepAction } from "../../actions";
 
-import { Radio, Button } from "../reuse";
+// import { Radio, Button } from "../reuse";
 
 class AllergyOrNot extends Component {
    state = {
@@ -130,21 +130,45 @@ class AllergyOrNot extends Component {
             </ul>
 
             {/* <div class="form-notice">สามารถเลื่อนซ้ายขวาเพื่อเลือกได้</div> */}
-            
+
             <div class="form-step">
                {/* missing back function */}
-               <a class="form-step__nav form-step__nav_prev" href="#">กลับ</a>
+               <a class="form-step__nav form-step__nav_prev" href="#">
+                  กลับ
+               </a>
                <div class="step">
-                  <a href="#" class="step__item"><span>1</span></a>
-                  <a href="#" class="step__item"><span>2</span></a>
-                  <a href="#" class="step__item current"><span>3</span></a>
-                  <a href="#" class="step__item"><span>4</span></a>
-                  <a href="#" class="step__item"><span>5</span></a>
-                  <a href="#" class="step__item"><span>6</span></a>
-                  <a href="#" class="step__item"><span>7</span></a>
-                  <a href="#" class="step__item"><span>8</span></a>					
+                  <a href="#" class="step__item">
+                     <span>1</span>
+                  </a>
+                  <a href="#" class="step__item">
+                     <span>2</span>
+                  </a>
+                  <a href="#" class="step__item current">
+                     <span>3</span>
+                  </a>
+                  <a href="#" class="step__item">
+                     <span>4</span>
+                  </a>
+                  <a href="#" class="step__item">
+                     <span>5</span>
+                  </a>
+                  <a href="#" class="step__item">
+                     <span>6</span>
+                  </a>
+                  <a href="#" class="step__item">
+                     <span>7</span>
+                  </a>
+                  <a href="#" class="step__item">
+                     <span>8</span>
+                  </a>
                </div>
-               <a class="form-step__nav form-step__nav_next" href="#" onClick={this.handleSubmitForm}>ต่อไป</a>
+               <a
+                  class="form-step__nav form-step__nav_next"
+                  href="#"
+                  onClick={this.handleSubmitForm}
+               >
+                  ต่อไป
+               </a>
             </div>
          </React.Fragment>
       );

@@ -9,7 +9,8 @@ import babyPlus from "../../img/baby-plus.svg";
 
 class ChooseYourChild extends Component {
    state = {
-      children: []
+      children: [],
+      current: ""
    };
 
    componentDidMount() {
@@ -56,9 +57,24 @@ class ChooseYourChild extends Component {
 
    childrenButton = () => {
       return this.state.children.map(child => (
-         <Button key={child.id} onClick={this.handleClick.bind(this, child)}>
-            {child.baby_name || "null"}
-         </Button>
+         // <Button key={child.id} onClick={this.handleClick.bind(this, child)}>
+         //    {child.baby_name || "null"}
+         // </Button>
+         <label key={child.id} className="choice-item__trigger">
+            <input type="radio" name="mom_status" value="pregnancy" />
+            <div
+               // onClick={this.handleClick.bind(this, child)}
+               onClick={() => this.setState({ current: child })}
+               className="choice-item__wrapper"
+            >
+               <span className="choice-item__img">
+                  <img src={baby} alt="q01-baby" />
+               </span>
+               <span className="choice-item__title">
+                  {child.baby_name || "null"}
+               </span>
+            </div>
+         </label>
       ));
    };
 
@@ -75,48 +91,73 @@ class ChooseYourChild extends Component {
                เพิ่มลูก
             </Button>
             <Button>ยืนยัน</Button> */}
-            <h1 class="header">ทดสอบความเสี่ยง <strong>ภูมิแพ้</strong> ของลูกน้อย<br />
-				รู้เร็ว รู้ง่าย เพียง 1 นาที</h1>
-            <h2 class="sub-header">รายละเอียดการคลอด</h2>
+            <h1 className="header">
+               ทดสอบความเสี่ยง <strong>ภูมิแพ้</strong> ของลูกน้อย
+               <br />
+               รู้เร็ว รู้ง่าย เพียง 1 นาที
+            </h1>
+            <h2 className="sub-header">รายละเอียดการคลอด</h2>
             <p>เลือกลูกน้อยที่ต้องการทำแบบทดสอบ</p>
-            <ul class="choice choice_horizontal">
-               <li class="choice-item">
-                  <label class="choice-item__trigger">
-                  {/* need to change */}
-                     <input type="radio" name="mom_status" value="pregnancy" />
-                     <div class="choice-item__wrapper">
-                        <span class="choice-item__img"><img src={baby} alt="q01-baby" /></span>
-                        <span class="choice-item__title">นิวทรีเชีย</span>							
-                     </div>
-                  </label>
-               </li>
-               <li class="choice-item">
-                  <label class="choice-item__trigger">
+            <ul className="choice choice_horizontal">
+               <li className="choice-item">{this.childrenButton()}</li>
+               <li className="choice-item">
+                  <label className="choice-item__trigger">
                      <input type="radio" name="mom_status" value="add-child" />
-                     <div class="choice-item__wrapper">
-                        <span class="choice-item__img"><img src={babyPlus} alt="baby-plus" /></span>
-                        <span class="choice-item__title">เพิ่มลูก</span>
+                     <div className="choice-item__wrapper">
+                        <span className="choice-item__img">
+                           <img src={babyPlus} alt="baby-plus" />
+                        </span>
+                        <span className="choice-item__title">เพิ่มลูก</span>
                      </div>
                   </label>
                </li>
             </ul>
             {/* need to change */}
-            <p><button class="button button_solid">ยืนยัน</button></p>
+            <p>
+               <button
+                  className="button button_solid"
+                  onClick={this.handleClick.bind(this, this.state.current)}
+               >
+                  ยืนยัน
+               </button>
+            </p>
 
-            {/* <div class="form-notice">สามารถเลื่อนซ้ายขวาเพื่อเลือกได้</div> */}
+            {/* <div className="form-notice">สามารถเลื่อนซ้ายขวาเพื่อเลือกได้</div> */}
 
-            <div class="form-step">
-               <div class="step">
-                  <a href="#" class="step__item current"><span>1</span></a>
-                  <a href="#" class="step__item"><span>2</span></a>
-                  <a href="#" class="step__item"><span>3</span></a>
-                  <a href="#" class="step__item"><span>4</span></a>
-                  <a href="#" class="step__item"><span>5</span></a>
-                  <a href="#" class="step__item"><span>6</span></a>
-                  <a href="#" class="step__item"><span>7</span></a>
-                  <a href="#" class="step__item"><span>8</span></a>					
+            <div className="form-step">
+               <div className="step">
+                  <a href="#" className="step__item current">
+                     <span>1</span>
+                  </a>
+                  <a href="#" className="step__item">
+                     <span>2</span>
+                  </a>
+                  <a href="#" className="step__item">
+                     <span>3</span>
+                  </a>
+                  <a href="#" className="step__item">
+                     <span>4</span>
+                  </a>
+                  <a href="#" className="step__item">
+                     <span>5</span>
+                  </a>
+                  <a href="#" className="step__item">
+                     <span>6</span>
+                  </a>
+                  <a href="#" className="step__item">
+                     <span>7</span>
+                  </a>
+                  <a href="#" className="step__item">
+                     <span>8</span>
+                  </a>
                </div>
-               <a class="form-step__nav form-step__nav_next" href="#" onClick={this.changeStep.bind(this, "5.2A")}>ต่อไป</a>
+               <a
+                  className="form-step__nav form-step__nav_next"
+                  href="#"
+                  onClick={this.changeStep.bind(this, "5.2A")}
+               >
+                  ต่อไป
+               </a>
             </div>
          </React.Fragment>
       );
