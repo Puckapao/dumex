@@ -31,6 +31,11 @@ class ChooseYourChild extends Component {
    };
 
    handleClick = child => {
+      if (this.state.current === "") {
+         return this.props.changeStepAction("5.2A");
+         // this.changeStep.bind(this, "5.2A");
+      }
+
       fetch(
          `https://api.careline.dumex.rgb72.net/client/members/${
             this.props.form.memberId
@@ -102,7 +107,12 @@ class ChooseYourChild extends Component {
                <li className="choice-item">{this.childrenButton()}</li>
                <li className="choice-item">
                   <label className="choice-item__trigger">
-                     <input type="radio" name="mom_status" value="add-child" />
+                     <input
+                        type="radio"
+                        name="mom_status"
+                        value="add-child"
+                        onChange={() => this.setState({ current: "" })}
+                     />
                      <div className="choice-item__wrapper">
                         <span className="choice-item__img">
                            <img src={babyPlus} alt="baby-plus" />
