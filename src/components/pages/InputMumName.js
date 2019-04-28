@@ -53,7 +53,7 @@ class InputMumName extends Component {
    render() {
       return (
          <React.Fragment>
-            <h1>ทดสอบความเสี่ยงภูมิแพ้ของลูกน้อย</h1>
+            {/* <h1>ทดสอบความเสี่ยงภูมิแพ้ของลูกน้อย</h1>
             <h1>รู้เร็ว รู้ง่าย เพียง1นาที</h1>
             <p>กรุณากรอกข้อมูลของท่าน</p>
             <TextInput
@@ -94,7 +94,81 @@ class InputMumName extends Component {
 
             <Button onClick={this.handleSubmitForm}>
                เริ่มต้นทำแบบประเมิน
-            </Button>
+            </Button> */}
+            <h1 className="header">
+               ทดสอบความเสี่ยง <strong>ภูมิแพ้</strong> ของลูกน้อย
+               <br />
+               รู้เร็ว รู้ง่าย เพียง 1 นาที
+            </h1>
+            <h2 className="sub-header">กรุณากรอกข้อมูลของคุณ</h2>
+            <p>
+               <span className="input-wrapper req">
+                  <input
+                     className="input input_type_text"
+                     required
+                     type="text"
+                     name="firstname"
+                     value={this.state.firstname}
+                     onChange={this.handleChange}
+                     placeholder="ชื่อ"
+                  />
+               </span>
+               <br />
+               {this.state.error.firstname || null}
+            </p>
+            <p>
+               <span className="input-wrapper req">
+                  <input
+                     className="input input_type_text"
+                     required
+                     type="text"
+                     name="lastname"
+                     value={this.state.lastname}
+                     onChange={this.handleChange}
+                     placeholder="นามสกุล"
+                  />
+               </span>
+               <br />
+               {this.state.error.lastname || null}
+            </p>
+            <p>
+               <span className="input-wrapper req">
+                  <input
+                     className="input input_type_text"
+                     required
+                     type="text"
+                     name="phone"
+                     value={this.state.phone}
+                     onChange={this.handleChange}
+                     placeholder="เบอร์โทร"
+                  />
+               </span>
+               <br />
+               {this.state.error.phone || null}
+            </p>
+            <p>
+               <span className="input-wrapper req">
+                  <input
+                     className="input input_type_text"
+                     required
+                     type="text"
+                     name="email"
+                     value={this.state.email}
+                     onChange={this.handleChange}
+                     placeholder="อีเมล์"
+                  />
+               </span>
+               <br />
+               {this.state.error.email || null}
+            </p>
+            <p>
+               <button
+                  className="button button_solid"
+                  onClick={this.handleSubmitForm}
+               >
+                  เริ่มต้นทำแบบประเมิน
+               </button>
+            </p>
          </React.Fragment>
       );
    }
