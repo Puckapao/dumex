@@ -8,48 +8,119 @@ const curr_date = {
 const 	date_input = document.querySelector( 'input[name="day"]' ),
 		month_input = document.querySelector( 'input[name="month"]'),
 		year_input = document.querySelector( 'input[name="year"]' );
+		
+let		date_input_val = date_input.value,
+		month_input_val = month_input.value,
+		year_input_val = year_input.value;
 
-const 	date_list = document.querySelector( '.item-list_date' ),
+let 	date_list = document.querySelector( '.item-list_date' ),
 		month_list = document.querySelector( '.item-list_month' ),
 		year_list = document.querySelector( '.item-list_year' ),
 		date_track = document.querySelector( '.date-spinner__track_date' ),
 		month_track = document.querySelector( '.date-spinner__track_month' ),
 		year_track = document.querySelector( '.date-spinner__track_year' );
+		
+let new_birth_date = moment( year_input_val + ( month_input_val < 10 ? '0' + month_input_val : month_input_val ) + ( date_input_val < 10 ? '0' + date_input_val : date_input_val ) );
 
-for ( let i = 1; i <= curr_date.total_days; i++ ) {
-	let item = document.createElement( 'span' );
-	item.setAttribute( 'data-value', i );
+let birth_date = {
+	year : new_birth_date.year(),
+	month: new_birth_date.month(),
+	date: new_birth_date.date(),
+	total_days: new_birth_date.daysInMonth()
+};
 
-	if ( i === curr_date.date ) {
-		item.setAttribute( 'class', 'selected' );
-	}
-
-	item.innerHTML = i;
-	date_list.appendChild( item );
+function set_current_date_input( obj ) {
+	date_input.setAttribute( 'value', obj.date );
+	month_input.setAttribute( 'value', obj.month );
+	year_input.setAttribute( 'value', obj.year );
 }
 
-for ( let i = 1; i <= 12; i++ ) {
-	let item = document.createElement( 'span' );
-	item.setAttribute( 'data-value', i );
-
-	if ( i === curr_date.month ) {
-		item.setAttribute( 'class', 'selected' );
+function set_current_date_spinner( obj ) {
+	for ( let i = 1; i <= obj.total_days; i++ ) {
+		let item = document.createElement( 'span' );
+		item.setAttribute( 'data-value', i );
+	
+		if ( i === obj.date ) {
+			item.setAttribute( 'class', 'selected' );
+		}
+	
+		item.innerHTML = i;
+		date_list.appendChild( item );
 	}
-
-	item.innerHTML = i;
-	month_list.appendChild( item );
+	
+	for ( let i = 1; i <= 12; i++ ) {
+		let item = document.createElement( 'span' );
+		item.setAttribute( 'data-value', i );
+	
+		if ( i === obj.month ) {
+			item.setAttribute( 'class', 'selected' );
+		}
+	
+		item.innerHTML = i;
+		month_list.appendChild( item );
+	}
+	
+	for ( let i = obj.year - 5; i <= obj.year + 5; i++ ) {
+		let item = document.createElement( 'span' );
+		item.setAttribute( 'data-value', i );
+	
+		if ( i === obj.year ) {
+			item.setAttribute( 'class', 'selected' );
+		}
+	
+		item.innerHTML = i;
+		year_list.appendChild( item );
+	}
 }
 
-for ( let i = curr_date.year - 5; i <= curr_date.year + 5; i++ ) {
-	let item = document.createElement( 'span' );
-	item.setAttribute( 'data-value', i );
-
-	if ( i === curr_date.year ) {
-		item.setAttribute( 'class', 'selected' );
+function set_birth_date_spinner( obj ) {
+	
+	for ( let i = 1; i <= obj.total_days; i++ ) {
+		let item = document.createElement( 'span' );
+		item.setAttribute( 'data-value', i );
+	
+		if ( i === obj.date ) {
+			item.setAttribute( 'class', 'selected' );
+		}
+	
+		item.innerHTML = i;
+		date_list.appendChild( item );
 	}
+	
+	for ( let i = 1; i <= 12; i++ ) {
+		let item = document.createElement( 'span' );
+		item.setAttribute( 'data-value', i );
+	
+		if ( i === ( obj.month + 1 ) ) {
+			item.setAttribute( 'class', 'selected' );
+		}
+	
+		item.innerHTML = i;
+		month_list.appendChild( item );
+	}
+	
+	for ( let i = obj.year - 2; i <= obj.year; i++ ) {
+		let item = document.createElement( 'span' );
+		item.setAttribute( 'data-value', i );
+	
+		if ( i === obj.year ) {
+			item.setAttribute( 'class', 'selected' );
+		}
+	
+		item.innerHTML = i;
+		year_list.appendChild( item );
+	}
+}
 
-	item.innerHTML = i;
-	year_list.appendChild( item );
+if ( date_input_val === '' || month_input_val === '' || year_input_val === '' ) {
+	
+	set_current_date_input( curr_date );
+	set_current_date_spinner( curr_date );
+	
+} else {
+
+	set_birth_date_spinner( birth_date );
+	
 }
 
 let selected_items = document.querySelectorAll( '.item-list .selected' ),
@@ -64,11 +135,38 @@ function spinner_select( el ) {
 	});
 }
 
-// Set Initial Date
-date_input.setAttribute( 'value', curr_date.date );
-month_input.setAttribute( 'value', curr_date.month + 1 );
-year_input.setAttribute( 'value', curr_date.year );
+function repopulate_date_spinner() {
+	let remove_date = date_list.querySelectorAll( 'span' );
+	for ( let item of remove_date ) {
+		item.remove();
+	}
+	
+	let new_date_obj = moment( year_input.value +'-'+ month_input.value, 'YYYY-M' );
+	let max_select_date = ( date_input.value > new_date_obj.daysInMonth() ? new_date_obj.daysInMonth() : date_input.value );
+	
+	let selected_date_obj = {
+		year : new_date_obj.year(),
+		month: new_date_obj.month(),
+		date: parseInt( 1 ),
+		total_days: new_date_obj.daysInMonth()
+	};
+	
+	for ( let i = 1; i <= selected_date_obj.total_days; i++ ) {
+		let item = document.createElement( 'span' );
+		item.setAttribute( 'data-value', i );
+		
+		if ( i === selected_date_obj.date ) {
+			item.setAttribute( 'class', 'selected' );
+		}	
+	
+		item.innerHTML = i;
+		date_list.appendChild( item );
+	}
+	
+	document.querySelector( '.date-spinner__track_date' ).scroll(0,0);
+}
 
+// Set Initial Date
 for ( let i = 0; i < selected_items.length; i++ ) {
 	selected_items[i].scrollIntoView({
 		block : 'center'
@@ -92,15 +190,21 @@ for ( let i of spinner_down ) {
 				
 				target.setAttribute( 'class', 'selected' );
 				curr_selected.removeAttribute( 'class' );
-				spinner_select( target );
-
+				
 				if ( track.classList.contains( 'date-spinner__track_date' ) ) {
 					date_input.setAttribute( 'value', target_val );
+					
 				} else if ( track.classList.contains( 'date-spinner__track_month' ) ) {
 					month_input.setAttribute( 'value', target_val );
+					document.querySelector( '.date-spinner__track_date' ).scroll( 0, 0 );
+					repopulate_date_spinner();
 				} else if ( track.classList.contains( 'date-spinner__track_year' ) ) {
 					year_input.setAttribute( 'value', target_val );
+					document.querySelector( '.date-spinner__track_date' ).scroll( 0, 0 );
+					repopulate_date_spinner();
 				}
+				spinner_select( target );
+				
 			}
 
 		}
@@ -115,21 +219,28 @@ for ( let i of spinner_up ) {
 			let track = this.parentNode.querySelector( '.date-spinner__track' ),
 				curr_selected = track.querySelector( '.selected' ),
 				target = curr_selected.previousSibling;
+				
 
 			if ( target ) {
 				let target_val = target.getAttribute('data-value');
 				
 				target.setAttribute( 'class', 'selected' );
 				curr_selected.removeAttribute( 'class' );
-				spinner_select( target );
-				
+								
 				if ( track.classList.contains( 'date-spinner__track_date' ) ) {
 					date_input.setAttribute( 'value', target_val );
+
 				} else if ( track.classList.contains( 'date-spinner__track_month' ) ) {
 					month_input.setAttribute( 'value', target_val );
+					document.querySelector( '.date-spinner__track_date' ).scroll( 0, 0 );
+					repopulate_date_spinner();
 				} else if ( track.classList.contains( 'date-spinner__track_year' ) ) {
 					year_input.setAttribute( 'value', target_val );
+					document.querySelector( '.date-spinner__track_date' ).scroll( 0, 0 );
+					repopulate_date_spinner();
 				}
+				spinner_select( target );
+				
 			}
 
 		}

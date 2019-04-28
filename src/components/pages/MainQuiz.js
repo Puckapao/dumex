@@ -3,6 +3,16 @@ import { connect } from "react-redux";
 import { mainQuizAction, changeStepAction } from "../../actions";
 
 import { Radio, Button } from "../reuse";
+import mom from "../../img/mom.svg";
+
+import momAct01 from "../../video/mom_act_01_movecrop.mp4";
+import momAct02 from "../../video/mom_act_02_movecrop.mp4";
+import momAct03 from "../../video/mom_act_03_movecrop.mp4";
+import momAct04 from "../../video/mom_act_04_movecrop.mp4";
+import momAct05 from "../../video/mom_act_05_movecrop.mp4";
+import momAct06 from "../../video/mom_act_06_movecrop.mp4";
+import momAct07 from "../../video/mom_act_07_movecrop.mp4";
+import momAct08 from "../../video/mom_act_08_movecrop.mp4";
 
 class MainQuiz extends Component {
    state = {
@@ -187,7 +197,7 @@ class MainQuiz extends Component {
          default:
             return (
                <React.Fragment>
-                  <h1>แบบทดสอบความเสี่ยงเป็นภูมิแพ้ของคนในครอบครัว</h1>
+                  {/* <h1>แบบทดสอบความเสี่ยงเป็นภูมิแพ้ของคนในครอบครัว</h1>
                   <h2>คนในครอบครัวเคยมีอาการเหล่านี้หรือไม่</h2>
                   <p>O = เป็น, X = ไม่เป็น, ? = ไม่แน่ใจ</p>
                   <Button disabled>ก่อนหน้า</Button>
@@ -203,7 +213,252 @@ class MainQuiz extends Component {
                   </Button>
                   <Button onClick={this.changeMember.bind(this, "father")}>
                      ต่อไป
-                  </Button>
+                  </Button> */}
+                  <h1 class="header">แบบทดสอบความเสี่ยงเป็นภูมิแพ้ของคนในครอบครัว</h1>
+                  <h2 class="sub-header">คนในครอบครัวเคยมีอาการเหล่านี้หรือไม่</h2>
+                  <p>O = เป็น, X = ไม่เป็น, ? = ไม่แน่ใจ</p>
+                  
+                  <div class="people">
+                     <div class="people__avatar">
+                        <img src={mom} alt="mom" />
+                        <span class="name">คุณแม่</span>
+                     </div>
+                     <ul class="people__nav">
+                        <li class="active"><button>1</button></li>
+                        <li><button>2</button></li>
+                        <li><button>3</button></li>
+                     </ul>
+                     <a href="#" class="people__arrow people__arrow_prev" disabled><span>ก่อนหน้า</span></a>
+                     <a href="#" class="people__arrow people__arrow_next" onClick={this.changeMember.bind(this, "father")}><span>ถัดไป</span></a>
+                  </div>
+                  
+                  <div class="quiz-block">
+                     <div class="quiz-block__item">
+                        <h4 class="quiz-block__title">หอบหืด</h4>
+                        <div class="quiz-wrapper">
+                           <div class="quiz-wrapper__video"><video src={momAct01} autoplay loop muted playsinline></video></div>
+                           <ul class="quiz">
+                              <li class="quiz__item" title="เป็น">
+                                 <label class="quiz__trigger">
+                                    <input type="radio" name="mother_asthma" value="yes" />
+                                    <span class="quiz__icon quiz__icon_yes"></span>
+                                 </label>
+                              </li>
+                              <li class="quiz__item">
+                                 <label class="quiz__trigger" title="ไม่เป็น">
+                                    <input type="radio" name="mother_asthma" value="no" />
+                                    <span class="quiz__icon quiz__icon_no"></span>
+                                 </label>
+                              </li>
+                              <li class="quiz__item">
+                                 <label class="quiz__trigger" title="ไม่แน่ใจ">
+                                    <input type="radio" name="mother_asthma" value="not-sure" />
+                                    <span class="quiz__icon quiz__icon_not-sure"></span>
+                                 </label>
+                              </li>
+                           </ul>
+                        </div>
+                     </div>
+                     <div class="quiz-block__item">
+                        <h4 class="quiz-block__title">แพ้นมวัว</h4>
+                        <div class="quiz-wrapper">
+                           <div class="quiz-wrapper__video"><video src={momAct02} autoplay loop muted playsinline></video></div>
+                           <ul class="quiz">
+                              <li class="quiz__item" title="เป็น">
+                                 <label class="quiz__trigger">
+                                    <input type="radio" name="mother_milk_intolerance" value="yes" />
+                                    <span class="quiz__icon quiz__icon_yes"></span>
+                                 </label>
+                              </li>
+                              <li class="quiz__item">
+                                 <label class="quiz__trigger" title="ไม่เป็น">
+                                    <input type="radio" name="mother_milk_intolerance" value="no" />
+                                    <span class="quiz__icon quiz__icon_no"></span>
+                                 </label>
+                              </li>
+                              <li class="quiz__item">
+                                 <label class="quiz__trigger" title="ไม่แน่ใจ">
+                                    <input type="radio" name="mother_milk_intolerance" value="not-sure" />
+                                    <span class="quiz__icon quiz__icon_not-sure"></span>
+                                 </label>
+                              </li>
+                           </ul>
+                        </div>
+                     </div>
+                     <div class="quiz-block__item">
+                        <h4 class="quiz-block__title">แพ้อากาศ</h4>
+                        <div class="quiz-wrapper">
+                           <div class="quiz-wrapper__video"><video src={momAct03} autoplay loop muted playsinline></video></div>
+                           <ul class="quiz">
+                              <li class="quiz__item" title="เป็น">
+                                 <label class="quiz__trigger">
+                                    <input type="radio" name="mother_rhinitis" value="yes" />
+                                    <span class="quiz__icon quiz__icon_yes"></span>
+                                 </label>
+                              </li>
+                              <li class="quiz__item">
+                                 <label class="quiz__trigger" title="ไม่เป็น">
+                                    <input type="radio" name="mother_rhinitis" value="no" />
+                                    <span class="quiz__icon quiz__icon_no"></span>
+                                 </label>
+                              </li>
+                              <li class="quiz__item">
+                                 <label class="quiz__trigger" title="ไม่แน่ใจ">
+                                    <input type="radio" name="mother_rhinitis" value="not-sure" />
+                                    <span class="quiz__icon quiz__icon_not-sure"></span>
+                                 </label>
+                              </li>
+                           </ul>
+                        </div>
+                     </div>
+                     <div class="quiz-block__item">
+                        <h4 class="quiz-block__title">ผื่นแพ้ผิวหนัง</h4>
+                        <div class="quiz-wrapper">
+                           <div class="quiz-wrapper__video"><video src={momAct04} autoplay loop muted playsinline></video></div>
+                           <ul class="quiz">
+                              <li class="quiz__item" title="เป็น">
+                                 <label class="quiz__trigger">
+                                    <input type="radio" name="mother_atopic_dermatitis" value="yes" />
+                                    <span class="quiz__icon quiz__icon_yes"></span>
+                                 </label>
+                              </li>
+                              <li class="quiz__item">
+                                 <label class="quiz__trigger" title="ไม่เป็น">
+                                    <input type="radio" name="mother_atopic_dermatitis" value="no" />
+                                    <span class="quiz__icon quiz__icon_no"></span>
+                                 </label>
+                              </li>
+                              <li class="quiz__item">
+                                 <label class="quiz__trigger" title="ไม่แน่ใจ">
+                                    <input type="radio" name="mother_atopic_dermatitis" value="not-sure" />
+                                    <span class="quiz__icon quiz__icon_not-sure"></span>
+                                 </label>
+                              </li>
+                           </ul>
+                        </div>
+                     </div>
+                     <div class="quiz-block__item">
+                        <h4 class="quiz-block__title">ลมพิษ</h4>
+                        <div class="quiz-wrapper">
+                           <div class="quiz-wrapper__video"><video src={momAct05} autoplay loop muted playsinline></video></div>
+                           <ul class="quiz">
+                              <li class="quiz__item" title="เป็น">
+                                 <label class="quiz__trigger">
+                                    <input type="radio" name="mother_urticaria" value="yes" />
+                                    <span class="quiz__icon quiz__icon_yes"></span>
+                                 </label>
+                              </li>
+                              <li class="quiz__item">
+                                 <label class="quiz__trigger" title="ไม่เป็น">
+                                    <input type="radio" name="mother_urticaria" value="no" />
+                                    <span class="quiz__icon quiz__icon_no"></span>
+                                 </label>
+                              </li>
+                              <li class="quiz__item">
+                                 <label class="quiz__trigger" title="ไม่แน่ใจ">
+                                    <input type="radio" name="mother_urticaria" value="not-sure" />
+                                    <span class="quiz__icon quiz__icon_not-sure"></span>
+                                 </label>
+                              </li>
+                           </ul>
+                        </div>
+                     </div>
+                     <div class="quiz-block__item">
+                        <h4 class="quiz-block__title">แพ้ยา</h4>
+                        <div class="quiz-wrapper">
+                           <div class="quiz-wrapper__video"><video src={momAct06} autoplay loop muted playsinline></video></div>
+                           <ul class="quiz">
+                              <li class="quiz__item" title="เป็น">
+                                 <label class="quiz__trigger">
+                                    <input type="radio" name="mother_drug" value="yes" />
+                                    <span class="quiz__icon quiz__icon_yes"></span>
+                                 </label>
+                              </li>
+                              <li class="quiz__item">
+                                 <label class="quiz__trigger" title="ไม่เป็น">
+                                    <input type="radio" name="mother_drug" value="no" />
+                                    <span class="quiz__icon quiz__icon_no"></span>
+                                 </label>
+                              </li>
+                              <li class="quiz__item">
+                                 <label class="quiz__trigger" title="ไม่แน่ใจ">
+                                    <input type="radio" name="mother_drug" value="not-sure" />
+                                    <span class="quiz__icon quiz__icon_not-sure"></span>
+                                 </label>
+                              </li>
+                           </ul>
+                        </div>
+                     </div>
+                     <div class="quiz-block__item">
+                        <h4 class="quiz-block__title">แพ้อาหาร</h4>
+                        <div class="quiz-wrapper">
+                           <div class="quiz-wrapper__video"><video src={momAct07} autoplay loop muted playsinline></video></div>
+                           <ul class="quiz">
+                              <li class="quiz__item" title="เป็น">
+                                 <label class="quiz__trigger">
+                                    <input type="radio" name="mother_food" value="yes" />
+                                    <span class="quiz__icon quiz__icon_yes"></span>
+                                 </label>
+                              </li>
+                              <li class="quiz__item">
+                                 <label class="quiz__trigger" title="ไม่เป็น">
+                                    <input type="radio" name="mother_food" value="no" />
+                                    <span class="quiz__icon quiz__icon_no"></span>
+                                 </label>
+                              </li>
+                              <li class="quiz__item">
+                                 <label class="quiz__trigger" title="ไม่แน่ใจ">
+                                    <input type="radio" name="mother_food" value="not-sure" />
+                                    <span class="quiz__icon quiz__icon_not-sure"></span>
+                                 </label>
+                              </li>
+                           </ul>
+                        </div>
+                     </div>
+                     <div class="quiz-block__item">
+                        <h4 class="quiz-block__title">เยื่อบุตาอักเสบจากภูมิแพ้</h4>
+                        <div class="quiz-wrapper">
+                           <div class="quiz-wrapper__video"><video src={momAct08} autoplay loop muted playsinline></video></div>
+                           <ul class="quiz">
+                              <li class="quiz__item" title="เป็น">
+                                 <label class="quiz__trigger">
+                                    <input type="radio" name="mother_conjunctivitis" value="yes" />
+                                    <span class="quiz__icon quiz__icon_yes"></span>
+                                 </label>
+                              </li>
+                              <li class="quiz__item">
+                                 <label class="quiz__trigger" title="ไม่เป็น">
+                                    <input type="radio" name="mother_conjunctivitis" value="no" />
+                                    <span class="quiz__icon quiz__icon_no"></span>
+                                 </label>
+                              </li>
+                              <li class="quiz__item">
+                                 <label class="quiz__trigger" title="ไม่แน่ใจ">
+                                    <input type="radio" name="mother_conjunctivitis" value="not-sure" />
+                                    <span class="quiz__icon quiz__icon_not-sure"></span>
+                                 </label>
+                              </li>
+                           </ul>
+                        </div>
+                     </div>
+                  </div>
+                  
+                  {/* <div class="form-notice">สามารถเลื่อนซ้ายขวาเพื่อเลือกได้</div> */}
+                  
+                  <div class="form-step">
+                     <a class="form-step__nav form-step__nav_prev" href="#" onClick={this.changeStep.bind(this, "6")}>กลับ</a>
+                     <div class="step">
+                        <a href="#" class="step__item"><span>1</span></a>
+                        <a href="#" class="step__item"><span>2</span></a>
+                        <a href="#" class="step__item"><span>3</span></a>
+                        <a href="#" class="step__item current"><span>4</span></a>
+                        <a href="#" class="step__item"><span>5</span></a>
+                        <a href="#" class="step__item"><span>6</span></a>
+                        <a href="#" class="step__item"><span>7</span></a>
+                        <a href="#" class="step__item"><span>8</span></a>					
+                     </div>
+                     <a class="form-step__nav form-step__nav_next" href="#" onClick={this.changeMember.bind(this, "father")}>ต่อไป</a>
+                  </div>
                </React.Fragment>
             );
       }

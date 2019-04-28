@@ -101,7 +101,9 @@ class PregnantOrHaveChild extends Component {
                   </label>
                </li>
             </ul>
+
             {/* <div className="form-notice">สามารถเลื่อนซ้ายขวาเพื่อเลือกได้</div> */}
+            
             <div className="form-step">
                <div className="step">
                   <a href="#" className="step__item current">

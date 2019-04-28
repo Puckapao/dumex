@@ -44,6 +44,10 @@ body {
 	flex-flow: column;
 }
 
+h1, h2, h3, h4 {
+	font-weight: $font-weight_medium;
+}
+
 a {
 	text-decoration: none;
 	color: $color_white;
@@ -182,6 +186,10 @@ label {
 	text-align: center;
 	font-weight: $font-weight_light;
 	line-height: $line-height;
+	
+	display: flex;
+	flex-flow: column;
+	justify-content: center;
 		
 	a {
 		text-decoration: underline;
@@ -224,11 +232,23 @@ label {
 	.choice-item {
 		padding: 1rem;
 		
-		input {
-			display: none;
-		}
 		
 		&__trigger {
+			
+			input {
+				display: none;
+				&:checked + .choice-item__wrapper {
+					background: $color_blue;
+					color: $color_white;
+				}
+				
+				&[value="add-child"]:checked + .choice-item__wrapper {
+					.choice-item__img {
+						filter: saturate(0) brightness(100);
+					}
+				}
+			}
+			
 			&:hover {
 				.choice-item__wrapper {
 					transform: translateY(-2px);
@@ -249,14 +269,322 @@ label {
 		&__img {
 			display: block;
 			width: 180px;
+			margin: 0 0 1rem;
 			img {
 				display: block;
 			}
 		}
 		
-		input:checked + .choice-item__wrapper {
-			background: $color_blue;
-			color: $color_white;
+		
+	}
+}
+
+.group-choice {
+	list-style: none;
+	padding: 0 1rem;
+	margin: 0 0 2rem;
+	border: 1px solid $color_white;
+	border-radius: 90px;
+	overflow: hidden;
+	
+	display: inline-flex;
+	flex-flow: row wrap;
+	justify-content: center;
+	
+	.choice-item {
+		min-width: 90px;
+		border-left: 1px solid $color_white;
+		
+		&:first-child {
+			border: none;
+		}
+		
+		&__trigger {
+			
+			input {
+				display: none;
+				&:checked + .choice-item__label {
+					background: $color_white;
+					color: $color_green;
+					position: relative;
+					z-index: 4;
+					&:before,
+					&:after {
+						content: "";
+						position: absolute;
+						top: 0;
+						width: 40px;
+						height: 40px;
+						border-radius: 40px;
+						background: $color_white;
+					}
+					
+					&:before {
+						left: -20px;
+					}
+					&:after {
+						right: -20px;
+					}
+				}
+			}	
+		}
+		
+		&__label {
+			padding: 0.5rem 1rem;
+			display: block;
+			color: rgba( $color_white, 0.5 );
+		}
+	}
+}
+
+.people {
+	display: inline-block;
+	position: relative;
+	
+	&__avatar {
+		position: relative;
+		margin: 0 auto 1rem;
+		width: 90px;
+		height: 90px;
+		overflow: hidden;
+		border-radius: 90px;
+		
+		img {
+			position: relative;
+			z-index: 4;
+		}
+		
+		&:before {
+			content: "";
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			border-radius: 90px;
+			border: 8px solid $color_white;
+		}
+		
+		.name {
+			position: absolute;
+			z-index: 8;
+			left: 0;
+			right: 0;
+			bottom: 0.5rem;
+			text-align: center;
+			font-weight: $font-weight_medium;
+			text-shadow: 0 2px 8px rgba(0,0,0,0.33);
+		}
+	}
+	
+	&__nav {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		
+		display: flex;
+		flex-flow: row wrap;
+		justify-content: center;
+		
+		li {
+			&.active {
+				button {
+					opacity: 1;
+				}
+			}
+		}
+		
+		button {
+			outline: 0;
+			background: none;
+			border: none;
+			width: 24px;
+			height: 24px;
+			overflow: hidden;
+			text-indent: -9999px;
+			opacity: 0.5;
+			
+			position: relative;
+			&:before {
+				content: "";
+				position: absolute;
+				left: 0;
+				right: 0;
+				top: 50%;
+				transform: translateY(-50%);
+				margin: 0 auto;
+				width: 8px;
+				height: 8px;
+				border-radius: 8px;
+				background: $color_white;
+			}
+		}
+	}
+	
+	&__arrow {
+		text-decoration: none !important;
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		display: block;
+		width: 60px;
+		
+		&:before {
+			content: "";
+			display: block;
+			margin: 0 auto;
+			width: 24px;
+			height: 24px;
+		}
+		
+		&_prev {
+			right: calc( 100% + 1rem );
+			&:before {
+				background: transparent url(../img/nav-back-alt.svg) no-repeat center center / contain;
+			}
+		}
+		
+		&_next {
+			left: calc( 100% + 1rem );
+			&:before {
+				background: transparent url(../img/nav-next-alt.svg) no-repeat center center / contain;
+			}
+		}
+	}
+}
+
+.quiz-block {
+	display: flex;
+	flex-flow: row wrap;
+	
+	margin: 2rem auto;
+	width: 100%;
+	max-width: 540px;
+	
+	&__item {
+		padding: 0 1rem;
+		width: 50%;
+		margin: 0 0 1rem;
+	}
+	
+	&__title {
+		text-align: left;
+		margin: 0 0 0.5rem;
+		font-size: $font-size_md;
+		font-weight: $font-weight_normal;
+	}
+}
+
+.quiz-wrapper {
+	display: flex;
+	flex-flow: row wrap;
+	align-items: center;
+	justify-content: space-between;
+	
+	&__video {
+		width: 64px;
+		height: 64px;
+		border: 1px solid $color_white;
+		border-radius: 64px;
+		overflow: hidden;
+		
+		video {
+			width: 100%;
+			transform: scale(1.01);
+		}
+	}
+}
+
+.quiz {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	border: 1px solid rgba( $color_white, 0.5 );
+	border-radius: 90px;
+	
+	display: inline-flex;
+	flex-flow: row wrap;
+	
+	&__item {
+		padding: 0.5rem;
+		&:first-child {
+			padding-right: 0;
+		}
+		&:last-child {
+			padding-left: 0;
+		}
+	}
+	
+	&__trigger {
+	
+		display: block;
+		
+		input {
+			display: none;
+			&:checked + .quiz__icon {
+				background: $color_white;
+				color: $color_green;
+				
+				&:before {
+					display: none;
+				}
+				&:after {
+					display: block;
+				}
+			}
+		}
+	}
+	
+	&__icon {
+		display: block;
+		position: relative;
+		
+		width: 40px;
+		height: 40px;
+		border-radius: 40px;
+		border: 1px solid $color_white;
+		color: $color_white;
+		
+		&:before,
+		&:after {
+			content: "";
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: 50%;
+			transform: translateY(-50%);
+			margin: 0 auto;
+			width: 24px;
+			height: 24px;
+		}
+		
+		&:after {
+			display: none;
+		}
+		
+		&_yes {
+			&:before {
+				background: transparent url(../img/quiz-icon-yes.svg) no-repeat center center / 24px;
+			}
+			&:after {
+				background: transparent url(../img/quiz-icon-yes-active.svg) no-repeat center center / 24px;
+			}
+		}
+		&_no {
+			&:before {
+				background: transparent url(../img/quiz-icon-no.svg) no-repeat center center / 24px;
+			}
+			&:after {
+				background: transparent url(../img/quiz-icon-no-active.svg) no-repeat center center / 24px;
+			}
+		}
+		&_not-sure {
+			&:before {
+				background: transparent url(../img/quiz-icon-not-sure.svg) no-repeat center center / 24px;
+			}
+			&:after {
+				background: transparent url(../img/quiz-icon-not-sure-active.svg) no-repeat center center / 24px;
+			}
 		}
 	}
 }
