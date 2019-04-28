@@ -36,7 +36,7 @@ class PregnantDeadline extends Component {
       const { day, month, year } = this.state;
       const due_date = `${year}-${month}-${day}`;
 
-      // Todo: Form Validate ****
+      // Todo: Form Validate *****
       this.props.pregnantDeadlineAction(due_date, this.props.memberId);
 
       this.props.changeStepAction("6");
