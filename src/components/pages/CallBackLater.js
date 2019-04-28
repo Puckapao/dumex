@@ -138,6 +138,71 @@ class CallBackLater extends Component {
 
             <Button onClick={this.handleSubmitForm}>บันทึกข้อมูล</Button>
             <Button onClick={this.changeStep.bind(this, "8")}>กลับ</Button>
+            <h1 class="header">กรุณากรอกข้อมูลเพื่อได้รับการติดต่อกลับ<br />
+            โดยไม่มีค่าใช้จ่าย</h1>
+				
+            <p>
+               <span class="input-wrapper req">
+                  <input
+                     class="input input_type_text"
+                     required type="text"
+                     name="name"
+                     placeholder="ชื่อ - นามสกุล"
+                  />
+               </span>
+            </p>
+            <div class="spacer"></div>
+            <p>
+               <span class="input-wrapper req">
+                  <input
+                     class="input input_type_text"
+                     required type="text"
+                     name="phone"
+                     placeholder="เบอร์โทร"
+                  />
+               </span>
+            </p>
+            <p class="align-left">
+               <span class="input-wrapper">
+                  <label>
+                     <input
+                        class="input input_type_checkbox"
+                        type="checkbox"
+                        name="sms_allow"
+                     />
+                     <span class="checkbox-icon"></span> ยินดีรับ SMS ที่เป็นประโยชน์
+                  </label>
+               </span>
+            </p>
+            <p>
+               <span class="input-wrapper req">
+                  <input
+                     class="input input_type_text"
+                     required type="text"
+                     name="email"
+                     placeholder="อีเมล์"
+                  />
+               </span>
+            </p>
+            <p class="align-left">
+               <span class="input-wrapper">
+                  <label>
+                     <input
+                        class="input input_type_checkbox"
+                        type="checkbox"
+                        name="contact_allow"
+                     />
+                     <span class="checkbox-icon"></span> ให้เจ้าหน้าที่ติดต่อกลับทางโทรศัพท์
+                  </label>
+               </span>
+            </p>
+            <p class="notice">
+               โดยการส่งแบบฟอร์มนี้ข้าพเจ้ายินยอมให้ Nutricia Allergy Expert ดําเนินการกับข้อมูล<br />
+               ส่วนบุคคลของข้าพเจ้าตามนโยบายความเป็นส่วนตัวของข้อมูลบุคคล และติดต่อข้าพเจ้า<br />
+               เพื่อขอข้อมูลเพิ่มเติมเกี่ยวกับการยื่นแบบฟอร์มนี้
+            </p>
+               
+            <p><button class="button button_solid" onClick={this.handleSubmitForm}>บันทึกข้อมูล</button></p>
          </React.Fragment>
       );
    }
