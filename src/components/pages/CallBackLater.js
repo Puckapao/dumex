@@ -76,7 +76,7 @@ class CallBackLater extends Component {
    render() {
       return (
          <React.Fragment>
-            <h1>กรุณากรอกข้อมูลเพื่อได้รับการติดต่อกลับโดยไม่มีค่าใช้จ่าย</h1>
+            <h1 className="header">กรุณากรอกข้อมูลเพื่อได้รับการติดต่อกลับโดยไม่มีค่าใช้จ่าย</h1>
             <TextInput
                name="firstname"
                value={this.state.firstname}

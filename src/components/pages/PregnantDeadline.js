@@ -45,10 +45,10 @@ class PregnantDeadline extends Component {
    render() {
       return (
          <React.Fragment>
-            <h1>คุณแม่กำลังตั้งครรภ์</h1>
-            <h5>กำหนดคลอด</h5>
+            {/* <h1>คุณแม่กำลังตั้งครรภ์</h1>
+            <h5>กำหนดคลอด</h5> */}
 
-            <TextInput
+            {/* <TextInput
                name="day"
                value={this.state.day}
                onChange={this.handleChange}
@@ -71,7 +71,56 @@ class PregnantDeadline extends Component {
             </TextInput>
 
             <Button onClick={this.changeStep.bind(this, "4")}>กลับ</Button>
-            <Button onClick={this.handleSubmitForm}>ต่อไป</Button>
+            <Button onClick={this.handleSubmitForm}>ต่อไป</Button> */}
+
+            <h1 className="header">คุณแม่ที่กำลังตั้งครรภ์</h1>
+            <h2 className="sub-header">กำหนดคลอด</h2>
+            
+            <input type="hidden" name="day" value="" />
+            <input type="hidden" name="month" value="" />
+            <input type="hidden" name="year" value="" />
+            
+            <div className="date-spinner">
+               <div className="date-spinner__block">
+                  <div className="date-spinner__track date-spinner__track_date">
+                     <div className="item-list item-list_date"></div>
+                  </div>
+                  <span className="spinner-arrow spinner-arrow_up"></span>
+                  <span className="spinner-arrow spinner-arrow_down"></span>
+                  <span className="spinner-label">วันที่</span>
+               </div>
+               <div className="date-spinner__block">
+                  <div className="date-spinner__track date-spinner__track_month">
+                     <div className="item-list item-list_month"></div>
+                  </div>
+                  <span className="spinner-arrow spinner-arrow_up"></span>
+                  <span className="spinner-arrow spinner-arrow_down"></span>
+                  <span className="spinner-label">เดือน</span>
+               </div>
+               <div className="date-spinner__block">
+                  <div className="date-spinner__track date-spinner__track_year">
+                     <div className="item-list item-list_year"></div>
+                  </div>
+                  <span className="spinner-arrow spinner-arrow_up"></span>
+                  <span className="spinner-arrow spinner-arrow_down"></span>
+                  <span className="spinner-label">ปี</span>
+               </div>
+            </div>
+            
+            <div className="form-step">
+               <a className="form-step__nav form-step__nav_prev" href="#" onClick={this.changeStep.bind(this, "4")}>กลับ</a>
+               <div className="step">
+                  <a href="#" className="step__item"><span>1</span></a>
+                  <a href="#" className="step__item current"><span>2</span></a>
+                  <a href="#" className="step__item"><span>3</span></a>
+                  <a href="#" className="step__item"><span>4</span></a>
+                  <a href="#" className="step__item"><span>5</span></a>
+                  <a href="#" className="step__item"><span>6</span></a>
+                  <a href="#" className="step__item"><span>7</span></a>
+                  <a href="#" className="step__item"><span>8</span></a>					
+               </div>
+               <a className="form-step__nav form-step__nav_next" href="#" onClick={this.handleSubmitForm}>ต่อไป</a>
+            </div>
          </React.Fragment>
       );
    }

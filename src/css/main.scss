@@ -1,0 +1,467 @@
+@charset 'utf-8';
+$project: 'Dumex Webapp';
+$version: '1.0';
+
+/*!
+* Project: #{$project}
+* Author: Kataroek Thumrongchote
+* Author URI: http://www.kataroek.com/
+* Version: #{$version}
+*/
+
+// Load Google Fonts
+@import url('https://fonts.googleapis.com/css?family=Kanit:300,400,500,700');
+
+// Load SCSS Assets
+@import '../scss/normalize',
+		'../scss/settings',
+		'../scss/mq',
+		'../scss/utilities';
+		
+html {
+	box-sizing: border-box;
+}
+
+* {
+	box-sizing: inherit;
+	&:before,
+	&:after {
+		box-sizing: inherit;
+	}
+}
+
+html, body {
+	height: 100%;
+}
+
+body {
+	font-family: $font-family_default;
+	font-size: $font-size_default;
+	color: $color_white;
+	background: $color_green;
+	
+	display: flex;
+	flex-flow: column;
+}
+
+a {
+	text-decoration: none;
+	color: $color_white;
+	outline: 0;
+	img {
+		outline: 0;
+		border: none;
+	}
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+.container {
+	padding: 0 1rem;
+}
+
+p {
+	margin: 1.5rem 0;
+}
+
+.input-wrapper {
+	position: relative;
+	&.req {
+		&:after {
+			pointer-events: none;
+			content: "*";
+			position: absolute;
+			right: 0.7rem;
+			top: 0;
+		}
+		
+	}
+}
+
+label {
+	cursor: pointer;
+}
+
+.input {
+	appearance: none;
+	outline: 0;
+	margin: 0;
+	
+	font-family: inherit;
+	font-size: inherit;
+	
+	&_type {
+		&_text {
+			border-radius: 3px;
+			background: transparent;
+			border: 1px solid $color_white;
+			color: $color_white;
+			padding: 0.75rem;
+			width: 100%;
+			max-width: 400px;
+			
+			&::placeholder {
+				color: $color_white;
+			}
+		}		
+	}
+	
+}
+
+.button {
+	border-radius: 60px;
+	appearance: none;
+	padding: 1rem;
+	color: $color_white;
+	min-width: 280px;
+	cursor: pointer;
+	outline: 0;
+	
+	&_solid {
+		border: none;
+		background: $color_blue;
+	}
+}
+
+// Site Header
+.site-header {
+	background: $color_white;
+	padding: 1rem;
+	position: sticky;
+	left: 0;
+	top: 0;
+	width: 100%;
+	
+	&__wrapper {
+		display: flex;
+		flex-flow: row wrap;
+		align-items: center;
+		justify-content: space-between;
+	}
+}
+
+.site-logo {
+	margin: 0;
+	&__link {
+		overflow: hidden;
+		text-indent: -9999px;
+		display: block;
+		width: 180px;
+		height: 40px;
+		background: transparent url(../img/nutricia-expert@2x.png) no-repeat center center / contain;
+	}
+}
+
+.site-nav {
+	.menu {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		
+		display: flex;
+		font-size: $font-size_md;
+		
+		@include mq( $until: wide ) {
+			font-size: $font-size_default;
+		}
+	}
+	a {
+		display: inline-block;
+		padding: 0 1rem;
+		color: $color_blue;
+	}
+}
+
+// Site Content
+.site-content {
+	padding: 4rem 2rem 2rem;
+	flex: 1 0 auto;
+	text-align: center;
+	font-weight: $font-weight_light;
+	line-height: $line-height;
+		
+	a {
+		text-decoration: underline;
+		font-weight: $font-weight_normal;
+	}
+}
+
+.header {
+	font-weight: $font-weight_normal;
+	font-size: $font-size_x-lg;
+	margin: 0 0 2rem;
+	
+	strong {
+		font-weight: $font-weight_medium;
+		font-size: $font-size_x-lg + 0.25rem;
+	}
+}
+
+.sub-header {
+	font-size: $font-size_lg;
+	font-weight: $font-weight_light;
+	margin: 0 0 2rem;
+}
+
+.page-content {
+	width: 100%;
+	max-width: 600px;
+	margin: 0 auto;
+}
+
+.choice {
+	list-style: none;
+	padding: 0;
+	margin: 0 0 2rem;
+	
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+	
+	.choice-item {
+		padding: 1rem;
+		
+		input {
+			display: none;
+		}
+		
+		&__trigger {
+			&:hover {
+				.choice-item__wrapper {
+					transform: translateY(-2px);
+					box-shadow: 0 4px 16px rgba(0,0,0,0.33);
+				}
+			}
+		}
+		
+		&__wrapper {
+			padding: 2rem;
+			border-radius: 6px;
+			box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+			background: $color_white;
+			color: $color_gray;
+			
+			transition: all 300ms ease;
+		}
+		&__img {
+			display: block;
+			width: 180px;
+			img {
+				display: block;
+			}
+		}
+		
+		input:checked + .choice-item__wrapper {
+			background: $color_blue;
+			color: $color_white;
+		}
+	}
+}
+
+.date-spinner {
+	display: flex;
+	flex-flow: row wrap;
+	align-items: center;
+	justify-content: center;
+	
+	&__block {
+		padding: 0.5rem;
+		position: relative;
+		
+		.spinner-arrow {
+			position: absolute;
+			left: 0;
+			right: 0;
+			height: 40px;
+			cursor: pointer;
+			z-index: 99;
+			
+			&_up {
+				top: 0;
+				background: transparent url(../img/arrow-up.svg) no-repeat center center / 24px;
+			}
+			
+			&_down {
+				bottom: 0;
+				background: transparent url(../img/arrow-down.svg) no-repeat center center / 24px;
+			}
+		}
+		
+		.spinner-label {
+			position: absolute;
+			left: 1rem;
+			top: 50%;
+			transform: translateY(-50%);
+			color: $color_gray;
+		}
+	}
+	
+	&__track {
+		overflow: hidden;
+		width: 140px;
+		height: 220px;
+		border-radius: 6px;
+		
+		position: relative;
+		
+	}
+	
+	.item-list {
+		background: $color_white;
+		text-align: center;
+		padding: 60px 0;
+		
+		span {
+			display: flex;
+			flex-flow: column;
+			justify-content: center;
+			border-top: 1px solid rgba( $color_gray, 0.33 );
+			height: 60px;
+			color: rgba( $color_gray, 0.33 );
+			font-size: $font-size_x-lg;
+			
+			// transition: all 300ms ease;
+			
+			&:last-child {
+				border-bottom: 1px solid rgba( $color_gray, 0.33 );
+			}
+						
+			&.selected {
+				height: 100px;
+				color: $color_gray;
+			}
+		}
+		
+	}
+
+}
+
+.form-notice {
+	opacity: 0.5;
+	padding: 2rem 0;
+}
+
+.form-step {
+	width: 100%;
+	max-width: 720px;
+	margin: 2rem auto;
+	position: relative;
+	
+	.step {
+		display: inline-flex;
+		flex-flow: row wrap;
+		align-items: center;
+		justify-content: center;
+	
+		&__item {
+			width: 10px;
+			height: 10px;
+			border: 1px solid $color_white;
+			background: transparent;
+			border-radius: 10px;
+			margin: 0.25rem;
+			
+			&.current {
+				background: $color_white;
+			}
+			
+			> span {
+				display: none;
+			}			
+		}
+	}
+	
+	&__nav {
+		position: absolute;
+		top: 0;
+		text-decoration: none !important;
+		line-height: 22px;
+		height: 24px;
+		
+		&_prev {
+			left: 0;
+			padding-left: 30px;
+			background: transparent url(../img/nav-back-alt.svg) no-repeat left center / contain;
+		}
+		&_next {
+			right: 0;
+			padding-right: 30px;
+			background: transparent url(../img/nav-next-alt.svg) no-repeat right center / contain;
+		}
+	}
+}
+
+
+// You or Who
+.you-or-who-content {
+	margin-bottom: 4rem;
+}
+
+// Site Footer
+.site-footer {
+	background: $color_blue;
+	padding: 1rem;
+	
+	&__wrapper {
+		display: flex;
+		flex-flow: row wrap;
+		align-items: center;
+		justify-content: space-between;
+	}
+	
+	.call24 {
+		order: 1;
+		position: relative;
+		padding-left: calc( 80px + 1rem );
+		font-size: $font-size_x-lg;
+		width: 30%;
+		
+		span {
+			font-size: $font-size_default;
+			display: inline-block;
+		}
+		
+		&:before {
+			content: "";
+			width: 80px;
+			height: 80px;
+			position: absolute;
+			left: 0;
+			bottom: 0;
+			background: transparent url(../img/call-24.svg) no-repeat center center / contain;
+			
+		}
+		
+		@include mq( $until: wide ) {
+			font-size: $font-size_default;
+			padding-left: calc( 60px + 1rem );
+			&:before {
+				width: 60px;
+				height: 60px;				
+			}
+		}
+	}
+	.contact-specialist {
+		order: 3;
+		width: 30%;
+		text-align: right;
+		
+		font-size: $font-size_md;
+		
+		@include mq( $until: wide ) {
+			font-size: $font-size_default;
+		}
+	}
+	.copyrights {
+		order: 2;
+		opacity: 0.5;
+		font-size: $font-size_default;
+		@include mq( $until: wide ) {
+			font-size: $font-size_sm;
+		}
+	}
+}
+
