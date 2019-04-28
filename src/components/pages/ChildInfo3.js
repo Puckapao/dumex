@@ -61,11 +61,11 @@ class ChildInfo3 extends Component {
             </Radio>
             <Button onClick={this.changeStep.bind(this, "5.2B")}>กลับ</Button>
             <Button onClick={this.handleSubmitForm}>ต่อไป</Button> */}
-            <h1 class="header">คุณแม่คลอดบุตรแล้ว</h1>
-            <h2 class="sub-header">รายละเอียดการคลอด</h2>
-            <ul class="choice choice_horizontal">
-               <li class="choice-item">
-                  <label class="choice-item__trigger">
+            <h1 className="header">คุณแม่คลอดบุตรแล้ว</h1>
+            <h2 className="sub-header">รายละเอียดการคลอด</h2>
+            <ul className="choice choice_horizontal">
+               <li className="choice-item">
+                  <label className="choice-item__trigger">
                      <input
                         type="radio"
                         name="labor"
@@ -73,14 +73,16 @@ class ChildInfo3 extends Component {
                         onChange={this.handleChange}
                         checked={this.state.labor === "c-section"}
                      />
-                     <div class="choice-item__wrapper">
-                        <span class="choice-item__img"><img src={tool} alt="q04-tools" /></span>
-                        <span class="choice-item__title">ผ่าคลอด</span>							
+                     <div className="choice-item__wrapper">
+                        <span className="choice-item__img">
+                           <img src={tool} alt="q04-tools" />
+                        </span>
+                        <span className="choice-item__title">ผ่าคลอด</span>
                      </div>
                   </label>
                </li>
-               <li class="choice-item">
-                  <label class="choice-item__trigger">
+               <li className="choice-item">
+                  <label className="choice-item__trigger">
                      <input
                         type="radio"
                         name="labor"
@@ -88,28 +90,58 @@ class ChildInfo3 extends Component {
                         onChange={this.handleChange}
                         checked={this.state.labor === "normal"}
                      />
-                     <div class="choice-item__wrapper">
-                        <span class="choice-item__img"><img src={normal} alt="q04-born" /></span>
-                        <span class="choice-item__title">คลอดธรรมชาติ</span>
+                     <div className="choice-item__wrapper">
+                        <span className="choice-item__img">
+                           <img src={normal} alt="q04-born" />
+                        </span>
+                        <span className="choice-item__title">คลอดธรรมชาติ</span>
                      </div>
                   </label>
                </li>
             </ul>
-            
-            {/* <div class="form-notice">สามารถเลื่อนซ้ายขวาเพื่อเลือกได้</div> */}
-            <div class="form-step">
-               <a class="form-step__nav form-step__nav_prev" href="#" onClick={this.changeStep.bind(this, "5.2B")}>กลับ</a>
-               <div class="step">
-                  <a href="#" class="step__item"><span>1</span></a>
-                  <a href="#" class="step__item current"><span>2</span></a>
-                  <a href="#" class="step__item"><span>3</span></a>
-                  <a href="#" class="step__item"><span>4</span></a>
-                  <a href="#" class="step__item"><span>5</span></a>
-                  <a href="#" class="step__item"><span>6</span></a>
-                  <a href="#" class="step__item"><span>7</span></a>
-                  <a href="#" class="step__item"><span>8</span></a>					
+
+            {/* <div className="form-notice">สามารถเลื่อนซ้ายขวาเพื่อเลือกได้</div> */}
+            <div className="form-step">
+               <a
+                  className="form-step__nav form-step__nav_prev"
+                  href="#"
+                  onClick={this.changeStep.bind(this, "5.2B")}
+               >
+                  กลับ
+               </a>
+               <div className="step">
+                  <a href="#" className="step__item">
+                     <span>1</span>
+                  </a>
+                  <a href="#" className="step__item current">
+                     <span>2</span>
+                  </a>
+                  <a href="#" className="step__item">
+                     <span>3</span>
+                  </a>
+                  <a href="#" className="step__item">
+                     <span>4</span>
+                  </a>
+                  <a href="#" className="step__item">
+                     <span>5</span>
+                  </a>
+                  <a href="#" className="step__item">
+                     <span>6</span>
+                  </a>
+                  <a href="#" className="step__item">
+                     <span>7</span>
+                  </a>
+                  <a href="#" className="step__item">
+                     <span>8</span>
+                  </a>
                </div>
-               <a class="form-step__nav form-step__nav_next" href="#" onClick={this.handleSubmitForm}>ต่อไป</a>
+               <a
+                  className="form-step__nav form-step__nav_next"
+                  href="#"
+                  onClick={this.handleSubmitForm}
+               >
+                  ต่อไป
+               </a>
             </div>
          </React.Fragment>
       );

@@ -78,8 +78,8 @@ class App extends Component {
                      </div>
                   </div>
                </footer>
-               <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js" />
-               <script src="./js/main.min.js" />
+               {/* <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js" />
+               <script src="./js/main.min.js" /> */}
             </React.Fragment>
          </Provider>
       );
