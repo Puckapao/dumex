@@ -65,21 +65,23 @@ class ChooseYourChild extends Component {
          // <Button key={child.id} onClick={this.handleClick.bind(this, child)}>
          //    {child.baby_name || "null"}
          // </Button>
-         <label key={child.id} className="choice-item__trigger">
-            <input type="radio" name="mom_status" value="pregnancy" />
-            <div
-               // onClick={this.handleClick.bind(this, child)}
-               onClick={() => this.setState({ current: child })}
-               className="choice-item__wrapper"
-            >
-               <span className="choice-item__img">
-                  <img src={baby} alt="q01-baby" />
-               </span>
-               <span className="choice-item__title">
-                  {child.baby_name || "null"}
-               </span>
-            </div>
-         </label>
+         <li key={child.id} className="choice-item">
+            <label className="choice-item__trigger">
+               <input type="radio" name="child" value="child.id" />
+               <div
+                  // onClick={this.handleClick.bind(this, child)}
+                  onClick={() => this.setState({ current: child })}
+                  className="choice-item__wrapper"
+               >
+                  <span className="choice-item__img">
+                     <img src={baby} alt="q01-baby" />
+                  </span>
+                  <span className="choice-item__title">
+                     {child.baby_name || "null"}
+                  </span>
+               </div>
+            </label>
+         </li>
       ));
    };
 
@@ -104,7 +106,7 @@ class ChooseYourChild extends Component {
             <h2 className="sub-header">รายละเอียดการคลอด</h2>
             <p>เลือกลูกน้อยที่ต้องการทำแบบทดสอบ</p>
             <ul className="choice choice_horizontal">
-               <li className="choice-item">{this.childrenButton()}</li>
+               {this.childrenButton()}
                <li className="choice-item">
                   <label className="choice-item__trigger">
                      <input

@@ -3,6 +3,9 @@ import { connect } from "react-redux";
 import { changeStepAction, resultAction } from "../../actions";
 import { Button } from "../reuse";
 
+import lowRisk from "../../img/endcard-low.svg";
+import highRisk from "../../img/endcard-high.svg";
+
 class Result extends Component {
    changeStep = newStep => {
       this.props.changeStepAction(newStep);
@@ -112,7 +115,7 @@ class Result extends Component {
    render() {
       return (
          <React.Fragment>
-            <h1>ผลทดสอบความเสี่ยงภูมิแพ้</h1>
+            {/* <h1>ผลทดสอบความเสี่ยงภูมิแพ้</h1>
             <Button onClick={this.changeStep.bind(this, "9")}>
                ขอคำปรึกษาจากผู้เชี่ยวชาญ
             </Button>
@@ -120,7 +123,45 @@ class Result extends Component {
             {this.renderResult(
                this.calcScore(this.props.form.AllergyPrevention)
             )}
-            <Button>กลับ</Button>
+            <Button>กลับ</Button> */}
+            <h1 class="header">ผลทดสอบความเสี่ยง <strong>ภูมิแพ้</strong></h1>
+            <div class="result-wrapper">
+               <div class="result-box">
+                  {/* Low */}
+                  <img src={lowRisk} alt="low-risk" width="360" height="480" />
+                  <h2 class="result-box__header">ลูกของคุณมี <strong>ความเสี่ยงต่ำ</strong> ที่จะเกิดภูมิแพ้</h2>
+                  {/* High */}
+                  <img src={highRisk} alt="high-risk" width="360" height="480" />
+					   <h2 class="result-box__header">ลูกของคุณมี <strong>ความเสี่ยงสูง</strong> ที่จะเกิดภูมิแพ้</h2>
+               </div>
+               <a href="#" class="result-share-button"><span>Share</span></a>
+               <div class="result-info">
+                  {/* Low */}
+                  <p>ขอแสดงความยินดีกับคุณแม่ที่ลูกน้อยของคุณแม่มีความเสี่ยงในการเกิดโรค <strong>ภูมิแพ้</strong> ตํ่า อย่างไรก็ตามภูมิต้านทาน คือรากฐาน สําคัญสําหรับสุขภาพในระยะยาว ควรส่งเสริมภูมิต้านทานให้ลูกน้อยด้วยการให้นมแม่อย่างน้อย 6 เดือน</p>
+                  {/* High */}
+                  <p>โรค <strong>ภูมิแพ้</strong> สามารถถ่ายทอดผ่านทางพันธุกรรมได้ ซึ่งน้องมีความเสี่ยงสูงที่อาจจะเกิดโรค <strong>ภูมิแพ้</strong> ในอนาคต คุณแม่ควรเลี้ยงลูกด้วยนมแม่ให้นานที่สุด หรืออย่างน้อย 6 เดือน เพราะนมแม่คือโภชนาการที่ดีที่สุดสําหรับทารก และยังเป็นนมที่เหมาะสมในการป้องกัน โรค <strong>ภูมิแพ้</strong> เนื่องจากนมแม่มีโปรตีนที่ไม่ไปกระตุ้นการเกิด ภูมิแพ้และยังมีองค์ประกอบที่ช่วยส่งเสริมภูมิต้านทานหลายชนิด เช่น ซินไบโอติก ในกรณีที่คุณแม่ไม่สามารถให้นมบุตรได้ ควรปรึกษาบุคลากรทางการแพทย์ในการให้นมสูตร pHF หรือ H.A. ที่มีโปรตีนขนาดเล็ก ซึ่งมีโครงสร้างที่ช่วยลดการกระตุ้นการเกิด <strong>ภูมิแพ้</strong> เหมือนในนมแม่</p>
+					   <h4>"เปลี่ยนภูมิแพ้... เป็นภูมิพร้อม" ตั้งแต่วันนี้ เพราะอนาคตเป็นของคนที่พร้อม</h4>
+					   <p>ให้ลูกน้อยมีภูมิต้านทานที่แข็งแรง ไม่เสี่ยงต่อ <strong>ภูมิแพ้</strong> เรียนรู้โลกอย่างกว้างอย่างไร้อุปสรรค เพราะอนาคตเป็นของคนที่พร้อม สอบถามเรื่องนมเพื่อลดความเสี่ยงอาการภูมิแพ้ได้ที่ <strong>02-740-3456</strong></p>
+               </div>
+               <div class="result-action">
+                  <a href="" class="result-action__button result-action__button_call" onClick={this.changeStep.bind(this, "9")}>ยินดีให้ผู้เชี่ยวชาญติดต่อกลับ</a>
+					   <a href="" class="result-action__button result-action__button_save">บันทึกผลเพื่อปรึกษาแพทย์</a>
+               </div>
+            </div>
+            <div class="form-step">
+               {/* need to change */}
+               <a class="form-step__nav form-step__nav_prev" href="#">กลับ</a>
+               <div class="step">
+                  <a href="#" class="step__item"><span>1</span></a>
+                  <a href="#" class="step__item"><span>2</span></a>
+                  <a href="#" class="step__item"><span>3</span></a>
+                  <a href="#" class="step__item"><span>4</span></a>
+                  <a href="#" class="step__item"><span>5</span></a>
+                  <a href="#" class="step__item"><span>6</span></a>
+                  <a href="#" class="step__item"><span>7</span></a>
+                  <a href="#" class="step__item current"><span>8</span></a>					
+               </div>
+            </div>
          </React.Fragment>
       );
    }

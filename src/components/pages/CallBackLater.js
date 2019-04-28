@@ -76,7 +76,7 @@ class CallBackLater extends Component {
    render() {
       return (
          <React.Fragment>
-            <h1 className="header">กรุณากรอกข้อมูลเพื่อได้รับการติดต่อกลับโดยไม่มีค่าใช้จ่าย</h1>
+            {/* <h1 className="header">กรุณากรอกข้อมูลเพื่อได้รับการติดต่อกลับโดยไม่มีค่าใช้จ่าย</h1>
             <TextInput
                name="firstname"
                value={this.state.firstname}
@@ -137,7 +137,7 @@ class CallBackLater extends Component {
             </p>
 
             <Button onClick={this.handleSubmitForm}>บันทึกข้อมูล</Button>
-            <Button onClick={this.changeStep.bind(this, "8")}>กลับ</Button>
+            <Button onClick={this.changeStep.bind(this, "8")}>กลับ</Button> */}
             <h1 class="header">กรุณากรอกข้อมูลเพื่อได้รับการติดต่อกลับ<br />
             โดยไม่มีค่าใช้จ่าย</h1>
 				
@@ -146,7 +146,9 @@ class CallBackLater extends Component {
                   <input
                      class="input input_type_text"
                      required type="text"
-                     name="name"
+                     name="firstname"
+                     value={this.state.firstname}
+                     onChange={this.handleChange}
                      placeholder="ชื่อ - นามสกุล"
                   />
                </span>
@@ -158,6 +160,8 @@ class CallBackLater extends Component {
                      class="input input_type_text"
                      required type="text"
                      name="phone"
+                     value={this.state.phone}
+                     onChange={this.handleChange}
                      placeholder="เบอร์โทร"
                   />
                </span>
@@ -168,7 +172,10 @@ class CallBackLater extends Component {
                      <input
                         class="input input_type_checkbox"
                         type="checkbox"
-                        name="sms_allow"
+                        name="is_sms"
+                        value={this.state.is_sms}
+                        onChange={this.handleChange}
+                        checked={this.state.is_sms}
                      />
                      <span class="checkbox-icon"></span> ยินดีรับ SMS ที่เป็นประโยชน์
                   </label>
@@ -180,6 +187,8 @@ class CallBackLater extends Component {
                      class="input input_type_text"
                      required type="text"
                      name="email"
+                     value={this.state.email}
+                     onChange={this.handleChange}
                      placeholder="อีเมล์"
                   />
                </span>
@@ -190,7 +199,10 @@ class CallBackLater extends Component {
                      <input
                         class="input input_type_checkbox"
                         type="checkbox"
-                        name="contact_allow"
+                        name="is_call"
+                        value={this.state.is_call}
+                        onChange={this.handleChange}
+                        checked={this.state.is_call}
                      />
                      <span class="checkbox-icon"></span> ให้เจ้าหน้าที่ติดต่อกลับทางโทรศัพท์
                   </label>
