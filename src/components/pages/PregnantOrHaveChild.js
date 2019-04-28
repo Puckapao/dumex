@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { pregnantOrHaveChildAction, changeStepAction } from "../../actions";
 
-import { Radio, Button } from "../reuse";
+// import { Radio, Button } from "../reuse";
 
 import pregnant from "../../img/q02-pregnant.svg";
 import birth from "../../img/q02-birth.svg";
@@ -40,7 +40,6 @@ class PregnantOrHaveChild extends Component {
             {/* <h1>ทดสอบความเสี่ยงภูมิแพ้ของลูกน้อย</h1>
             <h1>รู้เร็ว รู้ง่าย เพียง1นาที</h1>
             <p>กรุณาเลือกสถานะ</p>
-
             <Radio
                name="mom_status"
                value="pregnancy"
@@ -57,27 +56,46 @@ class PregnantOrHaveChild extends Component {
             >
                คลอดบุตรแล้ว
             </Radio>
-
             <Button onClick={this.handleSubmitForm}>ต่อไป</Button> */}
-
-            <h1 class="header">ทดสอบความเสี่ยง <strong>ภูมิแพ้</strong> ของลูกน้อย<br />
-            รู้เร็ว รู้ง่าย เพียง 1 นาที</h1>
+            <h1 className="header">
+               ทดสอบความเสี่ยง <strong>ภูมิแพ้</strong> ของลูกน้อย
+               <br />
+               รู้เร็ว รู้ง่าย เพียง 1 นาที
+            </h1>
             <h2 className="sub-header">กรุณาเลือกสถานะ</h2>
             <ul className="choice choice_horizontal">
                <li className="choice-item">
                   <label className="choice-item__trigger">
-                     <input type="radio" name="mom_status" value="pregnancy" />
+                     <input
+                        type="radio"
+                        name="mom_status"
+                        onChange={this.handleChange}
+                        value="pregnancy"
+                        checked={this.state.mom_status === "pregnancy"}
+                     />
                      <div className="choice-item__wrapper">
-                        <span className="choice-item__img"><img src={pregnant} alt="q02-pregnant" /></span>
-                        <span className="choice-item__title">กำลังตั้งครรภ์</span>							
+                        <span className="choice-item__img">
+                           <img src={pregnant} alt="q02-pregnant" />
+                        </span>
+                        <span className="choice-item__title">
+                           กำลังตั้งครรภ์
+                        </span>
                      </div>
                   </label>
                </li>
                <li className="choice-item">
                   <label className="choice-item__trigger">
-                     <input type="radio" name="mom_status" value="mom-child" />
+                     <input
+                        type="radio"
+                        name="mom_status"
+                        onChange={this.handleChange}
+                        value="mom-child"
+                        checked={this.state.mom_status === "mom-child"}
+                     />
                      <div className="choice-item__wrapper">
-                        <span className="choice-item__img"><img src={birth} alt="q02-birth" /></span>
+                        <span className="choice-item__img">
+                           <img src={birth} alt="q02-birth" />
+                        </span>
                         <span className="choice-item__title">คลอดบุตรแล้ว</span>
                      </div>
                   </label>
@@ -86,16 +104,38 @@ class PregnantOrHaveChild extends Component {
             {/* <div className="form-notice">สามารถเลื่อนซ้ายขวาเพื่อเลือกได้</div> */}
             <div className="form-step">
                <div className="step">
-                  <a href="#" className="step__item current"><span>1</span></a>
-                  <a href="#" className="step__item"><span>2</span></a>
-                  <a href="#" className="step__item"><span>3</span></a>
-                  <a href="#" className="step__item"><span>4</span></a>
-                  <a href="#" className="step__item"><span>5</span></a>
-                  <a href="#" className="step__item"><span>6</span></a>
-                  <a href="#" className="step__item"><span>7</span></a>
-                  <a href="#" className="step__item"><span>8</span></a>					
+                  <a href="#" className="step__item current">
+                     <span>1</span>
+                  </a>
+                  <a href="#" className="step__item">
+                     <span>2</span>
+                  </a>
+                  <a href="#" className="step__item">
+                     <span>3</span>
+                  </a>
+                  <a href="#" className="step__item">
+                     <span>4</span>
+                  </a>
+                  <a href="#" className="step__item">
+                     <span>5</span>
+                  </a>
+                  <a href="#" className="step__item">
+                     <span>6</span>
+                  </a>
+                  <a href="#" className="step__item">
+                     <span>7</span>
+                  </a>
+                  <a href="#" className="step__item">
+                     <span>8</span>
+                  </a>
                </div>
-               <a className="form-step__nav form-step__nav_next" href="#" onClick={this.handleSubmitForm}>ต่อไป</a>
+               <a
+                  className="form-step__nav form-step__nav_next"
+                  href="#"
+                  onClick={this.handleSubmitForm}
+               >
+                  ต่อไป
+               </a>
             </div>
          </React.Fragment>
       );
