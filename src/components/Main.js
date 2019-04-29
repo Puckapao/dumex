@@ -16,6 +16,8 @@ import Result from "./pages/Result";
 import CallBackLater from "./pages/CallBackLater";
 import ThankYou from "./pages/ThankYou";
 
+import PDF from "./pdf/FormTemplate";
+
 class Main extends Component {
    render() {
       switch (this.props.step) {
@@ -45,6 +47,8 @@ class Main extends Component {
             return <CallBackLater />;
          case "10":
             return <ThankYou />;
+         case "PDF":
+            return <PDF />;
          default:
             return (
                <React.Fragment>
