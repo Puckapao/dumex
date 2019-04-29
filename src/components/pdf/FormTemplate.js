@@ -1,6 +1,16 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 
-class pdfGenerator extends Component {
+import {
+   PDFViewer,
+   Page,
+   Text,
+   View,
+   Document,
+   StyleSheet
+} from "@react-pdf/renderer";
+
+class FormTemplate extends Component {
    state = {
       storeName: "SOMETHING APPARELS",
       storeAddress: "1234 ยิ้มแย้มโฮสเทล",
@@ -14,15 +24,36 @@ class pdfGenerator extends Component {
       shippingType: "ems"
    };
 
+   // Create styles
+   styles = StyleSheet.create({
+      page: {
+         flexDirection: "row",
+         backgroundColor: "#E4E4E4"
+      },
+      section: {
+         margin: 10,
+         padding: 10,
+         flexGrow: 1
+      }
+   });
+
    render() {
       return (
-         <React.Fragment>
-            <h1>{this.state.storeName}</h1>
-            <h2>{this.state.storeAddress}</h2>
-            <p>{this.state.customerName}</p>
-         </React.Fragment>
+         <PDFViewer>
+            <Document>
+               <Page size="A4" style={this.styles.page}>
+                  <Text>Hello World!</Text>
+               </Page>
+            </Document>
+         </PDFViewer>
       );
    }
 }
 
-export default pdfGenerator;
+const mapStateToProps = state => {
+   return {
+      AllergyPrevention: state.form.AllergyPrevention
+   };
+};
+
+export default connect(mapStateToProps)(FormTemplate);

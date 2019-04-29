@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { mainQuizAction, changeStepAction } from "../../actions";
 
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
+
 // import { Radio, Button } from "../reuse";
 import mom from "../../img/mom.svg";
 import dad from "../../img/dad.svg";
@@ -35,6 +38,11 @@ import kidAct07 from "../../video/kid_act_07_movecrop.mp4";
 import kidAct08 from "../../video/kid_act_08_movecrop.mp4";
 
 class MainQuiz extends Component {
+   constructor(props) {
+      super(props);
+      this.myRef = React.createRef();
+   }
+
    state = {
       member: "mother",
 
@@ -150,6 +158,20 @@ class MainQuiz extends Component {
             </ul>
          </React.Fragment>
       );
+   };
+
+   html2canvas = () => {
+      console.log("html2canvas");
+      var capture = this.myRef.current;
+
+      html2canvas(capture).then(canvas => {
+         // document.body.appendChild(canvas);
+         const imgData = canvas.toDataURL("image/png");
+
+         const pdf = new jsPDF();
+         pdf.addImage(imgData, "PNG", 0, 0);
+         pdf.save("download.pdf");
+      });
    };
 
    render() {
@@ -452,119 +474,128 @@ class MainQuiz extends Component {
                   <Button onClick={this.changeMember.bind(this, "father")}>
                      ต่อไป
                   </Button> */}
-                  <h1 className="header">
-                     แบบทดสอบความเสี่ยงเป็นภูมิแพ้ของคนในครอบครัว
-                  </h1>
-                  <h2 className="sub-header">
-                     คนในครอบครัวเคยมีอาการเหล่านี้หรือไม่
-                  </h2>
-                  <p>O = เป็น, X = ไม่เป็น, ? = ไม่แน่ใจ</p>
+                  <div ref={this.myRef}>
+                     <h1 className="header">
+                        แบบทดสอบความเสี่ยงเป็นภูมิแพ้ของคนในครอบครัว
+                     </h1>
+                     <h2 className="sub-header">
+                        คนในครอบครัวเคยมีอาการเหล่านี้หรือไม่
+                     </h2>
+                     <p>O = เป็น, X = ไม่เป็น, ? = ไม่แน่ใจ</p>
 
-                  <div className="people">
-                     <div className="people__avatar">
-                        <img src={mom} alt="mom" />
-                        <span className="name">คุณแม่</span>
-                     </div>
-                     <ul className="people__nav">
-                        <li className="active">
-                           <button>1</button>
-                        </li>
-                        <li>
-                           <button>2</button>
-                        </li>
-                        {this.props.sibling === "yes" ? (
-                           <li>
-                              <button>3</button>
+                     <div className="people">
+                        <div className="people__avatar">
+                           <img src={mom} alt="mom" />
+                           <span className="name">คุณแม่</span>
+                        </div>
+                        <ul className="people__nav">
+                           <li className="active">
+                              <button>1</button>
                            </li>
-                        ) : null}
-                     </ul>
-                     <a
-                        href="#"
-                        className="people__arrow people__arrow_prev"
-                        disabled
-                     >
-                        <span>ก่อนหน้า</span>
-                     </a>
-                     <a
-                        href="#"
-                        className="people__arrow people__arrow_next"
-                        onClick={this.changeMember.bind(this, "father")}
-                     >
-                        <span>ถัดไป</span>
-                     </a>
-                  </div>
-
-                  <div className="quiz-block">
-                     {this.choiceUpdate("หอบหืด", "mother_asthma", momAct01)}
-                     {this.choiceUpdate(
-                        "แพ้นมวัว",
-                        "mother_milk_intolerance",
-                        momAct02
-                     )}
-                     {this.choiceUpdate(
-                        "แพ้อากาศ",
-                        "mother_rhinitis",
-                        momAct03
-                     )}
-                     {this.choiceUpdate(
-                        "ผื่นแพ้ผิวหนัง",
-                        "mother_atopic_dermatitis",
-                        momAct04
-                     )}
-                     {this.choiceUpdate("ลมพิษ", "mother_urticaria", momAct05)}
-                     {this.choiceUpdate("แพ้ยา", "mother_drug", momAct06)}
-                     {this.choiceUpdate("แพ้อาหาร", "mother_food", momAct07)}
-                     {this.choiceUpdate(
-                        "เยื่อบุตาอักเสบจากภูมิแพ้",
-                        "mother_conjunctivitis",
-                        momAct08
-                     )}
-                  </div>
-
-                  {/* <div className="form-notice">สามารถเลื่อนซ้ายขวาเพื่อเลือกได้</div> */}
-
-                  <div className="form-step">
-                     <a
-                        className="form-step__nav form-step__nav_prev"
-                        href="#"
-                        onClick={this.changeStep.bind(this, "6")}
-                     >
-                        กลับ
-                     </a>
-                     <div className="step">
-                        <a href="#" className="step__item">
-                           <span>1</span>
+                           <li>
+                              <button>2</button>
+                           </li>
+                           {this.props.sibling === "yes" ? (
+                              <li>
+                                 <button>3</button>
+                              </li>
+                           ) : null}
+                        </ul>
+                        <a
+                           href="#"
+                           className="people__arrow people__arrow_prev"
+                           disabled
+                        >
+                           <span>ก่อนหน้า</span>
                         </a>
-                        <a href="#" className="step__item">
-                           <span>2</span>
-                        </a>
-                        <a href="#" className="step__item">
-                           <span>3</span>
-                        </a>
-                        <a href="#" className="step__item current">
-                           <span>4</span>
-                        </a>
-                        <a href="#" className="step__item">
-                           <span>5</span>
-                        </a>
-                        <a href="#" className="step__item">
-                           <span>6</span>
-                        </a>
-                        <a href="#" className="step__item">
-                           <span>7</span>
-                        </a>
-                        <a href="#" className="step__item">
-                           <span>8</span>
+                        <a
+                           href="#"
+                           className="people__arrow people__arrow_next"
+                           onClick={this.changeMember.bind(this, "father")}
+                        >
+                           <span>ถัดไป</span>
                         </a>
                      </div>
-                     <a
-                        className="form-step__nav form-step__nav_next"
-                        href="#"
-                        onClick={this.changeMember.bind(this, "father")}
-                     >
-                        ต่อไป
-                     </a>
+
+                     <div className="quiz-block">
+                        {this.choiceUpdate("หอบหืด", "mother_asthma", momAct01)}
+                        {this.choiceUpdate(
+                           "แพ้นมวัว",
+                           "mother_milk_intolerance",
+                           momAct02
+                        )}
+                        {this.choiceUpdate(
+                           "แพ้อากาศ",
+                           "mother_rhinitis",
+                           momAct03
+                        )}
+                        {this.choiceUpdate(
+                           "ผื่นแพ้ผิวหนัง",
+                           "mother_atopic_dermatitis",
+                           momAct04
+                        )}
+                        {this.choiceUpdate(
+                           "ลมพิษ",
+                           "mother_urticaria",
+                           momAct05
+                        )}
+                        {this.choiceUpdate("แพ้ยา", "mother_drug", momAct06)}
+                        {this.choiceUpdate("แพ้อาหาร", "mother_food", momAct07)}
+                        {this.choiceUpdate(
+                           "เยื่อบุตาอักเสบจากภูมิแพ้",
+                           "mother_conjunctivitis",
+                           momAct08
+                        )}
+                     </div>
+
+                     {/* <div className="form-notice">สามารถเลื่อนซ้ายขวาเพื่อเลือกได้</div> */}
+
+                     <div className="form-step">
+                        <a
+                           className="form-step__nav form-step__nav_prev"
+                           href="#"
+                           onClick={this.changeStep.bind(this, "6")}
+                        >
+                           กลับ
+                        </a>
+                        <div className="step">
+                           <a href="#" className="step__item">
+                              <span>1</span>
+                           </a>
+                           <a href="#" className="step__item">
+                              <span>2</span>
+                           </a>
+                           <a href="#" className="step__item">
+                              <span>3</span>
+                           </a>
+                           <a href="#" className="step__item current">
+                              <span>4</span>
+                           </a>
+                           <a href="#" className="step__item">
+                              <span>5</span>
+                           </a>
+                           <a href="#" className="step__item">
+                              <span>6</span>
+                           </a>
+                           <a href="#" className="step__item">
+                              <span>7</span>
+                           </a>
+                           <a href="#" className="step__item">
+                              <span>8</span>
+                           </a>
+                        </div>
+                        <a
+                           className="form-step__nav form-step__nav_next"
+                           href="#"
+                           onClick={this.changeMember.bind(this, "father")}
+                        >
+                           ต่อไป
+                        </a>
+                     </div>
                   </div>
+                  {/* <button onClick={this.html2canvas}>
+                     <p>+++ PDF +++</p>
+                  </button> */}
                </React.Fragment>
             );
       }
