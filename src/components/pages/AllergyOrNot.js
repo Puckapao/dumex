@@ -21,6 +21,10 @@ class AllergyOrNot extends Component {
       this.setState({ [e.target.name]: e.target.value });
    };
 
+   handleNothing = e => {
+      // do nothing
+   };
+
    changeStep = newStep => {
       this.props.changeStepAction(newStep);
    };
@@ -150,7 +154,8 @@ class AllergyOrNot extends Component {
                                  type="radio"
                                  name="sibling"
                                  value="yes"
-                                 defaultChecked={this.state.sibling === "yes"}
+                                 onChange={this.handleNothing}
+                                 checked={this.state.sibling === "yes"}
                                  onClick={(e) => {
                                     this.handleSubmitForm(e, "yes")
                                  }}
@@ -174,7 +179,8 @@ class AllergyOrNot extends Component {
                                  type="radio"
                                  name="sibling"
                                  value="no"
-                                 defaultChecked={this.state.sibling === "no"}
+                                 onChange={this.handleNothing}
+                                 checked={this.state.sibling === "no"}
                                  onClick={(e) => {
                                     this.handleSubmitForm(e, "no")
                                  }}
