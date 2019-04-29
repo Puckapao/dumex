@@ -30,7 +30,7 @@ class PregnantDeadline extends Component {
       document.body.appendChild(script);
 
       let { due_date } = this.props.Member;
-      if (!due_date) due_date = "--";
+      if (due_date === "1970-01-01" || !due_date) due_date = "2019-04-30";
 
       const day = due_date.split("-")[2];
       const month = due_date.split("-")[1];

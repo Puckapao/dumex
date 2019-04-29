@@ -35,6 +35,7 @@ class ChildInfo extends Component {
       const { baby_name } = this.props.Children;
 
       if (!birthday) birthday = "--";
+      if (birthday === "1970-01-01" || !birthday) birthday = "2019-04-30";
 
       const day = birthday.split("-")[2];
       const month = birthday.split("-")[1];
