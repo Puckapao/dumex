@@ -109,29 +109,53 @@ class PregnantDeadline extends Component {
             <div className="date-spinner date-spinner_expect-date">
                <div className="date-spinner__block">
                   <div className="date-spinner__track date-spinner__track_date">
-                     <div className="item-list item-list_date" />
+                     <div className="item-list item-list_date"></div>
                   </div>
-                  <span className="spinner-arrow spinner-arrow_up" />
-                  <span className="spinner-arrow spinner-arrow_down" />
+                  <span className="spinner-arrow spinner-arrow_up"></span>
+                  <span className="spinner-arrow spinner-arrow_down"></span>
                   <span className="spinner-label">วันที่</span>
+                  <input
+                     className="spinner-input"
+                     type="number"
+                     name="temp_day"
+                     min="1"
+                     max="31"
+                     maxlength="2"
+                  />
                </div>
                <div className="date-spinner__block">
                   <div className="date-spinner__track date-spinner__track_month">
-                     <div className="item-list item-list_month" />
+                     <div className="item-list item-list_month"></div>
                   </div>
-                  <span className="spinner-arrow spinner-arrow_up" />
-                  <span className="spinner-arrow spinner-arrow_down" />
+                  <span className="spinner-arrow spinner-arrow_up"></span>
+                  <span className="spinner-arrow spinner-arrow_down"></span>
                   <span className="spinner-label">เดือน</span>
+                  <input
+                     className="spinner-input"
+                     type="number"
+                     name="temp_month"
+                     min="1"
+                     max="12"
+                     maxlength="2"
+                  />
                </div>
                <div className="date-spinner__block">
                   <div className="date-spinner__track date-spinner__track_year">
-                     <div className="item-list item-list_year" />
+                     <div className="item-list item-list_year"></div>
                   </div>
-                  <span className="spinner-arrow spinner-arrow_up" />
-                  <span className="spinner-arrow spinner-arrow_down" />
+                  <span className="spinner-arrow spinner-arrow_up"></span>
+                  <span className="spinner-arrow spinner-arrow_down"></span>
                   <span className="spinner-label">ปี</span>
+                  <input
+                     className="spinner-input"
+                     type="number"
+                     name="temp_year"
+                     min="2016"
+                     max="2019"
+                     maxlength="4"
+                  />
                </div>
-            </div>
+			   </div>
 
             {/* <div className="form-notice">สามารถเลื่อนซ้ายขวาเพื่อเลือกได้</div> */}
 
