@@ -15,9 +15,9 @@ class App extends Component {
          reducer,
          {} /* Initial State (Optional)*/,
          compose(
-            applyMiddleware(ReduxThunk)
-            //window.__REDUX_DEVTOOLS_EXTENSION__ &&
-            //  window.__REDUX_DEVTOOLS_EXTENSION__()
+            applyMiddleware(ReduxThunk),
+            window.__REDUX_DEVTOOLS_EXTENSION__ &&
+               window.__REDUX_DEVTOOLS_EXTENSION__()
          )
       );
       return (
