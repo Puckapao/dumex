@@ -23,6 +23,10 @@ class ChildInfo3 extends Component {
       this.setState({ [e.target.name]: e.target.value });
    };
 
+   handleNothing = e => {
+      // do nothing
+   };
+
    changeStep = newStep => {
       this.props.changeStepAction(newStep);
    };
@@ -75,7 +79,8 @@ class ChildInfo3 extends Component {
                            type="radio"
                            name="labor"
                            value="c-section"
-                           dafaultChecked={this.state.labor === "c-section"}
+                           onChange={this.handleNothing}
+                           checked={this.state.labor === "c-section"}
                            onClick={(e) => {
                               this.handleSubmitForm(e, "c-section");
                            }}
@@ -104,7 +109,8 @@ class ChildInfo3 extends Component {
                            type="radio"
                            name="labor"
                            value="normal"
-                           defaultChecked={this.state.labor === "normal"}
+                           onChange={this.handleNothing}
+                           checked={this.state.labor === "normal"}
                            onClick={(e) => {
                               this.handleSubmitForm(e, "normal");
                            }}

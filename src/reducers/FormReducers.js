@@ -28,7 +28,7 @@ const INITIAL_STATE = {
       // step 4 PregnantOrHaveChild
       mom_status: "", // [mom-child, pregnancy]
       // step 5.1A
-      due_date: "2015-12-30",
+      due_date: "2019-04-30",
       // step 6 AllergyOrNot
       mom_allergy: "", // [yes, not-sure, no]
       // step 9 CallBackLater
@@ -42,7 +42,7 @@ const INITIAL_STATE = {
       id: "",
       // step 5.2A
       baby_name: "",
-      birthday: "2015-12-30",
+      birthday: "2019-04-30",
       // step 5.2B
       birth_term: "", //[full-term, pre-term]
       // step 5.2C

@@ -21,15 +21,27 @@ class AllergyOrNot extends Component {
       this.setState({ [e.target.name]: e.target.value });
    };
 
-   handleSubmitForm = e => {
+   handleNothing = e => {
+      // do nothing
+   };
+
+   changeStep = newStep => {
+      this.props.changeStepAction(newStep);
+   };
+
+   handleSubmitForm = (e, sibling) => {
       e.preventDefault();
 
-      const { allergy, sibling } = this.state;
+      this.setState({
+         [e.target.name]: sibling
+      }, () => {
+         const { allergy, sibling } = this.state;
 
-      // Todo: Form Validate ****
-      this.props.allergyOrNotAction(allergy, sibling);
+         // Todo: Form Validate ****
+         this.props.allergyOrNotAction(allergy, sibling);
 
-      this.props.changeStepAction("7");
+         this.props.changeStepAction("7");
+      });
    };
 
    render() {
@@ -131,39 +143,69 @@ class AllergyOrNot extends Component {
                   </label>
                </li>
             </ul>
-            <h2 className="sub-header">ลูกของคุณมีพี่น้องหรือไม่</h2>
-            <ul className="group-choice">
-               <li className="choice-item">
-                  <label className="choice-item__trigger">
-                     <input
-                        type="radio"
-                        name="sibling"
-                        value="yes"
-                        onChange={this.handleChange}
-                        checked={this.state.sibling === "yes"}
-                     />
-                     <span className="choice-item__label">มี</span>
-                  </label>
-               </li>
-               <li className="choice-item">
-                  <label className="choice-item__trigger">
-                     <input
-                        type="radio"
-                        name="sibling"
-                        value="no"
-                        onChange={this.handleChange}
-                        checked={this.state.sibling === "no"}
-                     />
-                     <span className="choice-item__label">ไม่มี</span>
-                  </label>
-               </li>
-            </ul>
+            {this.state.allergy !== "" && (
+               <React.Fragment>
+                  <h2 className="sub-header">ลูกของคุณมีพี่น้องหรือไม่</h2>
+                  <ul className="group-choice">
+                     <li className="choice-item">
+                        <label className="choice-item__trigger">
+                           {this.state.sibling === "" ? (
+                              <input
+                                 type="radio"
+                                 name="sibling"
+                                 value="yes"
+                                 onChange={this.handleNothing}
+                                 checked={this.state.sibling === "yes"}
+                                 onClick={(e) => {
+                                    this.handleSubmitForm(e, "yes")
+                                 }}
+                              />
+                           ) : (
+                              <input
+                                 type="radio"
+                                 name="sibling"
+                                 value="yes"
+                                 onChange={this.handleChange}
+                                 checked={this.state.sibling === "yes"}
+                              />
+                           )}
+                           <span className="choice-item__label">มี</span>
+                        </label>
+                     </li>
+                     <li className="choice-item">
+                        <label className="choice-item__trigger">
+                           {this.state.sibling === "" ? (
+                              <input
+                                 type="radio"
+                                 name="sibling"
+                                 value="no"
+                                 onChange={this.handleNothing}
+                                 checked={this.state.sibling === "no"}
+                                 onClick={(e) => {
+                                    this.handleSubmitForm(e, "no")
+                                 }}
+                              />
+                           ) : (
+                              <input
+                                 type="radio"
+                                 name="sibling"
+                                 value="no"
+                                 onChange={this.handleChange}
+                                 checked={this.state.sibling === "no"}
+                              />
+                           )}
+                           <span className="choice-item__label">ไม่มี</span>
+                        </label>
+                     </li>
+                  </ul>
+               </React.Fragment>
+            )}
 
             {/* <div className="form-notice">สามารถเลื่อนซ้ายขวาเพื่อเลือกได้</div> */}
 
             <div className="form-step">
                {/* missing back function */}
-               <a className="form-step__nav form-step__nav_prev" href="#">
+               <a className="form-step__nav form-step__nav_prev" href="#" onClick={this.changeStep.bind(this, "5.2C")}>
                   กลับ
                </a>
                <div className="step">
@@ -192,13 +234,15 @@ class AllergyOrNot extends Component {
                      <span>8</span>
                   </a>
                </div>
-               <a
-                  className="form-step__nav form-step__nav_next"
-                  href="#"
-                  onClick={this.handleSubmitForm}
-               >
-                  ต่อไป
-               </a>
+               {this.state.sibling !== "" && (
+                  <a
+                     className="form-step__nav form-step__nav_next"
+                     href="#"
+                     onClick={this.handleSubmitForm}
+                  >
+                     ต่อไป
+                  </a>
+               )}
             </div>
          </React.Fragment>
       );
