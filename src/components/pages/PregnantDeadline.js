@@ -8,6 +8,10 @@ import { pregnantDeadlineAction, changeStepAction } from "../../actions";
 const script = document.createElement("script");
 
 class PregnantDeadline extends Component {
+   constructor(props) {
+      super(props);
+      this.dateInput = React.createRef();
+   };
    state = {
       day: "",
       month: "",
@@ -34,6 +38,7 @@ class PregnantDeadline extends Component {
    };
 
    handleChange = e => {
+      console.log(e.target.value);
       this.setState({ [e.target.name]: e.target.value });
    };
 
@@ -90,8 +95,9 @@ class PregnantDeadline extends Component {
             <input
                type="hidden"
                id="date_input"
+               ref={this.dateInput}
                name="day"
-               onChange={this.handleChange}
+               onChange={this.handleChange.bind(this)}
                value={this.state.day}
             />
             <input
@@ -124,6 +130,7 @@ class PregnantDeadline extends Component {
                      min="1"
                      max="31"
                      maxLength="2"
+                     onChange={this.handleChange.bind(this)}
                   />
                </div>
                <div className="date-spinner__block">

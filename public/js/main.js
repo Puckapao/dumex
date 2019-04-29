@@ -31,7 +31,7 @@ let birth_date = {
 	total_days: new_birth_date.daysInMonth()
 };
 
-console.log( birth_date );
+//console.log( birth_date );
 
 var input_edit = (el) => {
 	let spinner_blocks = document.querySelectorAll( '.date-spinner__block' ),
@@ -56,7 +56,7 @@ var apply_spinner_input_val = ( el ) => {
 		max_v = parseInt( el.getAttribute( 'max' ) ),
 		el_name = el.getAttribute( 'name' );
 
-	console.log( el_name );
+	// console.log( el_name );
 
 	if ( el.value !== '' && el.valueAsNumber >= min_v && el.valueAsNumber <= max_v ) {
 
@@ -402,13 +402,3 @@ document.addEventListener( 'keyup', (e) => {
 		document.querySelector( '.date-spinner__block.edit' ).classList.remove( 'edit' );
 	}
 });
-
-var nav_trigger = document.querySelector( '.menu-trigger' );
-
-nav_trigger.addEventListener(
-	'click',
-	(e) => {
-		e.preventDefault();
-		document.querySelector( 'body' ).classList.toggle( 'showmenu' );
-	}
-);
