@@ -1,0 +1,27 @@
+// Font Setting
+
+$font-family_default: 'Kanit', sans-serif;
+$line-height: 1.5;
+
+// Font Weight
+$font-weight_light: 300;
+$font-weight_normal: 400;
+$font-weight_medium: 500;
+$font-weight_bold: 700;
+
+// Font Sizes
+$base-font-size: 16px;
+
+$font-size_default: ( 16px / $base-font-size ) * 1rem;
+$font-size_sm: ( 12px / $base-font-size ) * 1rem;
+$font-size_md: ( 18px / $base-font-size ) * 1rem;
+$font-size_lg: ( 24px / $base-font-size ) * 1rem;
+$font-size_x-lg: ( 32px / $base-font-size ) * 1rem;
+$font-size_xx-lg: ( 42px / $base-font-size ) * 1rem;
+
+// Color Setting
+
+$color_green: #2cb16e;
+$color_blue: #124e8a;
+$color_white: #fff;
+$color_gray: #6f6f6f;
