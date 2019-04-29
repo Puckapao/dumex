@@ -1,0 +1,13 @@
+#root {
+    -webkit-flex: 1 0 auto;
+    flex: 1 0 auto;
+    text-align: center;
+    font-weight: 300;
+    line-height: 1.5;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-flow: column;
+    flex-flow: column;
+    -webkit-justify-content: center;
+    justify-content: center;
+}

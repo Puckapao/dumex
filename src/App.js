@@ -27,23 +27,23 @@ class App extends Component {
                   <div className="container">
                      <div className="site-header__wrapper">
                         <h1 className="site-logo">
-                           <a className="site-logo__link" href="#">
+                           <a className="site-logo__link" href="https://nutriciaexpert.com/">
                               Nutricia Expert
                            </a>
                         </h1>
                         <nav className="site-nav">
                            <ul className="menu">
                               <li className="menu-item">
-                                 <a href="#">ประเมินสุขภาพลูกน้อย</a>
+                                 <a href="https://nutriciaexpert.com/testings">ประเมินสุขภาพลูกน้อย</a>
                               </li>
                               <li className="menu-item">
-                                 <a href="#">คำถามที่พบบ่อย</a>
+                                 <a href="https://nutriciaexpert.com/faqs">คำถามที่พบบ่อย</a>
                               </li>
                               <li className="menu-item">
-                                 <a href="#">ฝากคำถามถึงคุณหมอ</a>
+                                 <a href="https://nutriciaexpert.com/talk-to-doctors">ฝากคำถามถึงคุณหมอ</a>
                               </li>
                               <li className="menu-item">
-                                 <a href="#">สาระน่ารู้จากคุณหมอ</a>
+                                 <a href="https://nutriciaexpert.com/expert-talks">สาระน่ารู้จากคุณหมอ</a>
                               </li>
                            </ul>
                         </nav>
