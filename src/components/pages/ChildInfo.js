@@ -145,7 +145,7 @@ class ChildInfo extends Component {
                      name="temp_day"
                      min="1"
                      max="31"
-                     maxlength="2"
+                     maxLength="2"
                   />
                </div>
                <div className="date-spinner__block">
@@ -161,7 +161,7 @@ class ChildInfo extends Component {
                      name="temp_month"
                      min="1"
                      max="12"
-                     maxlength="2"
+                     maxLength="2"
                   />
                </div>
                <div className="date-spinner__block">
@@ -177,7 +177,7 @@ class ChildInfo extends Component {
                      name="temp_year"
                      min="2016"
                      max="2019"
-                     maxlength="4"
+                     maxLength="4"
                   />
                </div>
             </div>

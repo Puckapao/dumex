@@ -95,6 +95,7 @@ p {
 			right: 0.7rem;
 			top: 50%;
 			transform: translateY(-50%);
+			font-size: $font-size_md;
 		}
 		
 	}
@@ -204,6 +205,9 @@ label {
 
 .primary-header {
 	padding: 1rem;
+	@include mq( $until: tablet ) {
+		padding: 1rem 0;
+	}
 }
 
 .secondary-header {
@@ -280,6 +284,10 @@ label {
 			transition: all 300ms ease;
 		}
 	}
+	
+	@include mq( $until: desktop ) {
+		display: none;
+	}
 }
 
 .site-logo {
@@ -312,6 +320,10 @@ label {
 		padding: 0 1rem;
 		color: $color_blue;
 	}
+	
+	@include mq( $until: desktop ) {
+		display: none;
+	}
 }
 
 // Site Content
@@ -330,6 +342,10 @@ label {
 		text-decoration: underline;
 		font-weight: $font-weight_normal;
 	}
+	
+	@include mq( $until: tablet ) {
+		padding: 2rem 1rem 1rem;
+	}
 }
 
 .header {
@@ -341,12 +357,23 @@ label {
 		font-weight: $font-weight_medium;
 		font-size: $font-size_x-lg + 0.25rem;
 	}
+	
+	@include mq( $until: tablet ) {
+		font-size: $font-size_lg;
+		strong {
+			font-size: $font-size_x-lg;
+		}
+	}
 }
 
 .sub-header {
 	font-size: $font-size_lg;
 	font-weight: $font-weight_light;
 	margin: 0 0 2rem;
+	
+	@include mq( $until: tablet ) {
+		font-size: $font-size_md;
+	}
 }
 
 .page-content {
@@ -426,9 +453,17 @@ label {
 	flex-flow: row wrap;
 	justify-content: center;
 	
+	@include mq( $until: tablet ) {
+		padding: 0;
+	}
+	
 	.choice-item {
 		min-width: 90px;
 		border-left: 1px solid $color_white;
+		
+		@include mq( $until: tablet ) {
+			min-width: 80px;
+		}
 		
 		&:first-child {
 			border: none;
@@ -452,6 +487,11 @@ label {
 						height: 40px;
 						border-radius: 40px;
 						background: $color_white;
+						z-index: -1;
+						
+						@include mq( $until: tablet ) {
+							display: none;
+						}
 					}
 					
 					&:before {
@@ -468,6 +508,10 @@ label {
 			padding: 0.5rem 1rem;
 			display: block;
 			color: rgba( $color_white, 0.5 );
+			
+			@include mq( $until: tablet ) {
+				padding: 0.5rem;
+			}
 		}
 	}
 }
@@ -600,6 +644,10 @@ label {
 		padding: 0 1rem;
 		width: 50%;
 		margin: 0 0 1rem;
+		
+		@include mq( $until: tablet ) {
+			width: 100%;
+		}
 	}
 	
 	&__title {
@@ -628,10 +676,15 @@ label {
 			transition: all 300ms ease;
 			position: relative;
 			z-index: 2;
+			
+			@include mq( $until: tablet ) {
+				transform-origin: 1rem center;
+			}
 		}
 		
 		&:hover {
 			video {
+				z-index: 4;
 				transform: scale(2.5);
 				box-shadow: 0 4px 16px rgba(0,0,0,0.25);
 			}
@@ -743,6 +796,10 @@ label {
 		padding: 0.5rem;
 		position: relative;
 		
+		@include mq( $until: tablet ) {
+			padding: 0.25rem;
+		}
+		
 		.spinner-arrow {
 			position: absolute;
 			left: 0;
@@ -768,6 +825,16 @@ label {
 			top: 50%;
 			transform: translateY(-50%);
 			color: $color_gray;
+			pointer-events: none;
+			
+			@include mq( $until: tablet ) {
+				font-size: $font-size_sm;
+				top: 60%;
+				transform: none;
+				left: 0;
+				right: 0;
+				text-align: center;
+			}
 		}
 		
 		.spinner-input {
@@ -793,6 +860,10 @@ label {
 				appearance: none;
 				margin: 0;
 			}
+			
+			@include mq( $until: tablet ) {
+				font-size: $font-size_lg;
+			}
 		}
 		
 		&.edit {
@@ -811,6 +882,10 @@ label {
 		border-radius: 6px;
 		
 		position: relative;
+		
+		@include mq( $until: tablet ) {
+			width: 80px;
+		}
 		
 	}
 	
@@ -839,6 +914,10 @@ label {
 				height: 100px;
 				color: $color_gray;
 				cursor: pointer;
+			}
+			
+			@include mq( $until: tablet ) {
+				font-size: $font-size_lg;
 			}
 		}
 		
@@ -879,6 +958,11 @@ label {
 				display: none;
 			}			
 		}
+		
+		@include mq( $until: tablet ) {
+			display: flex;
+			margin: 0 0 1rem;
+		}
 	}
 	
 	&__nav {
@@ -898,14 +982,35 @@ label {
 			padding-right: 30px;
 			background: transparent url(../img/nav-next-alt.svg) no-repeat right center / contain;
 		}
+		
+		@include mq( $until: tablet ) {
+			margin: 0.5rem;
+			position: static;
+		}
 	}
 }
 
 
 .result-wrapper {
 	position: relative;
-	width: 360px;
+	width: 100%;
+	max-width: 360px;
 	margin: 0 auto;
+	
+	@include mq( $until: wide ) {
+		margin: 0;
+		max-width: none;
+	}
+	
+	@include mq( $until: desktop ) {
+		width: 100%;
+		max-width: 440px;
+		margin: 0 auto;
+	}
+	
+	@include mq( $until: tablet ) {
+		
+	}
 	
 }
 .result-share-button {
@@ -916,9 +1021,20 @@ label {
 	text-indent: -9999px;
 	background: $color_blue url(../img/share-alt.svg) no-repeat center center / 32px;
 	position: absolute;
-	left: 100%;
+	left: 360px;
 	top: 1rem;
 	border-radius: 0 3px 3px 0;
+	
+	@include mq( $until: desktop ) {
+		left: 440px;
+	}
+	
+	@include mq( $until: tablet ) {
+		left: auto;
+		right: 0;
+		top: 0;
+		border-radius: 6px;
+	}
 }
 
 .result-info {
@@ -935,10 +1051,6 @@ label {
 	text-align: left;
 	box-shadow: 0 2px 4px rgba(0,0,0,0.25);
 	
-	@include mq( $until: wide ) {
-		width: 25vw;
-	}
-	
 	p {
 		margin: 0;
 	}
@@ -952,11 +1064,26 @@ label {
 	strong {
 		font-size: $font-size_md;
 	}
+	
+	@include mq( $until: wide ) {
+		width: 50vw;
+		max-width: 480px;
+		left: auto;
+		right: 0;
+	}
+	
+	@include mq( $until: desktop ) {
+		width: 100%;
+		max-width: none;
+		position: static;
+		margin: 0 0 1rem;
+	}
 }
 
 .result-box {
 	position: relative;
-	width: 360px;
+	width: 100%;
+	max-width: 360px;
 	margin: 0 auto;
 	overflow: hidden;
 	border-radius: 6px;
@@ -965,6 +1092,7 @@ label {
 	img {
 		display: block;
 		transform: scale(1.05);
+		width: 100%;
 	}
 	
 	&__header {
@@ -979,6 +1107,10 @@ label {
 			font-size: $font-size_lg;
 		}
 	}
+	
+	@include mq( $until: desktop ) {
+		max-width: none;
+	}
 
 }
 
@@ -987,6 +1119,8 @@ label {
 	flex-flow: row wrap;
 	overflow: hidden;
 	border-radius: 6px;
+	width: 100%;
+	max-width: 360px;
 	
 	&__button {
 		flex: 1 1 auto;
@@ -1023,6 +1157,10 @@ label {
 		}
 		
 	}
+	
+	@include mq( $until: desktop ) {
+		max-width: none;
+	}
 }
 
 // You or Who
@@ -1035,11 +1173,24 @@ label {
 	background: $color_blue;
 	padding: 1rem;
 	
+	@include mq( $until: desktop ) {
+		padding: 0.75rem 1rem;
+	}
+	
+	@include mq( $until: tablet ) {
+		padding: 1rem 0;
+	}
+	
 	&__wrapper {
 		display: flex;
 		flex-flow: row wrap;
 		align-items: center;
 		justify-content: space-between;
+		
+		@include mq( $until: tablet ) {
+			display: block;
+			text-align: center;
+		}
 	}
 	
 	.call24 {
@@ -1073,6 +1224,21 @@ label {
 				height: 60px;				
 			}
 		}
+		
+		@include mq( $until: desktop ) {
+			padding-left: calc( 48px + 1rem );
+			width: 35%;
+			&:before {
+				width: 48px;
+				height: 48px;
+			}
+		}
+		
+		@include mq( $until: tablet ) {
+			width: auto;
+			margin: 0 0 1rem;
+			display: inline-block;
+		}
 	}
 	.contact-specialist {
 		order: 3;
@@ -1084,6 +1250,19 @@ label {
 		@include mq( $until: wide ) {
 			font-size: $font-size_default;
 		}
+		
+		@include mq( $until: desktop ) {
+			width: 35%;
+		}
+		
+		@include mq( $until: tablet ) {
+			display: none;
+			
+			width: auto;
+			text-align: left;
+			margin: 0 0 1rem;
+		}
+		
 	}
 	.copyrights {
 		order: 2;
@@ -1091,6 +1270,17 @@ label {
 		font-size: $font-size_default;
 		@include mq( $until: wide ) {
 			font-size: $font-size_sm;
+		}
+		
+		@include mq( $until: desktop ) {
+			width: 180px;
+			text-align: center;
+		}
+		
+		@include mq( $until: tablet ) {
+			order: 99;
+			width: auto;
+			text-align: center;
 		}
 	}
 }
