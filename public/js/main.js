@@ -31,6 +31,8 @@ let birth_date = {
 	total_days: new_birth_date.daysInMonth()
 };
 
+console.log( birth_date );
+
 var input_edit = (el) => {
 	let spinner_blocks = document.querySelectorAll( '.date-spinner__block' ),
 		parent_spinner_block = el.closest( '.date-spinner__block' ),
@@ -47,30 +49,6 @@ var input_edit = (el) => {
 	}
 }
 
-/*
-var spinner_input = document.querySelectorAll( '.spinner-input' );
-for ( let spinner of spinner_input ) {
-	spinner.addEventListener(
-		'blur',
-		() => {
-			if ( spinner.value !== '' ) {
-				
-				let parent_block = spinner.closest( '.date-spinner__block' ),
-					curr_selected = parent_block.querySelector( '.item-list .selected' ),
-					target = parent_block.querySelector( '.item-list span[data-value="${spinner.value}"]' );
-					
-				spinner_select( target );
-				
-			} else {				
-				let block_edit = document.querySelectorAll( '.date-spinner__block' );
-				for ( let item of block_edit ) {
-					item.classList.remove( 'edit' );
-				}
-			}
-		}
-	);
-}
-*/
 function apply_spinner_input_val( el ) {
 	if ( el == null ) return;
 	
@@ -212,6 +190,11 @@ function set_birth_date_spinner( obj ) {
 		}
 	
 		item.innerHTML = i;
+		
+		item.addEventListener('click', function(){
+			input_edit(this);
+		});
+		
 		date_list.appendChild( item );
 	}
 	
@@ -224,6 +207,11 @@ function set_birth_date_spinner( obj ) {
 		}
 	
 		item.innerHTML = i;
+		
+		item.addEventListener('click', function(){
+			input_edit(this);
+		});
+		
 		month_list.appendChild( item );
 	}
 	
@@ -234,8 +222,19 @@ function set_birth_date_spinner( obj ) {
 		if ( i === obj.year ) {
 			item.setAttribute( 'class', 'selected' );
 		}
+		
+		if ( i === obj.year - 2 ) {
+			document.querySelector( 'input[name="temp_year"]' ).setAttribute( 'min', obj.year - 2 );
+		} else if ( i === obj.year ) {
+			document.querySelector( 'input[name="temp_year"]' ).setAttribute( 'max', obj.year );
+		}
 	
 		item.innerHTML = i;
+		
+		item.addEventListener('click', function(){
+			input_edit(this);
+		});
+		
 		year_list.appendChild( item );
 	}
 }
@@ -257,7 +256,6 @@ function spinner_select( el ) {
 		behavior : 'smooth',
 		block : 'center'
 	});
-	
 	
 	setTimeout( () => {
 		let spinner_blocks = document.querySelectorAll( '.date-spinner__block' );
