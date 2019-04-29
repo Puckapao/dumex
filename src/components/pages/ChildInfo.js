@@ -113,19 +113,19 @@ class ChildInfo extends Component {
 
             {/* need to change */}
             <input
-               type="text"
+               type="hidden"
                name="day"
                value={this.state.day}
                onChange={this.handleChange}
             />
             <input
-               type="text"
+               type="hidden"
                name="month"
                value={this.state.month}
                onChange={this.handleChange}
             />
             <input
-               type="text"
+               type="hidden"
                name="year"
                value={this.state.year}
                onChange={this.handleChange}
@@ -184,13 +184,13 @@ class ChildInfo extends Component {
 
             {/* <div className="form-notice">สามารถเลื่อนซ้ายขวาเพื่อเลือกได้</div> */}
             <div className="form-step">
-               <a
+               {/* <a
                   className="form-step__nav form-step__nav_prev"
                   href="#"
                   onClick={this.changeStep.bind(this, "4")}
                >
                   กลับ
-               </a>
+               </a> */}
                <div className="step">
                   <a href="#" className="step__item">
                      <span>1</span>

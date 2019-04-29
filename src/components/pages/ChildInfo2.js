@@ -132,13 +132,13 @@ class ChildInfo2 extends Component {
 
             {/* <div className="form-notice">สามารถเลื่อนซ้ายขวาเพื่อเลือกได้</div> */}
             <div className="form-step">
-               <a
+               {/* <a
                   className="form-step__nav form-step__nav_prev"
                   href="#"
                   onClick={this.changeStep.bind(this, "5.2A")}
                >
                   กลับ
-               </a>
+               </a> */}
                <div className="step">
                   <a href="#" className="step__item">
                      <span>1</span>

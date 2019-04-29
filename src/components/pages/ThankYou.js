@@ -33,13 +33,14 @@ class ThankYou extends Component {
                   กลับสู่หน้าแรก
                </a>
             </p>
+            <div style={{height:'4px'}}></div>
             <p>
-               <button
+               <a
                   className="button button_solid"
-                  onClick={this.changeStep.bind(this, "1", false)}
+                  href="/"
                >
                   ทำแบบทดสอบอีกครั้ง
-               </button>
+               </a>
             </p>
          </React.Fragment>
       );

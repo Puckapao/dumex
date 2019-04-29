@@ -205,9 +205,9 @@ class AllergyOrNot extends Component {
 
             <div className="form-step">
                {/* missing back function */}
-               <a className="form-step__nav form-step__nav_prev" href="#" onClick={this.changeStep.bind(this, "5.2C")}>
+               {/* <a className="form-step__nav form-step__nav_prev" href="#" onClick={this.changeStep.bind(this, "5.2C")}>
                   กลับ
-               </a>
+               </a> */}
                <div className="step">
                   <a href="#" className="step__item">
                      <span>1</span>
