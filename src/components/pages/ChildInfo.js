@@ -45,6 +45,15 @@ class ChildInfo extends Component {
       this.props.changeStepAction("5.2B");
    };
 
+   componentDidMount = () => {
+      const script = document.createElement("script");
+      script.src = "../../js/main.js";
+      script.async = true;
+      script.unload = () => this.scriptLoaded();
+
+      document.body.appendChild(script);
+   };
+
    render() {
       return (
          <React.Fragment>
