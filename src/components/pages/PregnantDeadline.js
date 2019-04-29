@@ -41,6 +41,15 @@ class PregnantDeadline extends Component {
 
       this.props.changeStepAction("6");
    };
+   
+   componentDidMount = () => {
+      const script = document.createElement("script");
+      script.src = "../../js/main.js";
+      script.async = true;
+      script.unload = () => this.scriptLoaded();
+
+      document.body.appendChild(script);
+   };
 
    render() {
       return (
