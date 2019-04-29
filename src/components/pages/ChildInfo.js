@@ -36,7 +36,7 @@ class ChildInfo extends Component {
    }
 
    handleChange = e => {
-      //console.log(e.target.name, e.target.value);
+      console.log(e.target.name, e.target.value);
       this.setState({ [e.target.name]: e.target.value });
    };
 
@@ -55,7 +55,7 @@ class ChildInfo extends Component {
       this.props.childInfoAction(baby_name, birthday, this.props.memberId);
 
       this.props.changeStepAction("5.2B");
-      
+
       document.body.removeChild(script);
    };
 
@@ -113,19 +113,19 @@ class ChildInfo extends Component {
 
             {/* need to change */}
             <input
-               type="hidden"
+               type="text"
                name="day"
                value={this.state.day}
                onChange={this.handleChange}
             />
             <input
-               type="hidden"
+               type="text"
                name="month"
                value={this.state.month}
                onChange={this.handleChange}
             />
             <input
-               type="hidden"
+               type="text"
                name="year"
                value={this.state.year}
                onChange={this.handleChange}
@@ -134,10 +134,10 @@ class ChildInfo extends Component {
             <div className="date-spinner date-spinner_birth-day">
                <div className="date-spinner__block">
                   <div className="date-spinner__track date-spinner__track_date">
-                     <div className="item-list item-list_date"></div>
+                     <div className="item-list item-list_date" />
                   </div>
-                  <span className="spinner-arrow spinner-arrow_up"></span>
-                  <span className="spinner-arrow spinner-arrow_down"></span>
+                  <span className="spinner-arrow spinner-arrow_up" />
+                  <span className="spinner-arrow spinner-arrow_down" />
                   <span className="spinner-label">วันที่</span>
                   <input
                      className="spinner-input"
@@ -150,10 +150,10 @@ class ChildInfo extends Component {
                </div>
                <div className="date-spinner__block">
                   <div className="date-spinner__track date-spinner__track_month">
-                     <div className="item-list item-list_month"></div>
+                     <div className="item-list item-list_month" />
                   </div>
-                  <span className="spinner-arrow spinner-arrow_up"></span>
-                  <span className="spinner-arrow spinner-arrow_down"></span>
+                  <span className="spinner-arrow spinner-arrow_up" />
+                  <span className="spinner-arrow spinner-arrow_down" />
                   <span className="spinner-label">เดือน</span>
                   <input
                      className="spinner-input"
@@ -166,10 +166,10 @@ class ChildInfo extends Component {
                </div>
                <div className="date-spinner__block">
                   <div className="date-spinner__track date-spinner__track_year">
-                     <div className="item-list item-list_year"></div>
+                     <div className="item-list item-list_year" />
                   </div>
-                  <span className="spinner-arrow spinner-arrow_up"></span>
-                  <span className="spinner-arrow spinner-arrow_down"></span>
+                  <span className="spinner-arrow spinner-arrow_up" />
+                  <span className="spinner-arrow spinner-arrow_down" />
                   <span className="spinner-label">ปี</span>
                   <input
                      className="spinner-input"
@@ -180,7 +180,7 @@ class ChildInfo extends Component {
                      maxLength="4"
                   />
                </div>
-			   </div>
+            </div>
 
             {/* <div className="form-notice">สามารถเลื่อนซ้ายขวาเพื่อเลือกได้</div> */}
             <div className="form-step">
