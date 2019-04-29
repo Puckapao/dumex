@@ -411,13 +411,6 @@ class MainQuiz extends Component {
                      ต่อไป
                   </Button> */}
                   <div className="form-step">
-                     <a
-                        className="form-step__nav form-step__nav_prev"
-                        href="#"
-                        onClick={this.changeMember.bind(this, "father")}
-                     >
-                        กลับ
-                     </a>
                      <div className="step">
                         <a href="#" className="step__item">
                            <span>1</span>
@@ -444,6 +437,13 @@ class MainQuiz extends Component {
                            <span>8</span>
                         </a>
                      </div>
+                     <a
+                        className="form-step__nav form-step__nav_prev"
+                        href="#"
+                        onClick={this.changeMember.bind(this, "father")}
+                     >
+                        กลับ
+                     </a>
                      <a
                         className="form-step__nav form-step__nav_next"
                         href="#"

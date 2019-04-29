@@ -89,18 +89,21 @@ class PregnantDeadline extends Component {
 
             <input
                type="hidden"
+               id="date_input"
                name="day"
                onChange={this.handleChange}
                value={this.state.day}
             />
             <input
                type="hidden"
+               id="month_input"
                name="month"
                onChange={this.handleChange}
                value={this.state.month}
             />
             <input
                type="hidden"
+               id="year_input"
                name="year"
                onChange={this.handleChange}
                value={this.state.year}

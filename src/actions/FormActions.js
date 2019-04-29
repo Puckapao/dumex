@@ -40,7 +40,7 @@ export const inputMumNameAction = state => dispatch => {
          is_call: false,
          is_email: false,
          mom_status: "mom-child",
-         due_date: "1970-01-01",
+         due_date: "2019-04-30",
          mom_allergy: "yes",
          force: false
       })
@@ -84,7 +84,7 @@ export const youOrWhoAction = (newMember, state) => dispatch => {
             is_call: false,
             is_email: false,
             mom_status: "mom-child",
-            due_date: "1970-01-01",
+            due_date: "2019-04-30",
             mom_allergy: "yes",
             force: true
          })
@@ -118,7 +118,7 @@ export const pregnantOrHaveChildAction = (mom_status, status) => {
 
 export const pregnantDeadlineAction = (due_date, memberId) => dispatch => {
    const baby_name = "FETUS";
-   const birthday = "1970-01-01";
+   const birthday = "2019-04-30";
    const birth_term = "full-term";
    const labor = "normal";
    const allergy = "yes";
@@ -345,7 +345,7 @@ export const resultAction = state => dispatch => {
 export const callBackLaterAction = (state, props) => dispatch => {
    const { firstname, lastname, phone, email, is_sms, is_call } = state;
    const { mom_status, mom_allergy } = props;
-   const due_date = props.due_date || "1970-01-01";
+   const due_date = props.due_date || "2019-04-30";
 
    return fetch("https://api.careline.dumex.rgb72.net/client/members", {
       method: "POST",
