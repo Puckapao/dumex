@@ -348,13 +348,6 @@ class MainQuiz extends Component {
                      >
                         <span>ก่อนหน้า</span>
                      </a>
-                     <a
-                        href="#"
-                        className="people__arrow people__arrow_next"
-                        disabled
-                     >
-                        <span>ถัดไป</span>
-                     </a>
                   </div>
 
                   {/* <div className="quiz-block">{this.formGroup("brother")}</div> */}
