@@ -14,6 +14,7 @@ import AllergyOrNot from "./pages/AllergyOrNot";
 import MainQuiz from "./pages/MainQuiz";
 import Result from "./pages/Result";
 import CallBackLater from "./pages/CallBackLater";
+import ThankYou from "./pages/ThankYou";
 
 import PDF from "./pdf/FormTemplate";
 
@@ -44,6 +45,8 @@ class Main extends Component {
             return <Result />;
          case "9":
             return <CallBackLater />;
+         case "10":
+            return <ThankYou />;
          case "PDF":
             return <PDF />;
          default:

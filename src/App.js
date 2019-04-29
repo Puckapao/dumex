@@ -61,6 +61,36 @@ class App extends Component {
                         </nav>
                      </div>
                   </div>
+                  <div className="secondary-header">
+                     <div className="container">
+                        <ul className="menu">
+                           <li className="menu-item nav-allergy-prevention">
+                              <a target="_blank" href="https://nutriciaexpert.com/allergy-prevention">
+                                 <i className="ico-allergy-prevention ico"></i> 
+                                 <span>มีโอกาสเสี่ยงแพ้โปรตีนนมวัว</span>
+                              </a>
+                           </li>
+                           <li className="menu-item nav-allergy-treatment">
+                              <a target="_blank" href="https://nutriciaexpert.com/allergy-treatment">
+                                 <i className="ico-allergy-treatment ico"></i>
+                                 <span>แพ้โปรตีนนมวัว</span>
+                              </a>
+                           </li>
+                           <li className="menu-item nav-growth">
+                              <a target="_blank" href="https://nutriciaexpert.com/growth">
+                                 <i className="ico-growth ico"></i>
+                                 <span>เติบโตต่ำกว่าเกณฑ์</span>
+                              </a>
+                           </li>
+                           <li className="menu-item nav-digestion-discomfort">
+                              <a target="_blank" href="https://nutriciaexpert.com/digestion-discomfort">
+                                 <i className="ico-digestion-discomfort ico"></i>
+                                 <span>ปัญหาอาการไม่สบายท้อง</span>
+                              </a>
+                           </li>
+                        </ul>
+                     </div>
+                  </div>
                </header>
                <div className="site-content">
                   <div className="app">

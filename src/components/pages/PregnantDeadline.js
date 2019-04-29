@@ -1,8 +1,11 @@
 import React, { Component } from "react";
+import ReactDOM from 'react-dom';
 import { connect } from "react-redux";
 import { pregnantDeadlineAction, changeStepAction } from "../../actions";
 
 // import { TextInput, Button } from "../reuse";
+
+const script = document.createElement("script");
 
 class PregnantDeadline extends Component {
    state = {
@@ -12,9 +15,10 @@ class PregnantDeadline extends Component {
    };
 
    componentDidMount() {
-      const script = document.createElement("script");
+      //script = document.createElement("script");
       script.src = "../../js/main.js";
       script.async = true;
+      script.id = "calendar"
       script.unload = () => this.scriptLoaded();
 
       document.body.appendChild(script);
@@ -27,7 +31,7 @@ class PregnantDeadline extends Component {
       const year = due_date.split("-")[0];
 
       this.setState({ day, month, year });
-   }
+   };
 
    handleChange = e => {
       this.setState({ [e.target.name]: e.target.value });
@@ -45,8 +49,10 @@ class PregnantDeadline extends Component {
 
       // Todo: Form Validate *****
       this.props.pregnantDeadlineAction(due_date, this.props.memberId);
-
+      
       this.props.changeStepAction("6");
+      
+      document.body.removeChild(script);
    };
 
    render() {
@@ -103,29 +109,53 @@ class PregnantDeadline extends Component {
             <div className="date-spinner date-spinner_expect-date">
                <div className="date-spinner__block">
                   <div className="date-spinner__track date-spinner__track_date">
-                     <div className="item-list item-list_date" />
+                     <div className="item-list item-list_date"></div>
                   </div>
-                  <span className="spinner-arrow spinner-arrow_up" />
-                  <span className="spinner-arrow spinner-arrow_down" />
+                  <span className="spinner-arrow spinner-arrow_up"></span>
+                  <span className="spinner-arrow spinner-arrow_down"></span>
                   <span className="spinner-label">วันที่</span>
+                  <input
+                     className="spinner-input"
+                     type="number"
+                     name="temp_day"
+                     min="1"
+                     max="31"
+                     maxlength="2"
+                  />
                </div>
                <div className="date-spinner__block">
                   <div className="date-spinner__track date-spinner__track_month">
-                     <div className="item-list item-list_month" />
+                     <div className="item-list item-list_month"></div>
                   </div>
-                  <span className="spinner-arrow spinner-arrow_up" />
-                  <span className="spinner-arrow spinner-arrow_down" />
+                  <span className="spinner-arrow spinner-arrow_up"></span>
+                  <span className="spinner-arrow spinner-arrow_down"></span>
                   <span className="spinner-label">เดือน</span>
+                  <input
+                     className="spinner-input"
+                     type="number"
+                     name="temp_month"
+                     min="1"
+                     max="12"
+                     maxlength="2"
+                  />
                </div>
                <div className="date-spinner__block">
                   <div className="date-spinner__track date-spinner__track_year">
-                     <div className="item-list item-list_year" />
+                     <div className="item-list item-list_year"></div>
                   </div>
-                  <span className="spinner-arrow spinner-arrow_up" />
-                  <span className="spinner-arrow spinner-arrow_down" />
+                  <span className="spinner-arrow spinner-arrow_up"></span>
+                  <span className="spinner-arrow spinner-arrow_down"></span>
                   <span className="spinner-label">ปี</span>
+                  <input
+                     className="spinner-input"
+                     type="number"
+                     name="temp_year"
+                     min="2016"
+                     max="2019"
+                     maxlength="4"
+                  />
                </div>
-            </div>
+			   </div>
 
             {/* <div className="form-notice">สามารถเลื่อนซ้ายขวาเพื่อเลือกได้</div> */}
 

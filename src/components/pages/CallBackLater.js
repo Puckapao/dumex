@@ -69,7 +69,7 @@ class CallBackLater extends Component {
       if (Object.keys(error).length === 0) {
          this.props.callBackLaterAction(this.state, this.props.form.Member);
 
-         this.props.changeStepAction("1");
+         this.props.changeStepAction("10");
       } else {
          this.setState({ error });
       }
