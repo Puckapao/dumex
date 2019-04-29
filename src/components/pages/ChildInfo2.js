@@ -27,15 +27,19 @@ class ChildInfo2 extends Component {
       this.props.changeStepAction(newStep);
    };
 
-   handleSubmitForm = e => {
+   handleSubmitForm = (e, term) => {
       e.preventDefault();
 
-      const { birth_term } = this.state;
+      this.setState({
+         [e.target.name]: term
+      }, () => {
+         const { birth_term } = this.state;
 
-      // Todo: Form Validate ****
-      this.props.childInfo2Action(birth_term);
+         // Todo: Form Validate ****
+         this.props.childInfo2Action(birth_term);
 
-      this.props.changeStepAction("5.2C");
+         this.props.changeStepAction("5.2C");
+      });
    };
 
    render() {
@@ -66,13 +70,25 @@ class ChildInfo2 extends Component {
             <ul className="choice choice_horizontal">
                <li className="choice-item">
                   <label className="choice-item__trigger">
-                     <input
-                        type="radio"
-                        name="birth_term"
-                        value="full-term"
-                        onChange={this.handleChange}
-                        checked={this.state.birth_term === "full-term"}
-                     />
+                     {this.props.Children.birth_term === "" ? (
+                        <input
+                           type="radio"
+                           name="birth_term"
+                           value="full-term"
+                           defaultChecked={this.state.birth_term === "full-term"}
+                           onClick={(e) => {
+                              this.handleSubmitForm(e, "full-term");
+                           }}
+                        />
+                     ) : (
+                        <input
+                           type="radio"
+                           name="birth_term"
+                           value="full-term"
+                           onChange={this.handleChange}
+                           checked={this.state.birth_term === "full-term"}
+                        />
+                     )}
                      <div className="choice-item__wrapper">
                         <span className="choice-item__img">
                            <img src={inTime} alt="q03-in-time" />
@@ -83,13 +99,25 @@ class ChildInfo2 extends Component {
                </li>
                <li className="choice-item">
                   <label className="choice-item__trigger">
-                     <input
-                        type="radio"
-                        name="birth_term"
-                        value="pre-term"
-                        onChange={this.handleChange}
-                        checked={this.state.birth_term === "pre-term"}
-                     />
+                     {this.props.Children.birth_term === "" ? (
+                        <input
+                           type="radio"
+                           name="birth_term"
+                           value="pre-term"
+                           defaultChecked={this.state.birth_term === "pre-term"}
+                           onClick={(e) => {
+                              this.handleSubmitForm(e, "pre-term");
+                           }}
+                        />
+                     ) : (
+                        <input
+                           type="radio"
+                           name="birth_term"
+                           value="pre-term"
+                           onChange={this.handleChange}
+                           checked={this.state.birth_term === "pre-term"}
+                        />
+                     )}
                      <div className="choice-item__wrapper">
                         <span className="choice-item__img">
                            <img src={late} alt="q03-late" />
@@ -137,13 +165,15 @@ class ChildInfo2 extends Component {
                      <span>8</span>
                   </a>
                </div>
-               <a
-                  className="form-step__nav form-step__nav_next"
-                  href="#"
-                  onClick={this.handleSubmitForm}
-               >
-                  ต่อไป
-               </a>
+               {this.props.Children.birth_term !== "" && (
+                  <a
+                     className="form-step__nav form-step__nav_next"
+                     href="#"
+                     onClick={this.handleSubmitForm}
+                  >
+                     ต่อไป
+                  </a>
+               )}
             </div>
          </React.Fragment>
       );
