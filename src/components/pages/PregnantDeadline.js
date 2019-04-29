@@ -11,6 +11,8 @@ class PregnantDeadline extends Component {
    constructor(props) {
       super(props);
       this.dateInput = React.createRef();
+      this.monthInput = React.createRef();
+      this.yearInput = React.createRef();
    };
    state = {
       day: "",
@@ -38,7 +40,6 @@ class PregnantDeadline extends Component {
    };
 
    handleChange = e => {
-      console.log(e.target.value);
       this.setState({ [e.target.name]: e.target.value });
    };
 
@@ -48,16 +49,25 @@ class PregnantDeadline extends Component {
 
    handleSubmitForm = e => {
       e.preventDefault();
+      // console.log(this.dateInput.current.value);
+      // console.log(this.monthInput.current.value);
+      // console.log(this.yearInput.current.value);
 
-      const { day, month, year } = this.state;
-      const due_date = `${year}-${month}-${day}`;
+      this.setState({
+         day: this.dateInput.current.value,
+         month: this.monthInput.current.value,
+         year: this.yearInput.current.value
+      }, () => {
+         const { day, month, year } = this.state;
+         const due_date = `${year}-${month}-${day}`;
 
-      // Todo: Form Validate *****
-      this.props.pregnantDeadlineAction(due_date, this.props.memberId);
-      
-      this.props.changeStepAction("6");
-      
-      document.body.removeChild(script);
+         // Todo: Form Validate *****
+         this.props.pregnantDeadlineAction(due_date, this.props.memberId);
+         
+         this.props.changeStepAction("6");
+         
+         document.body.removeChild(script);
+      })
    };
 
    render() {
@@ -97,12 +107,13 @@ class PregnantDeadline extends Component {
                id="date_input"
                ref={this.dateInput}
                name="day"
-               onChange={this.handleChange.bind(this)}
+               onChange={this.handleChange}
                value={this.state.day}
             />
             <input
                type="hidden"
                id="month_input"
+               ref={this.monthInput}
                name="month"
                onChange={this.handleChange}
                value={this.state.month}
@@ -110,6 +121,7 @@ class PregnantDeadline extends Component {
             <input
                type="hidden"
                id="year_input"
+               ref={this.yearInput}
                name="year"
                onChange={this.handleChange}
                value={this.state.year}
@@ -130,7 +142,6 @@ class PregnantDeadline extends Component {
                      min="1"
                      max="31"
                      maxLength="2"
-                     onChange={this.handleChange.bind(this)}
                   />
                </div>
                <div className="date-spinner__block">

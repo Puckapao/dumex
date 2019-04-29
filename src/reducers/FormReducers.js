@@ -15,7 +15,7 @@ import {
 } from "../actions/types";
 
 const INITIAL_STATE = {
-   step: "11",
+   step: "1",
 
    memberId: "",
 

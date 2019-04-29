@@ -203,6 +203,7 @@ class Result extends Component {
                   <a
                      href="#"
                      className="result-action__button result-action__button_save"
+                     onClick={this.changeStep.bind(this, "11")}
                   >
                      บันทึกผลเพื่อปรึกษาแพทย์
                   </a>

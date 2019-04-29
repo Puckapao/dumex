@@ -82,6 +82,10 @@ class SaveResult extends Component {
       );
    };
 
+   handleNothing = e => {
+      // do nothing
+   };
+
    subChoiceUpdate = stateTitle => {
       return (
          <React.Fragment>
@@ -92,6 +96,7 @@ class SaveResult extends Component {
                         type="radio"
                         name={stateTitle}
                         value="yes"
+                        onChange={this.handleNothing}
                         checked={this.state[`${stateTitle}`] === "yes"}
                      />
                      <span className="quiz__icon quiz__icon_yes" />
@@ -103,6 +108,7 @@ class SaveResult extends Component {
                         type="radio"
                         name={stateTitle}
                         value="no"
+                        onChange={this.handleNothing}
                         checked={this.state[`${stateTitle}`] === "no"}
                      />
                      <span className="quiz__icon quiz__icon_no" />
@@ -114,6 +120,7 @@ class SaveResult extends Component {
                         type="radio"
                         name={stateTitle}
                         value="not-sure"
+                        onChange={this.handleNothing}
                         checked={this.state[`${stateTitle}`] === "not-sure"}
                      />
                      <span className="quiz__icon quiz__icon_not-sure" />
