@@ -194,14 +194,14 @@ class Result extends Component {
                )}
                <div className="result-action">
                   <a
-                     href=""
+                     href="#"
                      className="result-action__button result-action__button_call"
                      onClick={this.changeStep.bind(this, "9")}
                   >
                      ยินดีให้ผู้เชี่ยวชาญติดต่อกลับ
                   </a>
                   <a
-                     href=""
+                     href="#"
                      className="result-action__button result-action__button_save"
                   >
                      บันทึกผลเพื่อปรึกษาแพทย์
@@ -210,7 +210,11 @@ class Result extends Component {
             </div>
             <div className="form-step">
                {/* need to change */}
-               <a className="form-step__nav form-step__nav_prev" href="#" onClick={this.changeStep.bind(this, "1")}>
+               <a
+                  className="form-step__nav form-step__nav_prev"
+                  href="#"
+                  onClick={this.changeStep.bind(this, "1")}
+               >
                   กลับ
                </a>
                <div className="step">

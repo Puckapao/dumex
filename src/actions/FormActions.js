@@ -342,12 +342,12 @@ export const resultAction = state => dispatch => {
    }
 };
 
-export const callBackLaterAction = (state, props) => {
+export const callBackLaterAction = (state, props) => dispatch => {
    const { firstname, lastname, phone, email, is_sms, is_call } = state;
    const { mom_status, mom_allergy } = props;
    const due_date = props.due_date || "1970-01-01";
 
-   fetch("https://api.careline.dumex.rgb72.net/client/members", {
+   return fetch("https://api.careline.dumex.rgb72.net/client/members", {
       method: "POST",
       headers: {
          "Content-Type": "application/json"

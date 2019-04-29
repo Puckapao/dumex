@@ -60,32 +60,32 @@ const INITIAL_STATE = {
 
    // step 7
    AllergyPrevention: {
-      mother_asthma: "no",
-      mother_milk_intolerance: "no",
-      mother_rhinitis: "no",
-      mother_atopic_dermatitis: "no",
-      mother_urticaria: "no",
-      mother_drug: "no",
-      mother_food: "no",
-      mother_conjunctivitis: "no",
+      mother_asthma: "yes",
+      mother_milk_intolerance: "yes",
+      mother_rhinitis: "yes",
+      mother_atopic_dermatitis: "yes",
+      mother_urticaria: "yes",
+      mother_drug: "yes",
+      mother_food: "yes",
+      mother_conjunctivitis: "yes",
 
-      father_asthma: "no",
-      father_milk_intolerance: "no",
-      father_rhinitis: "no",
-      father_atopic_dermatitis: "no",
-      father_urticaria: "no",
-      father_drug: "no",
-      father_food: "no",
-      father_conjunctivitis: "no",
+      father_asthma: "yes",
+      father_milk_intolerance: "yes",
+      father_rhinitis: "yes",
+      father_atopic_dermatitis: "yes",
+      father_urticaria: "yes",
+      father_drug: "yes",
+      father_food: "yes",
+      father_conjunctivitis: "yes",
 
-      brother_asthma: "no",
-      brother_milk_intolerance: "no",
-      brother_rhinitis: "no",
-      brother_atopic_dermatitis: "no",
-      brother_urticaria: "no",
-      brother_drug: "no",
-      brother_food: "no",
-      brother_conjunctivitis: "no"
+      brother_asthma: "yes",
+      brother_milk_intolerance: "yes",
+      brother_rhinitis: "yes",
+      brother_atopic_dermatitis: "yes",
+      brother_urticaria: "yes",
+      brother_drug: "yes",
+      brother_food: "yes",
+      brother_conjunctivitis: "yes"
    }
 };
 
