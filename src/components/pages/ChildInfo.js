@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { childInfoAction, changeStepAction } from "../../actions";
 
-import { TextInput, Button } from "../reuse";
+// import { TextInput, Button } from "../reuse";
 
 class ChildInfo extends Component {
    state = {
@@ -13,6 +13,13 @@ class ChildInfo extends Component {
    };
 
    componentDidMount() {
+      const script = document.createElement("script");
+      script.src = "../../js/main.js";
+      script.async = true;
+      script.unload = () => this.scriptLoaded();
+
+      document.body.appendChild(script);
+
       let { birthday } = this.props.Children;
       const { baby_name } = this.props.Children;
 
@@ -38,21 +45,13 @@ class ChildInfo extends Component {
       e.preventDefault();
 
       const { baby_name, day, month, year } = this.state;
-      const birthday = `${year}-${month}-${day}`;
+      // const birthday = `${year}-${month}-${day}`;
+      const birthday = "2015-12-30";
 
       // Todo: Form Validate ****
       this.props.childInfoAction(baby_name, birthday, this.props.memberId);
 
       this.props.changeStepAction("5.2B");
-   };
-
-   componentDidMount = () => {
-      const script = document.createElement("script");
-      script.src = "../../js/main.js";
-      script.async = true;
-      script.unload = () => this.scriptLoaded();
-
-      document.body.appendChild(script);
    };
 
    render() {

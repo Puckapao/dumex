@@ -32,32 +32,32 @@ class ChooseYourChild extends Component {
 
    handleClick = child => {
       if (this.state.current === "") {
-         return this.props.changeStepAction("4");
+         this.props.changeStepAction("4");
          // this.changeStep.bind(this, "5.2A");
-      }
-
-      fetch(
-         `https://api.careline.dumex.rgb72.net/client/members/${
-            this.props.form.memberId
-         }/children/${child.id}/allergy-preventions`,
-         {
-            method: "GET"
-         }
-      )
-         .then(res => res.json())
-         .then(data => {
-            const lastArr = data[data.length - 1];
-            let haveSibling = "no";
-            for (var key in lastArr) {
-               if (lastArr.hasOwnProperty(key) && key.includes("brother")) {
-                  if (lastArr[key] !== 0) {
-                     haveSibling = "yes";
+      } else {
+         fetch(
+            `https://api.careline.dumex.rgb72.net/client/members/${
+               this.props.form.memberId
+            }/children/${child.id}/allergy-preventions`,
+            {
+               method: "GET"
+            }
+         )
+            .then(res => res.json())
+            .then(data => {
+               const lastArr = data[data.length - 1];
+               let haveSibling = "no";
+               for (var key in lastArr) {
+                  if (lastArr.hasOwnProperty(key) && key.includes("brother")) {
+                     if (lastArr[key] !== 0) {
+                        haveSibling = "yes";
+                     }
                   }
                }
-            }
-            this.props.chooseYourChildAction(child, haveSibling);
-            this.props.changeStepAction("5.2A");
-         });
+               this.props.chooseYourChildAction(child, haveSibling);
+               this.props.changeStepAction("5.2A");
+            });
+      }
    };
 
    childrenButton = () => {

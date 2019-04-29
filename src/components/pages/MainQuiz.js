@@ -77,8 +77,6 @@ class MainQuiz extends Component {
    };
 
    handleChange = e => {
-      console.log(e.target.name);
-      console.log(e.target.value);
       const target = e.target.name;
       this.setState({ [e.target.name]: e.target.value }, () => {
          console.log(this.state[target]);

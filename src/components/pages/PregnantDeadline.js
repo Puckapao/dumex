@@ -12,6 +12,13 @@ class PregnantDeadline extends Component {
    };
 
    componentDidMount() {
+      const script = document.createElement("script");
+      script.src = "../../js/main.js";
+      script.async = true;
+      script.unload = () => this.scriptLoaded();
+
+      document.body.appendChild(script);
+
       let { due_date } = this.props.Member;
       if (!due_date) due_date = "--";
 
@@ -40,15 +47,6 @@ class PregnantDeadline extends Component {
       this.props.pregnantDeadlineAction(due_date, this.props.memberId);
 
       this.props.changeStepAction("6");
-   };
-   
-   componentDidMount = () => {
-      const script = document.createElement("script");
-      script.src = "../../js/main.js";
-      script.async = true;
-      script.unload = () => this.scriptLoaded();
-
-      document.body.appendChild(script);
    };
 
    render() {
@@ -105,32 +103,32 @@ class PregnantDeadline extends Component {
             <div className="date-spinner date-spinner_expect-date">
                <div className="date-spinner__block">
                   <div className="date-spinner__track date-spinner__track_date">
-                     <div className="item-list item-list_date"></div>
+                     <div className="item-list item-list_date" />
                   </div>
-                  <span className="spinner-arrow spinner-arrow_up"></span>
-                  <span className="spinner-arrow spinner-arrow_down"></span>
+                  <span className="spinner-arrow spinner-arrow_up" />
+                  <span className="spinner-arrow spinner-arrow_down" />
                   <span className="spinner-label">วันที่</span>
                </div>
                <div className="date-spinner__block">
                   <div className="date-spinner__track date-spinner__track_month">
-                     <div className="item-list item-list_month"></div>
+                     <div className="item-list item-list_month" />
                   </div>
-                  <span className="spinner-arrow spinner-arrow_up"></span>
-                  <span className="spinner-arrow spinner-arrow_down"></span>
+                  <span className="spinner-arrow spinner-arrow_up" />
+                  <span className="spinner-arrow spinner-arrow_down" />
                   <span className="spinner-label">เดือน</span>
                </div>
                <div className="date-spinner__block">
                   <div className="date-spinner__track date-spinner__track_year">
-                     <div className="item-list item-list_year"></div>
+                     <div className="item-list item-list_year" />
                   </div>
-                  <span className="spinner-arrow spinner-arrow_up"></span>
-                  <span className="spinner-arrow spinner-arrow_down"></span>
+                  <span className="spinner-arrow spinner-arrow_up" />
+                  <span className="spinner-arrow spinner-arrow_down" />
                   <span className="spinner-label">ปี</span>
                </div>
             </div>
 
             {/* <div className="form-notice">สามารถเลื่อนซ้ายขวาเพื่อเลือกได้</div> */}
-            
+
             <div className="form-step">
                <a
                   className="form-step__nav form-step__nav_prev"
