@@ -115,12 +115,9 @@ var check_spinner_input_val = ( el ) => {
 }
 
 var set_current_date_input = ( obj ) => {
-	// date_input.setAttribute( 'value', obj.date );
-	// month_input.setAttribute( 'value', obj.month );
-	// year_input.setAttribute( 'value', obj.year );
-	date_input.value = obj.date;
-	month_input.value = obj.month;
-	year_input.value = obj.year;
+	date_input.setAttribute( 'value', obj.date );
+	month_input.setAttribute( 'value', obj.month );
+	year_input.setAttribute( 'value', obj.year );
 }
 
 var set_current_date_spinner = ( obj ) => {
