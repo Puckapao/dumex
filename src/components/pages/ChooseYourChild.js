@@ -113,8 +113,13 @@ class ChooseYourChild extends Component {
                         type="radio"
                         name="mom_status"
                         value="add-child"
-                        onChange={() => this.setState({ current: "" })}
-                        onClick={this.handleClick.bind(this, this.state.current)}
+                        onClick={() => {
+                           this.setState({
+                              current: ""
+                           }, () => {
+                              this.handleClick(this.state.current)
+                           })
+                        }}
                      />
                      <div className="choice-item__wrapper">
                         <span className="choice-item__img">
