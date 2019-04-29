@@ -136,13 +136,6 @@ class ChildInfo3 extends Component {
 
             {/* <div className="form-notice">สามารถเลื่อนซ้ายขวาเพื่อเลือกได้</div> */}
             <div className="form-step">
-               <a
-                  className="form-step__nav form-step__nav_prev"
-                  href="#"
-                  onClick={this.changeStep.bind(this, "5.2B")}
-               >
-                  กลับ
-               </a>
                <div className="step">
                   <a href="#" className="step__item">
                      <span>1</span>
@@ -169,6 +162,13 @@ class ChildInfo3 extends Component {
                      <span>8</span>
                   </a>
                </div>
+               <a
+                  className="form-step__nav form-step__nav_prev"
+                  href="#"
+                  onClick={this.changeStep.bind(this, "5.2B")}
+               >
+                  กลับ
+               </a>
                {this.props.Children.labor !== "" && (
                   <a
                      className="form-step__nav form-step__nav_next"
