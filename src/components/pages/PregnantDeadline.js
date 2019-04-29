@@ -1,8 +1,11 @@
 import React, { Component } from "react";
+import ReactDOM from 'react-dom';
 import { connect } from "react-redux";
 import { pregnantDeadlineAction, changeStepAction } from "../../actions";
 
 // import { TextInput, Button } from "../reuse";
+
+const script = document.createElement("script");
 
 class PregnantDeadline extends Component {
    state = {
@@ -12,9 +15,10 @@ class PregnantDeadline extends Component {
    };
 
    componentDidMount() {
-      const script = document.createElement("script");
+      //script = document.createElement("script");
       script.src = "../../js/main.js";
       script.async = true;
+      script.id = "calendar"
       script.unload = () => this.scriptLoaded();
 
       document.body.appendChild(script);
@@ -27,7 +31,7 @@ class PregnantDeadline extends Component {
       const year = due_date.split("-")[0];
 
       this.setState({ day, month, year });
-   }
+   };
 
    handleChange = e => {
       this.setState({ [e.target.name]: e.target.value });
@@ -45,8 +49,10 @@ class PregnantDeadline extends Component {
 
       // Todo: Form Validate *****
       this.props.pregnantDeadlineAction(due_date, this.props.memberId);
-
+      
       this.props.changeStepAction("6");
+      
+      document.body.removeChild(script);
    };
 
    render() {

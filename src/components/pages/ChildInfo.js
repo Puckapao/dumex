@@ -4,6 +4,8 @@ import { childInfoAction, changeStepAction } from "../../actions";
 
 // import { TextInput, Button } from "../reuse";
 
+const script = document.createElement("script");
+
 class ChildInfo extends Component {
    state = {
       baby_name: "",
@@ -13,9 +15,10 @@ class ChildInfo extends Component {
    };
 
    componentDidMount() {
-      const script = document.createElement("script");
+      // const script = document.createElement("script");
       script.src = "../../js/main.js";
       script.async = true;
+      script.id = "calendar";
       script.unload = () => this.scriptLoaded();
 
       document.body.appendChild(script);
@@ -52,6 +55,8 @@ class ChildInfo extends Component {
       this.props.childInfoAction(baby_name, birthday, this.props.memberId);
 
       this.props.changeStepAction("5.2B");
+      
+      document.body.removeChild(script);
    };
 
    render() {

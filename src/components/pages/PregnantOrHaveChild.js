@@ -13,25 +13,33 @@ class PregnantOrHaveChild extends Component {
    };
 
    componentDidMount() {
-      const { mom_status } = this.props.Member;
+      //const { mom_status } = this.props.Member;
 
-      this.setState({ mom_status });
+      //this.setState({ mom_status });
    }
 
    handleChange = e => {
       this.setState({ [e.target.name]: e.target.value });
    };
 
-   handleSubmitForm = e => {
+   handleNothing = e => {
+      // do nothing
+   };
+
+   handleSubmitForm = (e, mom_status) => {
       e.preventDefault();
 
-      if (this.state.mom_status === "pregnancy") {
-         this.props.changeStepAction("5.1A");
-         this.props.pregnantOrHaveChildAction("pregnancy", "fetus");
-      } else if (this.state.mom_status === "mom-child") {
-         this.props.changeStepAction("5.2A");
-         this.props.pregnantOrHaveChildAction("mom-child", "born");
-      }
+      this.setState({
+         [e.target.name]: mom_status
+      }, () => {
+         if (this.state.mom_status === "pregnancy") {
+            this.props.changeStepAction("5.1A");
+            this.props.pregnantOrHaveChildAction("pregnancy", "fetus");
+         } else if (this.state.mom_status === "mom-child") {
+            this.props.changeStepAction("5.2A");
+            this.props.pregnantOrHaveChildAction("mom-child", "born");
+         }
+      });
    };
 
    render() {
@@ -66,13 +74,26 @@ class PregnantOrHaveChild extends Component {
             <ul className="choice choice_horizontal">
                <li className="choice-item">
                   <label className="choice-item__trigger">
-                     <input
-                        type="radio"
-                        name="mom_status"
-                        onChange={this.handleChange}
-                        value="pregnancy"
-                        checked={this.state.mom_status === "pregnancy"}
-                     />
+                     {this.state.mom_status === "" ? (
+                        <input
+                           type="radio"
+                           name="mom_status"
+                           onChange={this.handleNothing}
+                           value="pregnancy"
+                           checked={this.state.mom_status === "pregnancy"}
+                           onClick={(e) => {
+                              this.handleSubmitForm(e, "pregnancy")
+                           }}
+                        />
+                     ) : (
+                        <input
+                           type="radio"
+                           name="mom_status"
+                           onChange={this.handleChange}
+                           value="pregnancy"
+                           checked={this.state.mom_status === "pregnancy"}
+                        />
+                     )}
                      <div className="choice-item__wrapper">
                         <span className="choice-item__img">
                            <img src={pregnant} alt="q02-pregnant" />
@@ -85,13 +106,26 @@ class PregnantOrHaveChild extends Component {
                </li>
                <li className="choice-item">
                   <label className="choice-item__trigger">
-                     <input
-                        type="radio"
-                        name="mom_status"
-                        onChange={this.handleChange}
-                        value="mom-child"
-                        checked={this.state.mom_status === "mom-child"}
-                     />
+                     {this.state.mom_status === "" ? (
+                        <input
+                           type="radio"
+                           name="mom_status"
+                           onChange={this.handleNothing}
+                           value="mom-child"
+                           checked={this.state.mom_status === "mom-child"}
+                           onClick={(e) => {
+                              this.handleSubmitForm(e, "mom-child")
+                           }}
+                        />
+                     ) : (
+                        <input
+                           type="radio"
+                           name="mom_status"
+                           onChange={this.handleChange}
+                           value="mom-child"
+                           checked={this.state.mom_status === "mom-child"}
+                        />
+                     )}
                      <div className="choice-item__wrapper">
                         <span className="choice-item__img">
                            <img src={birth} alt="q02-birth" />
@@ -131,13 +165,15 @@ class PregnantOrHaveChild extends Component {
                      <span>8</span>
                   </a>
                </div>
-               <a
-                  className="form-step__nav form-step__nav_next"
-                  href="#"
-                  onClick={this.handleSubmitForm}
-               >
-                  ต่อไป
-               </a>
+               {this.state.mom_status !== "" && (
+                  <a
+                     className="form-step__nav form-step__nav_next"
+                     href="#"
+                     onClick={this.handleSubmitForm}
+                  >
+                     ต่อไป
+                  </a>
+               )}
             </div>
          </React.Fragment>
       );

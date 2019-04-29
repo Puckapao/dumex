@@ -14,6 +14,7 @@ import AllergyOrNot from "./pages/AllergyOrNot";
 import MainQuiz from "./pages/MainQuiz";
 import Result from "./pages/Result";
 import CallBackLater from "./pages/CallBackLater";
+import ThankYou from "./pages/ThankYou";
 
 class Main extends Component {
    render() {
@@ -42,6 +43,8 @@ class Main extends Component {
             return <Result />;
          case "9":
             return <CallBackLater />;
+         case "10":
+            return <ThankYou />;
          default:
             return (
                <React.Fragment>
