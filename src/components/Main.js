@@ -15,6 +15,7 @@ import MainQuiz from "./pages/MainQuiz";
 import Result from "./pages/Result";
 import CallBackLater from "./pages/CallBackLater";
 import ThankYou from "./pages/ThankYou";
+import SaveResult from "./pages/SaveResult";
 
 import PDF from "./pdf/FormTemplate";
 
@@ -47,6 +48,8 @@ class Main extends Component {
             return <CallBackLater />;
          case "10":
             return <ThankYou />;
+         case "11":
+            return <SaveResult />;
          case "PDF":
             return <PDF />;
          default:

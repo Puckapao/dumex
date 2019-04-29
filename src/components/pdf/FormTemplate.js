@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 
 import {
    PDFViewer,
+   Image,
    Page,
    Text,
    View,
@@ -41,8 +42,8 @@ class FormTemplate extends Component {
       return (
          <PDFViewer>
             <Document>
-               <Page size="A4" style={this.styles.page}>
-                  <Text>Hello World!</Text>
+               <Page size="A4">
+                  <Image src="./template.png" fixed />
                </Page>
             </Document>
          </PDFViewer>

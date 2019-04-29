@@ -36,7 +36,6 @@ class ChildInfo extends Component {
    }
 
    handleChange = e => {
-      console.log(e.target.name, e.target.value);
       this.setState({ [e.target.name]: e.target.value });
    };
 
@@ -115,19 +114,19 @@ class ChildInfo extends Component {
             <input
                type="hidden"
                name="day"
-               value={this.state.day}
+               value={Number(this.state.day)}
                onChange={this.handleChange}
             />
             <input
                type="hidden"
                name="month"
-               value={this.state.month}
+               value={Number(this.state.month)}
                onChange={this.handleChange}
             />
             <input
                type="hidden"
                name="year"
-               value={this.state.year}
+               value={Number(this.state.year)}
                onChange={this.handleChange}
             />
 
