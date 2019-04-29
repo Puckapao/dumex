@@ -113,7 +113,13 @@ class ChooseYourChild extends Component {
                         type="radio"
                         name="mom_status"
                         value="add-child"
-                        onChange={() => this.setState({ current: "" })}
+                        onClick={() => {
+                           this.setState({
+                              current: ""
+                           }, () => {
+                              this.handleClick(this.state.current)
+                           })
+                        }}
                      />
                      <div className="choice-item__wrapper">
                         <span className="choice-item__img">
@@ -133,44 +139,6 @@ class ChooseYourChild extends Component {
                   ยืนยัน
                </button>
             </p>
-
-            {/* <div className="form-notice">สามารถเลื่อนซ้ายขวาเพื่อเลือกได้</div> */}
-
-            <div className="form-step">
-               <div className="step">
-                  <a href="#" className="step__item current">
-                     <span>1</span>
-                  </a>
-                  <a href="#" className="step__item">
-                     <span>2</span>
-                  </a>
-                  <a href="#" className="step__item">
-                     <span>3</span>
-                  </a>
-                  <a href="#" className="step__item">
-                     <span>4</span>
-                  </a>
-                  <a href="#" className="step__item">
-                     <span>5</span>
-                  </a>
-                  <a href="#" className="step__item">
-                     <span>6</span>
-                  </a>
-                  <a href="#" className="step__item">
-                     <span>7</span>
-                  </a>
-                  <a href="#" className="step__item">
-                     <span>8</span>
-                  </a>
-               </div>
-               <a
-                  className="form-step__nav form-step__nav_next"
-                  href="#"
-                  onClick={this.changeStep.bind(this, "5.2A")}
-               >
-                  ต่อไป
-               </a>
-            </div>
          </React.Fragment>
       );
    }

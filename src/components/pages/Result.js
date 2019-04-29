@@ -210,7 +210,7 @@ class Result extends Component {
             </div>
             <div className="form-step">
                {/* need to change */}
-               <a className="form-step__nav form-step__nav_prev" href="#">
+               <a className="form-step__nav form-step__nav_prev" href="#" onClick={this.changeStep.bind(this, "1")}>
                   กลับ
                </a>
                <div className="step">

@@ -27,15 +27,19 @@ class ChildInfo3 extends Component {
       this.props.changeStepAction(newStep);
    };
 
-   handleSubmitForm = e => {
+   handleSubmitForm = (e, labor) => {
       e.preventDefault();
 
-      const { labor } = this.state;
+      this.setState({
+         [e.target.name]: labor,
+      }, () => {
+         const { labor } = this.state;
 
-      // Todo: Form Validate ****
-      this.props.childInfo3Action(labor);
+         // Todo: Form Validate ****
+         this.props.childInfo3Action(labor);
 
-      this.props.changeStepAction("6");
+         this.props.changeStepAction("6");
+      });
    };
 
    render() {
@@ -66,13 +70,25 @@ class ChildInfo3 extends Component {
             <ul className="choice choice_horizontal">
                <li className="choice-item">
                   <label className="choice-item__trigger">
-                     <input
-                        type="radio"
-                        name="labor"
-                        value="c-section"
-                        onChange={this.handleChange}
-                        checked={this.state.labor === "c-section"}
-                     />
+                     {this.props.Children.labor === "" ? (
+                        <input
+                           type="radio"
+                           name="labor"
+                           value="c-section"
+                           dafaultChecked={this.state.labor === "c-section"}
+                           onClick={(e) => {
+                              this.handleSubmitForm(e, "c-section");
+                           }}
+                        />
+                     ) : (
+                        <input
+                           type="radio"
+                           name="labor"
+                           value="c-section"
+                           onChange={this.handleChange}
+                           checked={this.state.labor === "c-section"}
+                        />
+                     )}
                      <div className="choice-item__wrapper">
                         <span className="choice-item__img">
                            <img src={tool} alt="q04-tools" />
@@ -83,13 +99,25 @@ class ChildInfo3 extends Component {
                </li>
                <li className="choice-item">
                   <label className="choice-item__trigger">
-                     <input
-                        type="radio"
-                        name="labor"
-                        value="normal"
-                        onChange={this.handleChange}
-                        checked={this.state.labor === "normal"}
-                     />
+                     {this.props.Children.labor === "" ? (
+                        <input
+                           type="radio"
+                           name="labor"
+                           value="normal"
+                           defaultChecked={this.state.labor === "normal"}
+                           onClick={(e) => {
+                              this.handleSubmitForm(e, "normal");
+                           }}
+                        />
+                     ) : (
+                        <input
+                           type="radio"
+                           name="labor"
+                           value="normal"
+                           onChange={this.handleChange}
+                           checked={this.state.labor === "normal"}
+                        />
+                     )}
                      <div className="choice-item__wrapper">
                         <span className="choice-item__img">
                            <img src={normal} alt="q04-born" />
@@ -135,13 +163,15 @@ class ChildInfo3 extends Component {
                      <span>8</span>
                   </a>
                </div>
-               <a
-                  className="form-step__nav form-step__nav_next"
-                  href="#"
-                  onClick={this.handleSubmitForm}
-               >
-                  ต่อไป
-               </a>
+               {this.props.Children.labor !== "" && (
+                  <a
+                     className="form-step__nav form-step__nav_next"
+                     href="#"
+                     onClick={this.handleSubmitForm}
+                  >
+                     ต่อไป
+                  </a>
+               )}
             </div>
          </React.Fragment>
       );
