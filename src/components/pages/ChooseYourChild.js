@@ -55,7 +55,11 @@ class ChooseYourChild extends Component {
                   }
                }
                this.props.chooseYourChildAction(child, haveSibling);
-               this.props.changeStepAction("5.2A");
+               if (child.status === "fetus") {
+                  this.props.changeStepAction("5.1A");
+               } else {
+                  this.props.changeStepAction("5.2A");
+               }
             });
       }
    };
