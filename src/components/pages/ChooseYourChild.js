@@ -32,7 +32,7 @@ class ChooseYourChild extends Component {
 
    handleClick = child => {
       if (this.state.current === "") {
-         return this.props.changeStepAction("5.2A");
+         return this.props.changeStepAction("4");
          // this.changeStep.bind(this, "5.2A");
       }
 
@@ -114,11 +114,14 @@ class ChooseYourChild extends Component {
                         name="mom_status"
                         value="add-child"
                         onClick={() => {
-                           this.setState({
-                              current: ""
-                           }, () => {
-                              this.handleClick(this.state.current)
-                           })
+                           this.setState(
+                              {
+                                 current: ""
+                              },
+                              () => {
+                                 this.handleClick(this.state.current);
+                              }
+                           );
                         }}
                      />
                      <div className="choice-item__wrapper">
