@@ -16,7 +16,9 @@ class ChildInfo2 extends Component {
    componentDidMount() {
       const { birth_term } = this.props.Children;
 
-      this.setState({ birth_term });
+      this.setState({ birth_term }, () => {
+         if(this.state.birth_term === "") this.setState({birth_term: "0"});
+      });
    }
 
    handleChange = e => {
@@ -70,7 +72,7 @@ class ChildInfo2 extends Component {
             <ul className="choice choice_horizontal">
                <li className="choice-item">
                   <label className="choice-item__trigger">
-                     {this.props.Children.birth_term === "" ? (
+                     {this.state.birth_term === "0" ? (
                         <input
                            type="radio"
                            name="birth_term"
@@ -99,7 +101,7 @@ class ChildInfo2 extends Component {
                </li>
                <li className="choice-item">
                   <label className="choice-item__trigger">
-                     {this.props.Children.birth_term === "" ? (
+                     {this.state.birth_term === "0" ? (
                         <input
                            type="radio"
                            name="birth_term"
@@ -165,7 +167,7 @@ class ChildInfo2 extends Component {
                      <span>8</span>
                   </a>
                </div>
-               {this.props.Children.birth_term !== "" && (
+               {this.props.Children.birth_term !== "" && this.props.Children.birth_term !== null && (
                   <a
                      className="form-step__nav form-step__nav_next"
                      href="#"

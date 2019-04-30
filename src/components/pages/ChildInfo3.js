@@ -16,7 +16,9 @@ class ChildInfo3 extends Component {
    componentDidMount() {
       const { labor } = this.props.Children;
 
-      this.setState({ labor });
+      this.setState({ labor }, () => {
+         if(this.state.labor === "") this.setState({labor: "0"});
+      });
    }
 
    handleChange = e => {
@@ -74,7 +76,7 @@ class ChildInfo3 extends Component {
             <ul className="choice choice_horizontal">
                <li className="choice-item">
                   <label className="choice-item__trigger">
-                     {this.props.Children.labor === "" ? (
+                     {this.state.labor === "0" ? (
                         <input
                            type="radio"
                            name="labor"
@@ -104,7 +106,7 @@ class ChildInfo3 extends Component {
                </li>
                <li className="choice-item">
                   <label className="choice-item__trigger">
-                     {this.props.Children.labor === "" ? (
+                     {this.state.labor === "0" ? (
                         <input
                            type="radio"
                            name="labor"
@@ -169,7 +171,7 @@ class ChildInfo3 extends Component {
                >
                   กลับ
                </a>
-               {this.props.Children.labor !== "" && (
+               {this.props.Children.labor !== "" && this.props.Children.labor !== null && (
                   <a
                      className="form-step__nav form-step__nav_next"
                      href="#"

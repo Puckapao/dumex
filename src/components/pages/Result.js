@@ -25,9 +25,9 @@ class Result extends Component {
                      ลูกของคุณมี <strong>ความเสี่ยงต่ำ</strong> ที่จะเกิดภูมิแพ้
                   </h2>
                </div>
-               <a href="#" className="result-share-button">
+               {/* <a href="#" className="result-share-button">
                   <span>Share</span>
-               </a>
+               </a> */}
                <div className="result-info">
                   <p>
                      ขอแสดงความยินดีกับคุณแม่ที่ลูกน้อยของคุณแม่มีความเสี่ยงในการเกิดโรค{" "}
@@ -37,15 +37,36 @@ class Result extends Component {
                      เดือน
                   </p>
                </div>
+               <div className="result-action">
+                  <a
+                     href="#"
+                     className="result-action__button result-action__button_call"
+                     onClick={this.changeStep.bind(this, "9")}
+                  >
+                     ยินดีให้ผู้เชี่ยวชาญติดต่อกลับ
+                  </a>
+                  <a
+                     href="#"
+                     className="result-action__button result-action__button_save"
+                     onClick={this.changeStep.bind(this, "11")}
+                  >
+                     บันทึกผลเพื่อปรึกษาแพทย์
+                  </a>
+               </div>
             </React.Fragment>
          );
       else
          return (
             <React.Fragment>
-               <img src={highRisk} alt="high-risk" width="360" height="480" />
-               <h2 className="result-box__header">
-                  ลูกของคุณมี <strong>ความเสี่ยงสูง</strong> ที่จะเกิดภูมิแพ้
-               </h2>
+               <div className="result-box">
+                  <img src={highRisk} alt="high-risk" width="360" height="480" />
+                  <h2 className="result-box__header">
+                     ลูกของคุณมี <strong>ความเสี่ยงสูง</strong> ที่จะเกิดภูมิแพ้
+                  </h2>
+               </div>
+               {/* <a href="#" className="result-share-button">
+                  <span>Share</span>
+               </a> */}
                <div className="result-info">
                   <p>
                      โรค <strong>ภูมิแพ้</strong>{" "}
@@ -76,6 +97,22 @@ class Result extends Component {
                      สอบถามเรื่องนมเพื่อลดความเสี่ยงอาการภูมิแพ้ได้ที่{" "}
                      <strong>02-740-3456</strong>
                   </p>
+               </div>
+               <div className="result-action">
+                  <a
+                     href="#"
+                     className="result-action__button result-action__button_call"
+                     onClick={this.changeStep.bind(this, "9")}
+                  >
+                     ยินดีให้ผู้เชี่ยวชาญติดต่อกลับ
+                  </a>
+                  <a
+                     href="#"
+                     className="result-action__button result-action__button_save"
+                     onClick={this.changeStep.bind(this, "11")}
+                  >
+                     บันทึกผลเพื่อปรึกษาแพทย์
+                  </a>
                </div>
             </React.Fragment>
          );
@@ -192,22 +229,6 @@ class Result extends Component {
                {this.renderResult(
                   this.calcScore(this.props.form.AllergyPrevention)
                )}
-               <div className="result-action">
-                  <a
-                     href="#"
-                     className="result-action__button result-action__button_call"
-                     onClick={this.changeStep.bind(this, "9")}
-                  >
-                     ยินดีให้ผู้เชี่ยวชาญติดต่อกลับ
-                  </a>
-                  <a
-                     href="#"
-                     className="result-action__button result-action__button_save"
-                     onClick={this.changeStep.bind(this, "11")}
-                  >
-                     บันทึกผลเพื่อปรึกษาแพทย์
-                  </a>
-               </div>
             </div>
             <div className="form-step">
                {/* need to change */}

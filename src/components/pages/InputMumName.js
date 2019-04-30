@@ -10,10 +10,10 @@ import { TextInput, Button } from "../reuse";
 
 class InputMumName extends Component {
    state = {
-      firstname: "nutricia4",
-      lastname: "expert4",
+      firstname: "nutricia66",
+      lastname: "expert66",
       phone: "0812345678",
-      email: "nutricia4@nutriciaexpert.com",
+      email: "nutricia66@nutriciaexpert.com",
       error: {}
    };
 

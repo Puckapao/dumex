@@ -30,7 +30,7 @@ const INITIAL_STATE = {
       // step 5.1A
       due_date: "2019-04-30",
       // step 6 AllergyOrNot
-      mom_allergy: "", // [yes, not-sure, no]
+      mom_allergy: "0", // [yes, not-sure, no]
       // step 9 CallBackLater
       is_sms: false,
       is_call: false,
@@ -48,7 +48,7 @@ const INITIAL_STATE = {
       // step 5.2C
       labor: "", //[normal, c-section(ผ่าคลอด)]
       // step 6 AllergyOrNot
-      allergy: "", //[yes, not-sure, no]
+      allergy: "0", //[yes, not-sure, no]
 
       // ???
       status: "",
@@ -56,7 +56,7 @@ const INITIAL_STATE = {
    },
 
    // step 6
-   sibling: "",
+   sibling: "0",
 
    // step 7
    AllergyPrevention: {

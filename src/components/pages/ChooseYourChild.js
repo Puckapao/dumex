@@ -138,14 +138,16 @@ class ChooseYourChild extends Component {
                </li>
             </ul>
             {/* need to change */}
-            <p>
-               <button
-                  className="button button_solid"
-                  onClick={this.handleClick.bind(this, this.state.current)}
-               >
-                  ยืนยัน
-               </button>
-            </p>
+            {this.state.current !== "" && (
+               <p>
+                  <button
+                     className="button button_solid"
+                     onClick={this.handleClick.bind(this, this.state.current)}
+                  >
+                     ยืนยัน
+                  </button>
+               </p>
+            )}
          </React.Fragment>
       );
    }

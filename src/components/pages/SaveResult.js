@@ -248,6 +248,24 @@ class SaveResult extends Component {
             {this.mother()}
             {this.father()}
             {this.brother()}
+            <div style={{height:'4px'}}></div>
+            <p>
+               <a
+                  className="button button_solid"
+                  href="https://nutriciaexpert.com/"
+               >
+                  กลับสู่หน้าแรก
+               </a>
+            </p>
+            <div style={{height:'4px'}}></div>
+            <p>
+               <a
+                  className="button button_solid"
+                  href="/"
+               >
+                  ทำแบบทดสอบอีกครั้ง
+               </a>
+            </p>
          </React.Fragment>
       );
    }

@@ -484,6 +484,10 @@ label {
 	font-size: $font-size_x-lg;
 	margin: 0 0 2rem;
 	
+	span {
+		display: inline-block;
+	}
+	
 	strong {
 		font-weight: $font-weight_medium;
 		font-size: $font-size_x-lg + 0.25rem;
@@ -1118,29 +1122,25 @@ label {
 	}
 }
 
-
 .result-wrapper {
 	position: relative;
 	width: 100%;
 	max-width: 360px;
 	margin: 0 auto;
 	
-	@include mq( $until: wide ) {
-		margin: 0;
-		max-width: none;
-	}
 	
-	@include mq( $until: desktop ) {
+	@include mq( $until: 1440px ) {
 		width: 100%;
-		max-width: 440px;
+		max-width: 940px;
 		margin: 0 auto;
 	}
 	
-	@include mq( $until: tablet ) {
-		
+	@include mq( $until: desktop ) {
+		max-width: 440px;
 	}
 	
 }
+
 .result-share-button {
 	display: block;
 	overflow: hidden;
@@ -1152,12 +1152,8 @@ label {
 	left: 360px;
 	top: 1rem;
 	border-radius: 0 3px 3px 0;
-	
+		
 	@include mq( $until: desktop ) {
-		left: 440px;
-	}
-	
-	@include mq( $until: tablet ) {
 		left: auto;
 		right: 0;
 		top: 0;
@@ -1167,7 +1163,7 @@ label {
 
 .result-info {
 	position: absolute;
-	left: calc( 100% + 6rem );
+	left: calc( 100% + 5rem );
 	top: 0;
 	padding: 2rem;
 	background: $color_white;
@@ -1178,6 +1174,7 @@ label {
 	color: $color_green;
 	text-align: justify;
 	box-shadow: 0 2px 4px rgba(0,0,0,0.25);
+	font-size: 0.96rem;
 	
 	p {
 		margin: 0;
@@ -1191,10 +1188,11 @@ label {
 	
 	strong {
 		font-size: $font-size_md;
+		white-space: nowrap;
 	}
-	
-	@include mq( $until: wide ) {
-		width: 50vw;
+		
+	@include mq( $until: 1440px ) {
+		width: 100%;
 		max-width: 480px;
 		left: auto;
 		right: 0;
@@ -1205,6 +1203,16 @@ label {
 		max-width: none;
 		position: static;
 		margin: 0 0 1rem;
+	}
+	
+	@include mq( $until: tablet ) {
+		padding: 1rem;
+	}
+	
+	@include mq( $until: 480px ) {
+		h4 {
+			font-size: 6vw;
+		}
 	}
 }
 

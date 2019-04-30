@@ -90,10 +90,27 @@ class MainQuiz extends Component {
 
    changeStep = newStep => {
       this.props.changeStepAction(newStep);
+      console.log(this.props.sibling);
 
       // Todo: Form Validate ****
+      if(this.props.sibling === "no") {
+         this.setState({
+            brother_asthma: "no",
+            brother_milk_intolerance: "no",
+            brother_rhinitis: "no",
+            brother_atopic_dermatitis: "no",
+            brother_urticaria: "no",
+            brother_drug: "no",
+            brother_food: "no",
+            brother_conjunctivitis: "no"
+         }, () => {
+            console.log(this.state);
+            this.props.mainQuizAction(this.state, this.props.children_id);
+         })
+      } else {
+         this.props.mainQuizAction(this.state, this.props.children_id);
+      }
 
-      this.props.mainQuizAction(this.state, this.props.children_id);
    };
 
    choiceUpdate = (thaiTitle, stateTitle, video) => {
@@ -261,13 +278,6 @@ class MainQuiz extends Component {
                      </Button>
                   )} */}
                   <div className="form-step">
-                     <a
-                        className="form-step__nav form-step__nav_prev"
-                        href="#"
-                        onClick={this.changeMember.bind(this, "mother")}
-                     >
-                        กลับ
-                     </a>
                      <div className="step">
                         <a href="#" className="step__item">
                            <span>1</span>
@@ -294,6 +304,13 @@ class MainQuiz extends Component {
                            <span>8</span>
                         </a>
                      </div>
+                     <a
+                        className="form-step__nav form-step__nav_prev"
+                        href="#"
+                        onClick={this.changeMember.bind(this, "mother")}
+                     >
+                        กลับ
+                     </a>
                      {this.props.sibling === "yes" ? (
                         <a
                            className="form-step__nav form-step__nav_next"
@@ -529,13 +546,6 @@ class MainQuiz extends Component {
                   {/* <div className="form-notice">สามารถเลื่อนซ้ายขวาเพื่อเลือกได้</div> */}
 
                   <div className="form-step">
-                     <a
-                        className="form-step__nav form-step__nav_prev"
-                        href="#"
-                        onClick={this.changeStep.bind(this, "6")}
-                     >
-                        กลับ
-                     </a>
                      <div className="step">
                         <a href="#" className="step__item">
                            <span>1</span>
@@ -562,6 +572,13 @@ class MainQuiz extends Component {
                            <span>8</span>
                         </a>
                      </div>
+                     <a
+                        className="form-step__nav form-step__nav_prev"
+                        href="#"
+                        onClick={this.changeStep.bind(this, "6")}
+                     >
+                        กลับ
+                     </a>
                      <a
                         className="form-step__nav form-step__nav_next"
                         href="#"

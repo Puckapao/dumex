@@ -11,14 +11,27 @@ class AllergyOrNot extends Component {
    };
 
    componentDidMount() {
-      const { allergy } = this.props.form.Children;
-      const { sibling } = this.props.form;
+      let allergy = "";
 
-      this.setState({ allergy, sibling });
+      if(this.props.form.Member.mom_status === "pregnancy") {
+         allergy = this.props.form.Member.mom_allergy;
+         if(allergy === "") allergy = "0";
+      } else {
+         allergy = this.props.form.Children.allergy;
+      }
+      
+      const { sibling } = this.props.form;
+      if(sibling === "") sibling = "0";
+
+      this.setState({ allergy, sibling }, () => {
+         // console.log(this.state.allergy);
+      });
    }
 
    handleChange = e => {
-      this.setState({ [e.target.name]: e.target.value });
+      this.setState({ [e.target.name]: e.target.value }, () => {
+         // console.log(this.state.allergy);
+      });
    };
 
    handleNothing = e => {
@@ -143,13 +156,13 @@ class AllergyOrNot extends Component {
                   </label>
                </li>
             </ul>
-            {this.state.allergy !== "" && (
+            {this.state.allergy !== "0" && (
                <React.Fragment>
                   <h2 className="sub-header">ลูกของคุณมีพี่น้องหรือไม่</h2>
                   <ul className="group-choice">
                      <li className="choice-item">
                         <label className="choice-item__trigger">
-                           {this.state.sibling === "" ? (
+                           {this.state.sibling === "0" ? (
                               <input
                                  type="radio"
                                  name="sibling"
@@ -174,7 +187,7 @@ class AllergyOrNot extends Component {
                      </li>
                      <li className="choice-item">
                         <label className="choice-item__trigger">
-                           {this.state.sibling === "" ? (
+                           {this.state.sibling === "0" ? (
                               <input
                                  type="radio"
                                  name="sibling"
@@ -234,7 +247,7 @@ class AllergyOrNot extends Component {
                      <span>8</span>
                   </a>
                </div>
-               {this.state.sibling !== "" && (
+               {this.state.sibling !== "0" && (
                   <a
                      className="form-step__nav form-step__nav_next"
                      href="#"
