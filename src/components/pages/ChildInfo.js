@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { childInfoAction, changeStepAction } from "../../actions";
-
-const script = document.createElement("script");
+import Calendar from "./Calendar";
 
 class ChildInfo extends Component {
    constructor(props) {
@@ -32,18 +31,6 @@ class ChildInfo extends Component {
       const year = birthday.split("-")[0];
 
       this.setState({ baby_name, day, month, year });
-   }
-
-   componentWillMount() {
-      script.src = "../../js/main.js";
-      script.async = true;
-      script.id = "calendar";
-      script.unload = () => this.scriptLoaded();
-      document.body.appendChild(script);
-   }
-
-   componentWillUnmount() {
-      document.body.removeChild(script);
    }
 
    handleChange = e => {
@@ -144,8 +131,17 @@ class ChildInfo extends Component {
             </p>
             <h3>วันเกิด</h3>
 
+            <Calendar
+               dateInput={this.dateInput}
+               monthInput={this.monthInput}
+               yearInput={this.yearInput}
+               day={this.state.day}
+               month={this.state.month}
+               handleChange={this.handleChange}
+            />
+
             {/* need to change */}
-            <input
+            {/* <input
                type="hidden"
                id="date_input"
                ref={this.dateInput}
@@ -168,58 +164,7 @@ class ChildInfo extends Component {
                name="year"
                value={Number(this.state.year)}
                onChange={this.handleChange}
-            />
-
-            <div className="date-spinner date-spinner_birth-day">
-               <div className="date-spinner__block">
-                  <div className="date-spinner__track date-spinner__track_date">
-                     <div className="item-list item-list_date" />
-                  </div>
-                  <span className="spinner-arrow spinner-arrow_up" />
-                  <span className="spinner-arrow spinner-arrow_down" />
-                  <span className="spinner-label">วันที่</span>
-                  <input
-                     className="spinner-input"
-                     type="number"
-                     name="temp_day"
-                     min="1"
-                     max="31"
-                     maxLength="2"
-                  />
-               </div>
-               <div className="date-spinner__block">
-                  <div className="date-spinner__track date-spinner__track_month">
-                     <div className="item-list item-list_month" />
-                  </div>
-                  <span className="spinner-arrow spinner-arrow_up" />
-                  <span className="spinner-arrow spinner-arrow_down" />
-                  <span className="spinner-label">เดือน</span>
-                  <input
-                     className="spinner-input"
-                     type="number"
-                     name="temp_month"
-                     min="1"
-                     max="12"
-                     maxLength="2"
-                  />
-               </div>
-               <div className="date-spinner__block">
-                  <div className="date-spinner__track date-spinner__track_year">
-                     <div className="item-list item-list_year" />
-                  </div>
-                  <span className="spinner-arrow spinner-arrow_up" />
-                  <span className="spinner-arrow spinner-arrow_down" />
-                  <span className="spinner-label">ปี</span>
-                  <input
-                     className="spinner-input"
-                     type="number"
-                     name="temp_year"
-                     min="2016"
-                     max="2019"
-                     maxLength="4"
-                  />
-               </div>
-            </div>
+            /> */}
 
             {/* <div className="form-notice">สามารถเลื่อนซ้ายขวาเพื่อเลือกได้</div> */}
             <div className="form-step">

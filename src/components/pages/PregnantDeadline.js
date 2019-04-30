@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { pregnantDeadlineAction, changeStepAction } from "../../actions";
-
-const script = document.createElement("script");
+import Calendar from "./Calendar";
 
 class PregnantDeadline extends Component {
    constructor(props) {
@@ -28,19 +27,6 @@ class PregnantDeadline extends Component {
       this.setState({ day, month, year });
 
       // console.log(this.props.childrenId);
-   }
-
-   componentWillMount() {
-      script.src = "../../js/main.js";
-      script.async = true;
-      script.id = "calendar";
-      script.unload = () => this.scriptLoaded();
-
-      document.body.appendChild(script);
-   }
-
-   componentWillUnmount() {
-      document.body.removeChild(script);
    }
 
    handleChange = e => {
@@ -121,81 +107,14 @@ class PregnantDeadline extends Component {
             <h1 className="header">คุณแม่ที่กำลังตั้งครรภ์</h1>
             <h2 className="sub-header">กำหนดคลอด</h2>
 
-            <input
-               type="hidden"
-               id="date_input"
-               ref={this.dateInput}
-               name="day"
-               onChange={this.handleChange}
-               value={this.state.day}
+            <Calendar
+               dateInput={this.dateInput}
+               monthInput={this.monthInput}
+               yearInput={this.yearInput}
+               day={this.state.day}
+               month={this.state.month}
+               handleChange={this.handleChange}
             />
-            <input
-               type="hidden"
-               id="month_input"
-               ref={this.monthInput}
-               name="month"
-               onChange={this.handleChange}
-               value={this.state.month}
-            />
-            <input
-               type="hidden"
-               id="year_input"
-               ref={this.yearInput}
-               name="year"
-               onChange={this.handleChange}
-               value={this.state.year}
-            />
-
-            <div className="date-spinner date-spinner_expect-date">
-               <div className="date-spinner__block">
-                  <div className="date-spinner__track date-spinner__track_date">
-                     <div className="item-list item-list_date" />
-                  </div>
-                  <span className="spinner-arrow spinner-arrow_up" />
-                  <span className="spinner-arrow spinner-arrow_down" />
-                  <span className="spinner-label">วันที่</span>
-                  <input
-                     className="spinner-input"
-                     type="number"
-                     name="temp_day"
-                     min="1"
-                     max="31"
-                     maxLength="2"
-                  />
-               </div>
-               <div className="date-spinner__block">
-                  <div className="date-spinner__track date-spinner__track_month">
-                     <div className="item-list item-list_month" />
-                  </div>
-                  <span className="spinner-arrow spinner-arrow_up" />
-                  <span className="spinner-arrow spinner-arrow_down" />
-                  <span className="spinner-label">เดือน</span>
-                  <input
-                     className="spinner-input"
-                     type="number"
-                     name="temp_month"
-                     min="1"
-                     max="12"
-                     maxLength="2"
-                  />
-               </div>
-               <div className="date-spinner__block">
-                  <div className="date-spinner__track date-spinner__track_year">
-                     <div className="item-list item-list_year" />
-                  </div>
-                  <span className="spinner-arrow spinner-arrow_up" />
-                  <span className="spinner-arrow spinner-arrow_down" />
-                  <span className="spinner-label">ปี</span>
-                  <input
-                     className="spinner-input"
-                     type="number"
-                     name="temp_year"
-                     min="2016"
-                     max="2019"
-                     maxLength="4"
-                  />
-               </div>
-            </div>
 
             {/* <div className="form-notice">สามารถเลื่อนซ้ายขวาเพื่อเลือกได้</div> */}
 
