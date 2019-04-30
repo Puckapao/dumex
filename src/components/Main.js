@@ -16,6 +16,7 @@ import Result from "./pages/Result";
 import CallBackLater from "./pages/CallBackLater";
 import ThankYou from "./pages/ThankYou";
 import SaveResult from "./pages/SaveResult";
+import Calendar from "./pages/Calendar";
 
 import PDF from "./pdf/FormTemplate";
 
@@ -52,6 +53,8 @@ class Main extends Component {
             return <SaveResult />;
          case "PDF":
             return <PDF />;
+         case "C":
+            return <Calendar />;
          default:
             return (
                <React.Fragment>
