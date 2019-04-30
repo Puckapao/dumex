@@ -113,7 +113,6 @@ class InputMumName extends Component {
                      placeholder="ชื่อ"
                   />
                </span>
-               <br />
                {this.state.error.firstname || null}
             </p>
             <p>
@@ -128,7 +127,6 @@ class InputMumName extends Component {
                      placeholder="นามสกุล"
                   />
                </span>
-               <br />
                {this.state.error.lastname || null}
             </p>
             <p>
@@ -143,7 +141,6 @@ class InputMumName extends Component {
                      placeholder="เบอร์โทร"
                   />
                </span>
-               <br />
                {this.state.error.phone || null}
             </p>
             <p>
@@ -158,7 +155,6 @@ class InputMumName extends Component {
                      placeholder="อีเมล์"
                   />
                </span>
-               <br />
                {this.state.error.email || null}
             </p>
             <p>
