@@ -77,7 +77,7 @@ var apply_spinner_input_val = ( el ) => {
 
 	} else if ( el.value !== '' && el.valueAsNumber < min_v || el.valueAsNumber > max_v ) {
 
-		alert( 'Please enter value between '+min_v+' - '+max_v+'' );
+		//alert( 'Please enter value between '+min_v+' - '+max_v+'' );
 		el.value = '';
 
 	} else {
