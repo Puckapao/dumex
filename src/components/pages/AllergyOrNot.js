@@ -61,8 +61,14 @@ class AllergyOrNot extends Component {
    backStep = () => {
       if (this.props.form.Children.status === "born") {
          this.props.changeStepAction("5.2C");
+
+         const { allergy, sibling } = this.state;
+         this.props.allergyOrNotAction(allergy, sibling);
       } else {
          this.props.changeStepAction("5.1A");
+
+         const { allergy, sibling } = this.state;
+         this.props.allergyOrNotAction(allergy, sibling);
       }
    };
 
