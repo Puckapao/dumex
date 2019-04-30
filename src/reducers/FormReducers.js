@@ -123,6 +123,7 @@ export default (state = INITIAL_STATE, action) => {
       case YOU_OR_WHO:
          return {
             ...state,
+            memberId: "",
             Member: {
                ...state.Member,
                force: action.payload.newMember

@@ -4,7 +4,7 @@ import { changeStepAction, youOrWhoAction } from "../../actions";
 
 class YouOrWho extends Component {
    changeStep = (newStep, newMember) => {
-      if(newMember !== null) {
+      if (newMember !== null) {
          this.props.youOrWhoAction(newMember, this.props.Member);
       }
       this.props.changeStepAction(newStep);

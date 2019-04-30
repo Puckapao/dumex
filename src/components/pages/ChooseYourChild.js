@@ -94,7 +94,6 @@ class ChooseYourChild extends Component {
          )
             .then(res => res.json())
             .then(data => {
-               console.log(data);
                const lastArr = data[data.length - 1];
                let haveSibling = "no";
                for (var key in lastArr) {

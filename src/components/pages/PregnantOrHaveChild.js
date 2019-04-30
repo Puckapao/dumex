@@ -46,13 +46,21 @@ class PregnantOrHaveChild extends Component {
       );
    };
 
+   backStep = () => {
+      if (this.props.form.memberId) {
+         this.props.changeStepAction("3");
+      } else {
+         this.props.changeStepAction("1");
+      }
+   };
+
    render() {
       return (
          <React.Fragment>
             <p className="backButton">
                <button
                   className="button button_solid backButton_small"
-                  onClick={this.changeStep.bind(this, "3")}
+                  onClick={this.backStep}
                >
                   กลับ
                </button>
@@ -180,7 +188,7 @@ class PregnantOrHaveChild extends Component {
                <a
                   className="form-step__nav form-step__nav_prev"
                   href="#"
-                  onClick={this.changeStep.bind(this, "3")}
+                  onClick={this.backStep}
                >
                   กลับ
                </a>
