@@ -315,7 +315,7 @@ export const mainQuizAction = (
 };
 
 export const resultAction = state => dispatch => {
-   let {
+   const {
       baby_name,
       birth_term,
       birthday,
@@ -324,6 +324,9 @@ export const resultAction = state => dispatch => {
       status
    } = state.Children;
 
+   const { firstname, lastname, phone, mom_allergy } = state.Member;
+
+   // status -> born || fetus
    if (status === "born") {
       fetch(
          `https://api.careline.dumex.rgb72.net/client/members/${
@@ -357,6 +360,25 @@ export const resultAction = state => dispatch => {
          .catch(err => {
             console.log(err);
          });
+   } else {
+      // status = fetus
+      fetch("https://api.careline.dumex.rgb72.net/client/members", {
+         method: "POST",
+         headers: {
+            "Content-Type": "application/json"
+         },
+         body: JSON.stringify({
+            firstname,
+            lastname,
+            phone,
+            mom_allergy,
+            force: false
+         })
+      })
+         .then(res => {
+            return res.json();
+         })
+         .catch(err => console.log(err));
    }
 };
 

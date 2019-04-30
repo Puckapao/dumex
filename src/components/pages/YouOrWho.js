@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { changeStepAction, youOrWhoAction } from "../../actions";
 
-// import { Button } from "../reuse";
-
 class YouOrWho extends Component {
    changeStep = (newStep, newMember) => {
       this.props.youOrWhoAction(newMember, this.props.Member);

@@ -6,8 +6,6 @@ import isLength from "validator/lib/isLength";
 
 import { inputMumNameAction } from "../../actions";
 
-import { TextInput, Button } from "../reuse";
-
 class InputMumName extends Component {
    state = {
       firstname: "nutricia88",
@@ -96,7 +94,8 @@ class InputMumName extends Component {
                เริ่มต้นทำแบบประเมิน
             </Button> */}
             <h1 className="header responsive">
-               <span>ทดสอบความเสี่ยง</span> <strong>ภูมิแพ้</strong> <span>ของลูกน้อย</span>
+               <span>ทดสอบความเสี่ยง</span> <strong>ภูมิแพ้</strong>{" "}
+               <span>ของลูกน้อย</span>
                <br />
                <span>รู้เร็ว รู้ง่าย เพียง 1 นาที</span>
             </h1>

@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { pregnantOrHaveChildAction, changeStepAction } from "../../actions";
 
-// import { Radio, Button } from "../reuse";
-
 import pregnant from "../../img/q02-pregnant.svg";
 import birth from "../../img/q02-birth.svg";
 
@@ -14,7 +12,6 @@ class PregnantOrHaveChild extends Component {
 
    componentDidMount() {
       //const { mom_status } = this.props.Member;
-
       //this.setState({ mom_status });
    }
 
@@ -29,17 +26,20 @@ class PregnantOrHaveChild extends Component {
    handleSubmitForm = (e, mom_status) => {
       e.preventDefault();
 
-      this.setState({
-         [e.target.name]: mom_status
-      }, () => {
-         if (this.state.mom_status === "pregnancy") {
-            this.props.changeStepAction("5.1A");
-            this.props.pregnantOrHaveChildAction("pregnancy", "fetus");
-         } else if (this.state.mom_status === "mom-child") {
-            this.props.changeStepAction("5.2A");
-            this.props.pregnantOrHaveChildAction("mom-child", "born");
+      this.setState(
+         {
+            [e.target.name]: mom_status
+         },
+         () => {
+            if (this.state.mom_status === "pregnancy") {
+               this.props.changeStepAction("5.1A");
+               this.props.pregnantOrHaveChildAction("pregnancy", "fetus");
+            } else if (this.state.mom_status === "mom-child") {
+               this.props.changeStepAction("5.2A");
+               this.props.pregnantOrHaveChildAction("mom-child", "born");
+            }
          }
-      });
+      );
    };
 
    render() {
@@ -81,8 +81,8 @@ class PregnantOrHaveChild extends Component {
                            onChange={this.handleNothing}
                            value="pregnancy"
                            checked={this.state.mom_status === "pregnancy"}
-                           onClick={(e) => {
-                              this.handleSubmitForm(e, "pregnancy")
+                           onClick={e => {
+                              this.handleSubmitForm(e, "pregnancy");
                            }}
                         />
                      ) : (
@@ -113,8 +113,8 @@ class PregnantOrHaveChild extends Component {
                            onChange={this.handleNothing}
                            value="mom-child"
                            checked={this.state.mom_status === "mom-child"}
-                           onClick={(e) => {
-                              this.handleSubmitForm(e, "mom-child")
+                           onClick={e => {
+                              this.handleSubmitForm(e, "mom-child");
                            }}
                         />
                      ) : (
@@ -137,7 +137,7 @@ class PregnantOrHaveChild extends Component {
             </ul>
 
             {/* <div className="form-notice">สามารถเลื่อนซ้ายขวาเพื่อเลือกได้</div> */}
-            
+
             <div className="form-step">
                <div className="step">
                   <a href="#" className="step__item current">
@@ -168,7 +168,6 @@ class PregnantOrHaveChild extends Component {
                {this.state.mom_status !== "" && (
                   <a
                      className="form-step__nav form-step__nav_next"
-                     href="#"
                      onClick={this.handleSubmitForm}
                   >
                      ต่อไป

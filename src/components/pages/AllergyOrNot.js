@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { allergyOrNotAction, changeStepAction } from "../../actions";
 
-// import { Radio, Button } from "../reuse";
-
 class AllergyOrNot extends Component {
    state = {
       allergy: "",
@@ -13,15 +11,15 @@ class AllergyOrNot extends Component {
    componentDidMount() {
       let allergy = "";
 
-      if(this.props.form.Member.mom_status === "pregnancy") {
+      if (this.props.form.Member.mom_status === "pregnancy") {
          allergy = this.props.form.Member.mom_allergy;
-         if(allergy === "") allergy = "0";
+         if (allergy === "") allergy = "0";
       } else {
          allergy = this.props.form.Children.allergy;
       }
-      
+
       const { sibling } = this.props.form;
-      if(sibling === "") sibling = "0";
+      if (sibling === "") sibling = "0";
 
       this.setState({ allergy, sibling }, () => {
          // console.log(this.state.allergy);
@@ -45,16 +43,19 @@ class AllergyOrNot extends Component {
    handleSubmitForm = (e, sibling) => {
       e.preventDefault();
 
-      this.setState({
-         [e.target.name]: sibling
-      }, () => {
-         const { allergy, sibling } = this.state;
+      this.setState(
+         {
+            [e.target.name]: sibling
+         },
+         () => {
+            const { allergy, sibling } = this.state;
 
-         // Todo: Form Validate ****
-         this.props.allergyOrNotAction(allergy, sibling);
+            // Todo: Form Validate ****
+            this.props.allergyOrNotAction(allergy, sibling);
 
-         this.props.changeStepAction("7");
-      });
+            this.props.changeStepAction("7");
+         }
+      );
    };
 
    render() {
@@ -169,8 +170,8 @@ class AllergyOrNot extends Component {
                                  value="yes"
                                  onChange={this.handleNothing}
                                  checked={this.state.sibling === "yes"}
-                                 onClick={(e) => {
-                                    this.handleSubmitForm(e, "yes")
+                                 onClick={e => {
+                                    this.handleSubmitForm(e, "yes");
                                  }}
                               />
                            ) : (
@@ -194,8 +195,8 @@ class AllergyOrNot extends Component {
                                  value="no"
                                  onChange={this.handleNothing}
                                  checked={this.state.sibling === "no"}
-                                 onClick={(e) => {
-                                    this.handleSubmitForm(e, "no")
+                                 onClick={e => {
+                                    this.handleSubmitForm(e, "no");
                                  }}
                               />
                            ) : (

@@ -2,10 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { changeStepAction } from "../../actions";
 
-// import { Button } from "../reuse";
-
 class ThankYou extends Component {
-   changeStep = (newStep) => {
+   changeStep = newStep => {
       this.props.changeStepAction(newStep);
    };
 
@@ -21,9 +19,7 @@ class ThankYou extends Component {
                ขอบคุณ คุณ {this.props.Member.firstname || ""}
             </h2>
             <div className="page-content you-or-who-content">
-               <p>
-                  ทางเราจะติดต่อกลับไปยังท่านโดยเร็วที่สุด
-               </p>
+               <p>ทางเราจะติดต่อกลับไปยังท่านโดยเร็วที่สุด</p>
             </div>
             <p>
                <a
@@ -33,12 +29,9 @@ class ThankYou extends Component {
                   กลับสู่หน้าแรก
                </a>
             </p>
-            <div style={{height:'4px'}}></div>
+            <div style={{ height: "4px" }} />
             <p>
-               <a
-                  className="button button_solid"
-                  href="/"
-               >
+               <a className="button button_solid" href="/">
                   ทำแบบทดสอบอีกครั้ง
                </a>
             </p>
@@ -53,5 +46,5 @@ const mapStateToProps = state => {
 
 export default connect(
    mapStateToProps,
-   { changeStepAction}
+   { changeStepAction }
 )(ThankYou);
