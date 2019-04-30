@@ -159,7 +159,6 @@ class CallBackLater extends Component {
                   />
                </span>
             </p>
-            <div className="spacer" />
             <p>
                <span className="input-wrapper req">
                   <input
