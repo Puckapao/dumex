@@ -17,7 +17,7 @@ class ChildInfo3 extends Component {
       const { labor } = this.props.Children;
 
       this.setState({ labor }, () => {
-         if(this.state.labor === "") this.setState({labor: "0"});
+         if(this.state.labor === "" || this.state.labor === null) this.setState({labor: "0"});
       });
    }
 

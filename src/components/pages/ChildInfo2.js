@@ -17,7 +17,7 @@ class ChildInfo2 extends Component {
       const { birth_term } = this.props.Children;
 
       this.setState({ birth_term }, () => {
-         if(this.state.birth_term === "") this.setState({birth_term: "0"});
+         if(this.state.birth_term === "" || this.state.birth_term === null) this.setState({birth_term: "0"});
       });
    }
 
