@@ -1,9 +1,6 @@
 import React, { Component } from "react";
-import ReactDOM from "react-dom";
 import { connect } from "react-redux";
 import { pregnantDeadlineAction, changeStepAction } from "../../actions";
-
-// import { TextInput, Button } from "../reuse";
 
 const script = document.createElement("script");
 

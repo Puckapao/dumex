@@ -6,8 +6,6 @@ import {
    mainQuizAction
 } from "../../actions";
 
-// import { Button } from "../reuse";
-
 import baby from "../../img/q01-baby.svg";
 import babyPlus from "../../img/baby-plus.svg";
 

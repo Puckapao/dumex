@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { childInfo3Action, changeStepAction } from "../../actions";
 
-import { Radio, Button } from "../reuse";
-
 import tool from "../../img/q04-tools.svg";
 import normal from "../../img/q04-born.svg";
 
@@ -17,7 +15,8 @@ class ChildInfo3 extends Component {
       const { labor } = this.props.Children;
 
       this.setState({ labor }, () => {
-         if(this.state.labor === "" || this.state.labor === null) this.setState({labor: "0"});
+         if (this.state.labor === "" || this.state.labor === null)
+            this.setState({ labor: "0" });
       });
    }
 
@@ -36,16 +35,19 @@ class ChildInfo3 extends Component {
    handleSubmitForm = (e, labor) => {
       e.preventDefault();
 
-      this.setState({
-         [e.target.name]: labor,
-      }, () => {
-         const { labor } = this.state;
+      this.setState(
+         {
+            [e.target.name]: labor
+         },
+         () => {
+            const { labor } = this.state;
 
-         // Todo: Form Validate ****
-         this.props.childInfo3Action(labor);
+            // Todo: Form Validate ****
+            this.props.childInfo3Action(labor);
 
-         this.props.changeStepAction("6");
-      });
+            this.props.changeStepAction("6");
+         }
+      );
    };
 
    render() {
@@ -91,7 +93,7 @@ class ChildInfo3 extends Component {
                            value="c-section"
                            onChange={this.handleNothing}
                            checked={this.state.labor === "c-section"}
-                           onClick={(e) => {
+                           onClick={e => {
                               this.handleSubmitForm(e, "c-section");
                            }}
                         />
@@ -121,7 +123,7 @@ class ChildInfo3 extends Component {
                            value="normal"
                            onChange={this.handleNothing}
                            checked={this.state.labor === "normal"}
-                           onClick={(e) => {
+                           onClick={e => {
                               this.handleSubmitForm(e, "normal");
                            }}
                         />
@@ -179,15 +181,16 @@ class ChildInfo3 extends Component {
                >
                   กลับ
                </a>
-               {this.props.Children.labor !== "" && this.props.Children.labor !== null && (
-                  <a
-                     className="form-step__nav form-step__nav_next"
-                     href="#"
-                     onClick={this.handleSubmitForm}
-                  >
-                     ต่อไป
-                  </a>
-               )}
+               {this.props.Children.labor !== "" &&
+                  this.props.Children.labor !== null && (
+                     <a
+                        className="form-step__nav form-step__nav_next"
+                        href="#"
+                        onClick={this.handleSubmitForm}
+                     >
+                        ต่อไป
+                     </a>
+                  )}
             </div>
          </React.Fragment>
       );

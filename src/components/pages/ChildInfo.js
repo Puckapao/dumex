@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { childInfoAction, changeStepAction } from "../../actions";
 
-// import { TextInput, Button } from "../reuse";
-
 const script = document.createElement("script");
 
 class ChildInfo extends Component {
@@ -13,8 +11,8 @@ class ChildInfo extends Component {
       this.dateInput = React.createRef();
       this.monthInput = React.createRef();
       this.yearInput = React.createRef();
-   };
-   
+   }
+
    state = {
       baby_name: "",
       day: "",
@@ -58,21 +56,33 @@ class ChildInfo extends Component {
       // console.log(this.monthInput.current.value);
       // console.log(this.yearInput.current.value);
 
-      this.setState({
-         day: this.dateInput.current.value,
-         month: this.monthInput.current.value,
-         year: this.yearInput.current.value,
-      }, () => {
-         const { baby_name, day, month, year } = this.state;
-         const birthday = `${year}-${month}-${day}`;
+      this.setState(
+         {
+            day: this.dateInput.current.value,
+            month: this.monthInput.current.value,
+            year: this.yearInput.current.value
+         },
+         () => {
+            const { baby_name, day, month, year } = this.state;
+            const birthday = `${year}-${month}-${day}`;
 
-         // Todo: Form Validate ****
-         this.props.childInfoAction(baby_name, birthday, this.props.memberId);
+            // Todo: Form Validate ****
+            this.props.childInfoAction(
+               baby_name,
+               birthday,
+               this.props.memberId
+            );
 
-         this.props.changeStepAction("5.2B");
+            this.props.changeStepAction("5.2B");
 
+<<<<<<< HEAD
          //document.body.removeChild(script);
       });
+=======
+            document.body.removeChild(script);
+         }
+      );
+>>>>>>> b52f851c65bed3954d4b559d50ff26d0dcc9106d
    };
 
    render() {

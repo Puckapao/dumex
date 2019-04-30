@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { mainQuizAction, changeStepAction } from "../../actions";
 
-// import { Radio, Button } from "../reuse";
 import mom from "../../img/mom.svg";
 import dad from "../../img/dad.svg";
 import kid from "../../img/baby.svg";
@@ -92,26 +91,28 @@ class MainQuiz extends Component {
       // console.log(this.props.sibling);
 
       // Todo: Form Validate ****
-      if(this.props.sibling === "no" || this.props.sibling === "0") {
-         this.setState({
-            brother_asthma: "no",
-            brother_milk_intolerance: "no",
-            brother_rhinitis: "no",
-            brother_atopic_dermatitis: "no",
-            brother_urticaria: "no",
-            brother_drug: "no",
-            brother_food: "no",
-            brother_conjunctivitis: "no"
-         }, () => {
-            console.log(this.state.brother_asthma);
-            this.props.mainQuizAction(this.state, this.props.children_id);
-            this.props.changeStepAction(newStep);
-         })
+      if (this.props.sibling === "no" || this.props.sibling === "0") {
+         this.setState(
+            {
+               brother_asthma: "no",
+               brother_milk_intolerance: "no",
+               brother_rhinitis: "no",
+               brother_atopic_dermatitis: "no",
+               brother_urticaria: "no",
+               brother_drug: "no",
+               brother_food: "no",
+               brother_conjunctivitis: "no"
+            },
+            () => {
+               console.log(this.state.brother_asthma);
+               this.props.mainQuizAction(this.state, this.props.children_id);
+               this.props.changeStepAction(newStep);
+            }
+         );
       } else {
          this.props.mainQuizAction(this.state, this.props.children_id);
          this.props.changeStepAction(newStep);
       }
-
    };
 
    choiceUpdate = (thaiTitle, stateTitle, video) => {

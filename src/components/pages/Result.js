@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { changeStepAction, resultAction } from "../../actions";
-import { Button } from "../reuse";
 
 import lowRisk from "../../img/endcard-low.svg";
 import highRisk from "../../img/endcard-high.svg";
@@ -59,7 +58,12 @@ class Result extends Component {
          return (
             <React.Fragment>
                <div className="result-box">
-                  <img src={highRisk} alt="high-risk" width="360" height="480" />
+                  <img
+                     src={highRisk}
+                     alt="high-risk"
+                     width="360"
+                     height="480"
+                  />
                   <h2 className="result-box__header">
                      ลูกของคุณมี <strong>ความเสี่ยงสูง</strong> ที่จะเกิดภูมิแพ้
                   </h2>

@@ -6,8 +6,6 @@ import isLength from "validator/lib/isLength";
 
 import { changeStepAction, callBackLaterAction } from "../../actions";
 
-import { TextInput, Checkbox, Button } from "../reuse";
-
 class CallBackLater extends Component {
    state = {
       firstname: "",
