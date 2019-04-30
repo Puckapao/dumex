@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
+import {
+   changeStepAction
+} from "../../actions";
+
 import mom from "../../img/mom.svg";
 import dad from "../../img/dad.svg";
 import kid from "../../img/baby.svg";
@@ -64,6 +68,10 @@ class SaveResult extends Component {
 
    componentDidMount = () => {
       this.setState(this.props.AllergyPrevention);
+   };
+
+   changeStep = newStep => {
+      this.props.changeStepAction(newStep);
    };
 
    choiceUpdate = (thaiTitle, stateTitle, video) => {
@@ -242,6 +250,14 @@ class SaveResult extends Component {
    render() {
       return (
          <React.Fragment>
+            <p className="backButton">
+               <button
+                  className="button button_solid backButton_small"
+                  onClick={this.changeStep.bind(this, "8")}
+               >
+                  กลับ
+               </button>
+            </p>
             <h1 className="header">
                ผลทดสอบความเสี่ยงเป็นภูมิแพ้ของคนในครอบครัว
             </h1>
@@ -266,6 +282,15 @@ class SaveResult extends Component {
                   ทำแบบทดสอบอีกครั้ง
                </a>
             </p>
+            <div className="form-step">
+               <a
+                  className="form-step__nav form-step__nav_prev"
+                  href="#"
+                  onClick={this.changeStep.bind(this, "8")}
+               >
+                  กลับ
+               </a>
+            </div>
          </React.Fragment>
       );
    }
@@ -277,4 +302,4 @@ const mapStateToProps = state => {
    };
 };
 
-export default connect(mapStateToProps)(SaveResult);
+export default connect(mapStateToProps, { changeStepAction })(SaveResult);

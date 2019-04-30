@@ -6,13 +6,23 @@ import { changeStepAction, youOrWhoAction } from "../../actions";
 
 class YouOrWho extends Component {
    changeStep = (newStep, newMember) => {
-      this.props.youOrWhoAction(newMember, this.props.Member);
+      if(newMember !== null) {
+         this.props.youOrWhoAction(newMember, this.props.Member);
+      }
       this.props.changeStepAction(newStep);
    };
 
    render() {
       return (
          <React.Fragment>
+            <p className="backButton">
+               <button
+                  className="button button_solid backButton_small"
+                  onClick={this.changeStep.bind(this, "1", false)}
+               >
+                  กลับ
+               </button>
+            </p>
             {/* <h1>ทดสอบความเสี่ยงภูมิแพ้ของลูกน้อย</h1>
             <h1>รู้เร็ว รู้ง่าย เพียง1นาที</h1>
             <p>สวัสดีคุณ {this.props.Member.firstname || ""}</p>
@@ -61,6 +71,15 @@ class YouOrWho extends Component {
                   เริ่มต้นทำแบบประเมิน
                </button>
             </p>
+            <div className="form-step">
+               <a
+                  className="form-step__nav form-step__nav_prev"
+                  href="#"
+                  onClick={this.changeStep.bind(this, "1", null)}
+               >
+                  กลับ
+               </a>
+            </div>
          </React.Fragment>
       );
    }

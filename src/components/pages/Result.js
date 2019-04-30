@@ -213,6 +213,14 @@ class Result extends Component {
    render() {
       return (
          <React.Fragment>
+            <p className="backButton">
+               <button
+                  className="button button_solid backButton_small"
+                  onClick={this.changeStep.bind(this, "7")}
+               >
+                  กลับ
+               </button>
+            </p>
             {/* <h1>ผลทดสอบความเสี่ยงภูมิแพ้</h1>
             <Button onClick={this.changeStep.bind(this, "9")}>
                ขอคำปรึกษาจากผู้เชี่ยวชาญ
@@ -231,14 +239,6 @@ class Result extends Component {
                )}
             </div>
             <div className="form-step">
-               {/* need to change */}
-               {/* <a
-                  className="form-step__nav form-step__nav_prev"
-                  href="#"
-                  onClick={this.changeStep.bind(this, "1")}
-               >
-                  กลับ
-               </a> */}
                <div className="step">
                   <a href="#" className="step__item">
                      <span>1</span>
@@ -265,6 +265,13 @@ class Result extends Component {
                      <span>8</span>
                   </a>
                </div>
+               <a
+                  className="form-step__nav form-step__nav_prev"
+                  href="#"
+                  onClick={this.changeStep.bind(this, "7")}
+               >
+                  กลับ
+               </a>
             </div>
          </React.Fragment>
       );

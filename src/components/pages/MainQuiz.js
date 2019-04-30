@@ -180,6 +180,14 @@ class MainQuiz extends Component {
          case "father":
             return (
                <React.Fragment>
+                  <p className="backButton">
+                     <button
+                        className="button button_solid backButton_small"
+                        onClick={this.changeMember.bind(this, "mother")}
+                     >
+                        กลับ
+                     </button>
+                  </p>
                   {/* <h1>แบบทดสอบความเสี่ยงเป็นภูมิแพ้ของคนในครอบครัว</h1>
                   <h2>คนในครอบครัวเคยมีอาการเหล่านี้หรือไม่</h2>
                   <p>O = เป็น, X = ไม่เป็น, ? = ไม่แน่ใจ</p>
@@ -335,6 +343,14 @@ class MainQuiz extends Component {
          case "brother":
             return (
                <React.Fragment>
+                  <p className="backButton">
+                     <button
+                        className="button button_solid backButton_small"
+                        onClick={this.changeMember.bind(this, "father")}
+                     >
+                        กลับ
+                     </button>
+                  </p>
                   {/* <h1>แบบทดสอบความเสี่ยงเป็นภูมิแพ้ของคนในครอบครัว</h1>
                   <h2>คนในครอบครัวเคยมีอาการเหล่านี้หรือไม่</h2>
                   <p>O = เป็น, X = ไม่เป็น, ? = ไม่แน่ใจ</p>
@@ -458,6 +474,14 @@ class MainQuiz extends Component {
          default:
             return (
                <React.Fragment>
+                  <p className="backButton">
+                     <button
+                        className="button button_solid backButton_small"
+                        onClick={this.changeStep.bind(this, "6")}
+                     >
+                        กลับ
+                     </button>
+                  </p>
                   {/* <h1>แบบทดสอบความเสี่ยงเป็นภูมิแพ้ของคนในครอบครัว</h1>
                   <h2>คนในครอบครัวเคยมีอาการเหล่านี้หรือไม่</h2>
                   <p>O = เป็น, X = ไม่เป็น, ? = ไม่แน่ใจ</p>

@@ -78,6 +78,14 @@ class CallBackLater extends Component {
    render() {
       return (
          <React.Fragment>
+            <p className="backButton">
+               <button
+                  className="button button_solid backButton_small"
+                  onClick={this.changeStep.bind(this, "8")}
+               >
+                  กลับ
+               </button>
+            </p>
             {/* <h1 className="header">กรุณากรอกข้อมูลเพื่อได้รับการติดต่อกลับโดยไม่มีค่าใช้จ่าย</h1>
             <TextInput
                name="firstname"
@@ -235,6 +243,15 @@ class CallBackLater extends Component {
                   บันทึกข้อมูล
                </button>
             </p>
+            <div className="form-step">
+               <a
+                  className="form-step__nav form-step__nav_prev"
+                  href="#"
+                  onClick={this.changeStep.bind(this, "8")}
+               >
+                  กลับ
+               </a>
+            </div>
          </React.Fragment>
       );
    }

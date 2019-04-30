@@ -38,7 +38,7 @@ class PregnantDeadline extends Component {
 
       this.setState({ day, month, year });
 
-      console.log(this.props.childrenId);
+      // console.log(this.props.childrenId);
    }
 
    handleChange = e => {
@@ -82,6 +82,14 @@ class PregnantDeadline extends Component {
    render() {
       return (
          <React.Fragment>
+            <p className="backButton">
+               <button
+                  className="button button_solid backButton_small"
+                  onClick={this.changeStep.bind(this, "4")}
+               >
+                  กลับ
+               </button>
+            </p>
             {/* <h1>คุณแม่กำลังตั้งครรภ์</h1>
             <h5>กำหนดคลอด</h5> */}
 
@@ -190,13 +198,6 @@ class PregnantDeadline extends Component {
             {/* <div className="form-notice">สามารถเลื่อนซ้ายขวาเพื่อเลือกได้</div> */}
 
             <div className="form-step">
-               {/* <a
-                  className="form-step__nav form-step__nav_prev"
-                  href="#"
-                  onClick={this.changeStep.bind(this, "4")}
-               >
-                  กลับ
-               </a> */}
                <div className="step">
                   <a href="#" className="step__item">
                      <span>1</span>
@@ -223,6 +224,13 @@ class PregnantDeadline extends Component {
                      <span>8</span>
                   </a>
                </div>
+               <a
+                  className="form-step__nav form-step__nav_prev"
+                  href="#"
+                  onClick={this.changeStep.bind(this, "4")}
+               >
+                  กลับ
+               </a>
                <a
                   className="form-step__nav form-step__nav_next"
                   href="#"

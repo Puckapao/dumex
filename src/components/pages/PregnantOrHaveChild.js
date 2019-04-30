@@ -12,11 +12,17 @@ class PregnantOrHaveChild extends Component {
       mom_status: ""
    };
 
+   
+
    componentDidMount() {
       //const { mom_status } = this.props.Member;
 
       //this.setState({ mom_status });
    }
+
+   changeStep = newStep => {
+      this.props.changeStepAction(newStep);
+   };
 
    handleChange = e => {
       this.setState({ [e.target.name]: e.target.value });
@@ -45,6 +51,14 @@ class PregnantOrHaveChild extends Component {
    render() {
       return (
          <React.Fragment>
+            <p className="backButton">
+               <button
+                  className="button button_solid backButton_small"
+                  onClick={this.changeStep.bind(this, "3")}
+               >
+                  กลับ
+               </button>
+            </p>
             {/* <h1>ทดสอบความเสี่ยงภูมิแพ้ของลูกน้อย</h1>
             <h1>รู้เร็ว รู้ง่าย เพียง1นาที</h1>
             <p>กรุณาเลือกสถานะ</p>
@@ -165,6 +179,13 @@ class PregnantOrHaveChild extends Component {
                      <span>8</span>
                   </a>
                </div>
+               <a
+                  className="form-step__nav form-step__nav_prev"
+                  href="#"
+                  onClick={this.changeStep.bind(this, "3")}
+               >
+                  กลับ
+               </a>
                {this.state.mom_status !== "" && (
                   <a
                      className="form-step__nav form-step__nav_next"
@@ -181,7 +202,10 @@ class PregnantOrHaveChild extends Component {
 }
 
 const mapStateToProps = state => {
-   return { Member: state.form.Member };
+   return {
+      form: state.form,
+      Member: state.form.Member
+   };
 };
 
 export default connect(

@@ -60,6 +60,14 @@ class AllergyOrNot extends Component {
    render() {
       return (
          <React.Fragment>
+            <p className="backButton">
+               <button
+                  className="button button_solid backButton_small"
+                  onClick={this.changeStep.bind(this, "5.2C")}
+               >
+                  กลับ
+               </button>
+            </p>
             {/* <h1>แบบทดสอบความเสี่ยงเป็นภูมิแพ้</h1>
 
             {this.props.form.Member.mom_status === "pregnancy" ? (
@@ -217,10 +225,6 @@ class AllergyOrNot extends Component {
             {/* <div className="form-notice">สามารถเลื่อนซ้ายขวาเพื่อเลือกได้</div> */}
 
             <div className="form-step">
-               {/* missing back function */}
-               {/* <a className="form-step__nav form-step__nav_prev" href="#" onClick={this.changeStep.bind(this, "5.2C")}>
-                  กลับ
-               </a> */}
                <div className="step">
                   <a href="#" className="step__item">
                      <span>1</span>
@@ -247,6 +251,13 @@ class AllergyOrNot extends Component {
                      <span>8</span>
                   </a>
                </div>
+               <a
+                  className="form-step__nav form-step__nav_prev"
+                  href="#"
+                  onClick={this.changeStep.bind(this, "5.2C")}
+               >
+                  กลับ
+               </a>
                {this.state.sibling !== "0" && (
                   <a
                      className="form-step__nav form-step__nav_next"

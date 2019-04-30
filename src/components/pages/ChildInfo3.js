@@ -51,6 +51,14 @@ class ChildInfo3 extends Component {
    render() {
       return (
          <React.Fragment>
+            <p className="backButton">
+               <button
+                  className="button button_solid backButton_small"
+                  onClick={this.changeStep.bind(this, "5.2B")}
+               >
+                  กลับ
+               </button>
+            </p>
             {/* <h1>คุณแม่คลอดบุตรแล้ว</h1>
             <h5>รายละเอียดการคลอด</h5>
             <Radio

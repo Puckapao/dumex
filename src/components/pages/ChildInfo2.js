@@ -25,6 +25,10 @@ class ChildInfo2 extends Component {
       this.setState({ [e.target.name]: e.target.value });
    };
 
+   handleNothing = e => {
+      // do nothing
+   };
+
    changeStep = newStep => {
       this.props.changeStepAction(newStep);
    };
@@ -47,6 +51,14 @@ class ChildInfo2 extends Component {
    render() {
       return (
          <React.Fragment>
+            <p className="backButton">
+               <button
+                  className="button button_solid backButton_small"
+                  onClick={this.changeStep.bind(this, "5.2A")}
+               >
+                  กลับ
+               </button>
+            </p>
             {/* <h1>คุณแม่คลอดบุตรแล้ว</h1>
             <h5>รายละเอียดการคลอด</h5>
             <Radio
@@ -77,7 +89,8 @@ class ChildInfo2 extends Component {
                            type="radio"
                            name="birth_term"
                            value="full-term"
-                           defaultChecked={this.state.birth_term === "full-term"}
+                           onChange={this.handleNothing}
+                           checked={this.state.birth_term === "full-term"}
                            onClick={(e) => {
                               this.handleSubmitForm(e, "full-term");
                            }}
@@ -106,7 +119,8 @@ class ChildInfo2 extends Component {
                            type="radio"
                            name="birth_term"
                            value="pre-term"
-                           defaultChecked={this.state.birth_term === "pre-term"}
+                           onChange={this.handleNothing}
+                           checked={this.state.birth_term === "pre-term"}
                            onClick={(e) => {
                               this.handleSubmitForm(e, "pre-term");
                            }}
@@ -134,13 +148,6 @@ class ChildInfo2 extends Component {
 
             {/* <div className="form-notice">สามารถเลื่อนซ้ายขวาเพื่อเลือกได้</div> */}
             <div className="form-step">
-               {/* <a
-                  className="form-step__nav form-step__nav_prev"
-                  href="#"
-                  onClick={this.changeStep.bind(this, "5.2A")}
-               >
-                  กลับ
-               </a> */}
                <div className="step">
                   <a href="#" className="step__item">
                      <span>1</span>
@@ -167,6 +174,13 @@ class ChildInfo2 extends Component {
                      <span>8</span>
                   </a>
                </div>
+               <a
+                  className="form-step__nav form-step__nav_prev"
+                  href="#"
+                  onClick={this.changeStep.bind(this, "5.2A")}
+               >
+                  กลับ
+               </a>
                {this.props.Children.birth_term !== "" && this.props.Children.birth_term !== null && (
                   <a
                      className="form-step__nav form-step__nav_next"
