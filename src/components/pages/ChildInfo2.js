@@ -91,16 +91,9 @@ class ChildInfo2 extends Component {
                            type="radio"
                            name="birth_term"
                            value="full-term"
-<<<<<<< HEAD
                            onChange={this.handleNothing}
                            checked={this.state.birth_term === "full-term"}
                            onClick={(e) => {
-=======
-                           defaultChecked={
-                              this.state.birth_term === "full-term"
-                           }
-                           onClick={e => {
->>>>>>> b52f851c65bed3954d4b559d50ff26d0dcc9106d
                               this.handleSubmitForm(e, "full-term");
                            }}
                         />
@@ -128,14 +121,9 @@ class ChildInfo2 extends Component {
                            type="radio"
                            name="birth_term"
                            value="pre-term"
-<<<<<<< HEAD
                            onChange={this.handleNothing}
                            checked={this.state.birth_term === "pre-term"}
                            onClick={(e) => {
-=======
-                           defaultChecked={this.state.birth_term === "pre-term"}
-                           onClick={e => {
->>>>>>> b52f851c65bed3954d4b559d50ff26d0dcc9106d
                               this.handleSubmitForm(e, "pre-term");
                            }}
                         />
@@ -188,7 +176,6 @@ class ChildInfo2 extends Component {
                      <span>8</span>
                   </a>
                </div>
-<<<<<<< HEAD
                <a
                   className="form-step__nav form-step__nav_prev"
                   href="#"
@@ -205,18 +192,6 @@ class ChildInfo2 extends Component {
                      ต่อไป
                   </a>
                )}
-=======
-               {this.props.Children.birth_term !== "" &&
-                  this.props.Children.birth_term !== null && (
-                     <a
-                        className="form-step__nav form-step__nav_next"
-                        href="#"
-                        onClick={this.handleSubmitForm}
-                     >
-                        ต่อไป
-                     </a>
-                  )}
->>>>>>> b52f851c65bed3954d4b559d50ff26d0dcc9106d
             </div>
          </React.Fragment>
       );

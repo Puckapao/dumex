@@ -75,14 +75,9 @@ class ChildInfo extends Component {
 
             this.props.changeStepAction("5.2B");
 
-<<<<<<< HEAD
-         //document.body.removeChild(script);
-      });
-=======
             document.body.removeChild(script);
          }
       );
->>>>>>> b52f851c65bed3954d4b559d50ff26d0dcc9106d
    };
 
    render() {
