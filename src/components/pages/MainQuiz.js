@@ -93,7 +93,7 @@ class MainQuiz extends Component {
       console.log(this.props.sibling);
 
       // Todo: Form Validate ****
-      if(this.props.sibling === "no") {
+      if(this.props.sibling === "no" || this.props.sibling === "0") {
          this.setState({
             brother_asthma: "no",
             brother_milk_intolerance: "no",
