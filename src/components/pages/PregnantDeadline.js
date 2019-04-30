@@ -18,14 +18,6 @@ class PregnantDeadline extends Component {
    };
 
    componentDidMount() {
-      //script = document.createElement("script");
-      script.src = "../../js/main.js";
-      script.async = true;
-      script.id = "calendar";
-      script.unload = () => this.scriptLoaded();
-
-      document.body.appendChild(script);
-
       let { due_date } = this.props.Member;
       if (due_date === "1970-01-01" || !due_date) due_date = "2019-04-30";
 
@@ -36,6 +28,19 @@ class PregnantDeadline extends Component {
       this.setState({ day, month, year });
 
       // console.log(this.props.childrenId);
+   }
+
+   componentWillMount() {
+      script.src = "../../js/main.js";
+      script.async = true;
+      script.id = "calendar";
+      script.unload = () => this.scriptLoaded();
+
+      document.body.appendChild(script);
+   }
+
+   componentWillUnmount() {
+      document.body.removeChild(script);
    }
 
    handleChange = e => {
@@ -71,7 +76,7 @@ class PregnantDeadline extends Component {
 
             this.props.changeStepAction("6");
 
-            document.body.removeChild(script);
+            // document.body.removeChild(script);
          }
       );
    };

@@ -10,8 +10,6 @@ class PregnantOrHaveChild extends Component {
       mom_status: ""
    };
 
-   
-
    componentDidMount() {
       //const { mom_status } = this.props.Member;
       //this.setState({ mom_status });

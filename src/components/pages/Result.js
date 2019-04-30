@@ -214,13 +214,17 @@ class Result extends Component {
       );
    };
 
+   backStep = () => {
+      this.props.changeStepAction("7");
+   };
+
    render() {
       return (
          <React.Fragment>
             <p className="backButton">
                <button
                   className="button button_solid backButton_small"
-                  onClick={this.changeStep.bind(this, "7")}
+                  onClick={this.backStep}
                >
                   กลับ
                </button>
@@ -272,7 +276,7 @@ class Result extends Component {
                <a
                   className="form-step__nav form-step__nav_prev"
                   href="#"
-                  onClick={this.changeStep.bind(this, "7")}
+                  onClick={this.backStep}
                >
                   กลับ
                </a>

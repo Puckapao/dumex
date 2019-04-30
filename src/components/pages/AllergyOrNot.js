@@ -58,13 +58,21 @@ class AllergyOrNot extends Component {
       );
    };
 
+   backStep = () => {
+      if (this.props.form.Children.status === "born") {
+         this.props.changeStepAction("5.2C");
+      } else {
+         this.props.changeStepAction("5.1A");
+      }
+   };
+
    render() {
       return (
          <React.Fragment>
             <p className="backButton">
                <button
                   className="button button_solid backButton_small"
-                  onClick={this.changeStep.bind(this, "5.2C")}
+                  onClick={this.backStep}
                >
                   กลับ
                </button>
@@ -255,7 +263,7 @@ class AllergyOrNot extends Component {
                <a
                   className="form-step__nav form-step__nav_prev"
                   href="#"
-                  onClick={this.changeStep.bind(this, "5.2C")}
+                  onClick={this.backStep}
                >
                   กลับ
                </a>

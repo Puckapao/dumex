@@ -21,14 +21,6 @@ class ChildInfo extends Component {
    };
 
    componentDidMount() {
-      // const script = document.createElement("script");
-      script.src = "../../js/main.js";
-      script.async = true;
-      script.id = "calendar";
-      script.unload = () => this.scriptLoaded();
-
-      document.body.appendChild(script);
-
       let { birthday } = this.props.Children;
       const { baby_name } = this.props.Children;
 
@@ -40,6 +32,18 @@ class ChildInfo extends Component {
       const year = birthday.split("-")[0];
 
       this.setState({ baby_name, day, month, year });
+   }
+
+   componentWillMount() {
+      script.src = "../../js/main.js";
+      script.async = true;
+      script.id = "calendar";
+      script.unload = () => this.scriptLoaded();
+      document.body.appendChild(script);
+   }
+
+   componentWillUnmount() {
+      document.body.removeChild(script);
    }
 
    handleChange = e => {
@@ -75,7 +79,7 @@ class ChildInfo extends Component {
 
             this.props.changeStepAction("5.2B");
 
-            document.body.removeChild(script);
+            // document.body.removeChild(script);
          }
       );
    };
