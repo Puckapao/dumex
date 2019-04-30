@@ -26,19 +26,12 @@ class ChildInfo extends Component {
    };
 
    componentDidMount() {
+      dateSpinner = document.getElementById("date_spinner");
       newSpinner = document.getElementById("new_spinner");
       dateSpinner.removeAttribute("class");
 
-      while(dateSpinner.childNodes.length > 0) {
-         newSpinner.appendChild(dateSpinner.childNodes[0]);
-      }
-   }
-
-   componentWillMount() {
       let { birthday } = this.props.Children;
       const { baby_name } = this.props.Children;
-
-      dateSpinner = document.getElementById("date_spinner");
 
       if (!birthday) birthday = "--";
       if (birthday === "1970-01-01" || !birthday) birthday = "2019-04-30";
@@ -51,14 +44,22 @@ class ChildInfo extends Component {
          tempDayInput = document.getElementById("temp_day");
          tempMonthInput = document.getElementById("temp_month");
          tempYearInput = document.getElementById("temp_year");
-         console.log(tempDayInput.value);
-         console.log(tempMonthInput.value);
-         console.log(tempYearInput.value);
+         // console.log(tempDayInput.value);
+         // console.log(tempMonthInput.value);
+         // console.log(tempYearInput.value);
 
          tempDayInput.value = this.state.day;
          tempMonthInput.value = this.state.month;
          tempYearInput.value = this.state.year;
       });
+
+      while(dateSpinner.childNodes.length > 0) {
+         newSpinner.appendChild(dateSpinner.childNodes[0]);
+      }
+   }
+
+   componentWillMount() {
+      
    }
 
    componentWillUnmount() {
@@ -91,9 +92,9 @@ class ChildInfo extends Component {
       monthInput = document.getElementById("month");
       yearInput = document.getElementById("year");
 
-      console.log(dateInput.value);
-      console.log(monthInput.value);
-      console.log(yearInput.value);
+      // console.log(dateInput.value);
+      // console.log(monthInput.value);
+      // console.log(yearInput.value);
 
       this.setState(
          {

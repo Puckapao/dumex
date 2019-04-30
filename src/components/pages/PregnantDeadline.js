@@ -27,7 +27,13 @@ class PregnantDeadline extends Component {
    };
 
    componentWillMount() {
+      
+   }
+
+   componentDidMount() {
       dateSpinner = document.getElementById("date_spinner");
+      newSpinner = document.getElementById("new_spinner");
+      dateSpinner.removeAttribute("class");
       
       let { due_date } = this.props.Member;
       if (due_date === "1970-01-01" || !due_date) due_date = "2019-04-30";
@@ -40,20 +46,14 @@ class PregnantDeadline extends Component {
          tempDayInput = document.getElementById("temp_day");
          tempMonthInput = document.getElementById("temp_month");
          tempYearInput = document.getElementById("temp_year");
-         console.log(tempDayInput.value);
-         console.log(tempMonthInput.value);
-         console.log(tempYearInput.value);
+         // console.log(tempDayInput.value);
+         // console.log(tempMonthInput.value);
+         // console.log(tempYearInput.value);
 
          tempDayInput.value = this.state.day;
          tempMonthInput.value = this.state.month;
          tempYearInput.value = this.state.year;
       });
-   }
-
-   componentDidMount() {
-      
-      newSpinner = document.getElementById("new_spinner");
-      dateSpinner.removeAttribute("class");
 
       while(dateSpinner.childNodes.length > 0) {
          newSpinner.appendChild(dateSpinner.childNodes[0]);
@@ -90,9 +90,9 @@ class PregnantDeadline extends Component {
       monthInput = document.getElementById("month");
       yearInput = document.getElementById("year");
 
-      console.log(dateInput.value);
-      console.log(monthInput.value);
-      console.log(yearInput.value);
+      // console.log(dateInput.value);
+      // console.log(monthInput.value);
+      // console.log(yearInput.value);
 
       this.setState(
          {
@@ -102,8 +102,9 @@ class PregnantDeadline extends Component {
          },
          () => {
             const { day, month, year } = this.state;
-            const due_date = `${year}-${month}-${day}`;
-            console.log(due_date);
+            // const due_date = `${year}-${month}-${day}`;
+            const due_date = "2019-04-30";
+            //console.log(due_date);
 
             // Todo: Form Validate *****
             this.props.pregnantDeadlineAction(
