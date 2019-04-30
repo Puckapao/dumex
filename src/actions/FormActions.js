@@ -216,7 +216,11 @@ export const allergyOrNotAction = (allergy, sibling) => {
    };
 };
 
-export const mainQuizAction = (state, children_id) => dispatch => {
+export const mainQuizAction = (
+   state,
+   children_id,
+   isFetch = true
+) => dispatch => {
    const {
       mother_asthma,
       mother_milk_intolerance,
@@ -249,51 +253,53 @@ export const mainQuizAction = (state, children_id) => dispatch => {
       payload: state
    });
 
-   fetch("https://api.careline.dumex.rgb72.net/client/allergy-preventions", {
-      method: "POST",
-      headers: {
-         "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-         children_id: children_id,
-         mother_asthma,
-         mother_milk_intolerance,
-         mother_rhinitis,
-         mother_atopic_dermatitis,
-         mother_urticaria,
-         mother_drug,
-         mother_food,
-         mother_conjunctivitis,
-         father_asthma,
-         father_milk_intolerance,
-         father_rhinitis,
-         father_atopic_dermatitis,
-         father_urticaria,
-         father_drug,
-         father_food,
-         father_conjunctivitis,
-         brother_asthma,
-         brother_milk_intolerance,
-         brother_rhinitis,
-         brother_atopic_dermatitis,
-         brother_urticaria,
-         brother_drug,
-         brother_food,
-         brother_conjunctivitis
+   if (isFetch) {
+      fetch("https://api.careline.dumex.rgb72.net/client/allergy-preventions", {
+         method: "POST",
+         headers: {
+            "Content-Type": "application/json"
+         },
+         body: JSON.stringify({
+            children_id: children_id,
+            mother_asthma,
+            mother_milk_intolerance,
+            mother_rhinitis,
+            mother_atopic_dermatitis,
+            mother_urticaria,
+            mother_drug,
+            mother_food,
+            mother_conjunctivitis,
+            father_asthma,
+            father_milk_intolerance,
+            father_rhinitis,
+            father_atopic_dermatitis,
+            father_urticaria,
+            father_drug,
+            father_food,
+            father_conjunctivitis,
+            brother_asthma,
+            brother_milk_intolerance,
+            brother_rhinitis,
+            brother_atopic_dermatitis,
+            brother_urticaria,
+            brother_drug,
+            brother_food,
+            brother_conjunctivitis
+         })
       })
-   })
-      .then(res => {
-         res.json();
-      })
-      // .then(data => {
-      //    return dispatch({
-      //       type: MAIN_QUIZ,
-      //       payload: state
-      //    });
-      // })
-      .catch(err => {
-         console.log(err);
-      });
+         .then(res => {
+            res.json();
+         })
+         // .then(data => {
+         //    return dispatch({
+         //       type: MAIN_QUIZ,
+         //       payload: state
+         //    });
+         // })
+         .catch(err => {
+            console.log(err);
+         });
+   }
 };
 
 export const resultAction = state => dispatch => {

@@ -1,8 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { changeStepAction, chooseYourChildAction } from "../../actions";
+import {
+   changeStepAction,
+   chooseYourChildAction,
+   mainQuizAction
+} from "../../actions";
 
-import { Button } from "../reuse";
+// import { Button } from "../reuse";
 
 import baby from "../../img/q01-baby.svg";
 import babyPlus from "../../img/baby-plus.svg";
@@ -23,11 +27,58 @@ class ChooseYourChild extends Component {
          }
       )
          .then(res => res.json())
-         .then(data => this.setState({ children: data }));
+         .then(data => {
+            this.setState({ children: data });
+         });
    }
 
    changeStep = newStep => {
       this.props.changeStepAction(newStep);
+   };
+
+   invertScore = AllergyPrevention => {
+      let tempAllergy = {};
+
+      for (var key in AllergyPrevention) {
+         if (AllergyPrevention.hasOwnProperty(key)) {
+            if (key.includes("mother")) {
+               if (
+                  AllergyPrevention[key] === 3 ||
+                  AllergyPrevention[key] === 1
+               ) {
+                  tempAllergy[`${key}`] = "yes";
+               } else if (
+                  AllergyPrevention[key] === 2 ||
+                  AllergyPrevention[key] === 0.5
+               ) {
+                  tempAllergy[`${key}`] = "not-sure";
+               } else {
+                  tempAllergy[`${key}`] = "no";
+               }
+            } else if (key.includes("father") || key.includes("brother")) {
+               if (AllergyPrevention[key] === 2) {
+                  tempAllergy[`${key}`] = "yes";
+               } else if (AllergyPrevention[key] === 0.5) {
+                  tempAllergy[`${key}`] = "not-sure";
+               } else if (AllergyPrevention[key] === 1) {
+                  if (
+                     key.includes("asthma") ||
+                     key.includes("milk") ||
+                     key.includes("rhinitis") ||
+                     key.includes("atopic")
+                  ) {
+                     tempAllergy[`${key}`] = "not-sure";
+                  } else {
+                     tempAllergy[`${key}`] = "yes";
+                  }
+               } else {
+                  tempAllergy[`${key}`] = "no";
+               }
+            }
+         }
+      }
+
+      return tempAllergy;
    };
 
    handleClick = child => {
@@ -45,6 +96,7 @@ class ChooseYourChild extends Component {
          )
             .then(res => res.json())
             .then(data => {
+               console.log(data);
                const lastArr = data[data.length - 1];
                let haveSibling = "no";
                for (var key in lastArr) {
@@ -54,6 +106,9 @@ class ChooseYourChild extends Component {
                      }
                   }
                }
+
+               const invert = this.invertScore(lastArr);
+               this.props.mainQuizAction(invert, null, false);
                this.props.chooseYourChildAction(child, haveSibling);
                if (child.status === "fetus") {
                   this.props.changeStepAction("5.1A");
@@ -159,5 +214,5 @@ const mapStateToProps = state => {
 
 export default connect(
    mapStateToProps,
-   { changeStepAction, chooseYourChildAction }
+   { changeStepAction, chooseYourChildAction, mainQuizAction }
 )(ChooseYourChild);

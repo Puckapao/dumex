@@ -16,60 +16,186 @@ class App extends Component {
          {} /* Initial State (Optional)*/,
          compose(
             applyMiddleware(ReduxThunk),
-            // window.__REDUX_DEVTOOLS_EXTENSION__ &&
-            //    window.__REDUX_DEVTOOLS_EXTENSION__()
+            window.__REDUX_DEVTOOLS_EXTENSION__ &&
+               window.__REDUX_DEVTOOLS_EXTENSION__()
          )
       );
 
       return (
          <Provider store={store}>
             <React.Fragment>
-            <header className="site-header">
-               <div className="primary-header">
-                  <div className="container">
-                     <div className="site-header__wrapper">
-                        <a href="#" className="menu-trigger"><span></span></a>
-                        <h1 className="site-logo"><a className="site-logo__link" href="#">Nutricia Expert</a></h1>
-                        <nav className="site-nav">
-                           <ul className="menu">
-                              <li className="menu-item"><a target="_blank" href="https://nutriciaexpert.com/testings">ประเมินสุขภาพลูกน้อย</a></li>
-                              <li className="menu-item"><a target="_blank" href="https://nutriciaexpert.com/faqs">คำถามที่พบบ่อย</a></li>
-                              <li className="menu-item"><a target="_blank" href="https://nutriciaexpert.com/talk-to-doctors">ฝากคำถามถึงคุณหมอ</a></li>
-                              <li className="menu-item"><a target="_blank" href="https://nutriciaexpert.com/expert-talks">สาระน่ารู้จากคุณหมอ</a></li>
-                           </ul>
-                        </nav>
+               <header className="site-header">
+                  <div className="primary-header">
+                     <div className="container">
+                        <div className="site-header__wrapper">
+                           <a href="#" className="menu-trigger">
+                              <span />
+                           </a>
+                           <h1 className="site-logo">
+                              <a className="site-logo__link" href="#">
+                                 Nutricia Expert
+                              </a>
+                           </h1>
+                           <nav className="site-nav">
+                              <ul className="menu">
+                                 <li className="menu-item">
+                                    <a
+                                       target="_blank"
+                                       href="https://nutriciaexpert.com/testings"
+                                    >
+                                       ประเมินสุขภาพลูกน้อย
+                                    </a>
+                                 </li>
+                                 <li className="menu-item">
+                                    <a
+                                       target="_blank"
+                                       href="https://nutriciaexpert.com/faqs"
+                                    >
+                                       คำถามที่พบบ่อย
+                                    </a>
+                                 </li>
+                                 <li className="menu-item">
+                                    <a
+                                       target="_blank"
+                                       href="https://nutriciaexpert.com/talk-to-doctors"
+                                    >
+                                       ฝากคำถามถึงคุณหมอ
+                                    </a>
+                                 </li>
+                                 <li className="menu-item">
+                                    <a
+                                       target="_blank"
+                                       href="https://nutriciaexpert.com/expert-talks"
+                                    >
+                                       สาระน่ารู้จากคุณหมอ
+                                    </a>
+                                 </li>
+                              </ul>
+                           </nav>
+                        </div>
                      </div>
-                  </div>			
-               </div>
-               <div className="secondary-header">
-                  <div className="container">
-                     <ul className="menu">
-                        <li className="menu-item nav-allergy-prevention"><a target="_blank" href="https://nutriciaexpert.com/allergy-prevention"><i className="ico-allergy-prevention ico"></i> <span>มีโอกาสเสี่ยงแพ้โปรตีนนมวัว</span></a></li>
-                        <li className="menu-item nav-allergy-treatment"><a target="_blank" href="https://nutriciaexpert.com/allergy-treatment"><i className="ico-allergy-treatment ico"></i> <span>แพ้โปรตีนนมวัว</span></a></li>
-                        <li className="menu-item nav-growth"><a target="_blank" href="https://nutriciaexpert.com/growth"><i className="ico-growth ico"></i> <span>เติบโตต่ำกว่าเกณฑ์</span></a></li>
-                        <li className="menu-item nav-digestion-discomfort"><a target="_blank" href="https://nutriciaexpert.com/digestion-discomfort"><i className="ico-digestion-discomfort ico"></i> <span>ปัญหาอาการไม่สบายท้อง</span></a></li>
-                     </ul>
                   </div>
-               </div>
-               <div className="mobile-nav">
-                  <div className="mobile-nav__section">
-                     <ul className="menu">
-                        <li className="menu-item nav-allergy-prevention"><a target="_blank" href="https://nutriciaexpert.com/allergy-prevention"><i className="ico-allergy-prevention ico"></i> <span>มีโอกาสเสี่ยงแพ้โปรตีนนมวัว</span></a></li>
-                        <li className="menu-item nav-allergy-treatment"><a target="_blank" href="https://nutriciaexpert.com/allergy-treatment"><i className="ico-allergy-treatment ico"></i> <span>แพ้โปรตีนนมวัว</span></a></li>
-                        <li className="menu-item nav-growth"><a target="_blank" href="https://nutriciaexpert.com/growth"><i className="ico-growth ico"></i> <span>เติบโตต่ำกว่าเกณฑ์</span></a></li>
-                        <li className="menu-item nav-digestion-discomfort"><a target="_blank" href="https://nutriciaexpert.com/digestion-discomfort"><i className="ico-digestion-discomfort ico"></i> <span>ปัญหาอาการไม่สบายท้อง</span></a></li>
-                     </ul>
+                  <div className="secondary-header">
+                     <div className="container">
+                        <ul className="menu">
+                           <li className="menu-item nav-allergy-prevention">
+                              <a
+                                 target="_blank"
+                                 href="https://nutriciaexpert.com/allergy-prevention"
+                              >
+                                 <i className="ico-allergy-prevention ico" />{" "}
+                                 <span>มีโอกาสเสี่ยงแพ้โปรตีนนมวัว</span>
+                              </a>
+                           </li>
+                           <li className="menu-item nav-allergy-treatment">
+                              <a
+                                 target="_blank"
+                                 href="https://nutriciaexpert.com/allergy-treatment"
+                              >
+                                 <i className="ico-allergy-treatment ico" />{" "}
+                                 <span>แพ้โปรตีนนมวัว</span>
+                              </a>
+                           </li>
+                           <li className="menu-item nav-growth">
+                              <a
+                                 target="_blank"
+                                 href="https://nutriciaexpert.com/growth"
+                              >
+                                 <i className="ico-growth ico" />{" "}
+                                 <span>เติบโตต่ำกว่าเกณฑ์</span>
+                              </a>
+                           </li>
+                           <li className="menu-item nav-digestion-discomfort">
+                              <a
+                                 target="_blank"
+                                 href="https://nutriciaexpert.com/digestion-discomfort"
+                              >
+                                 <i className="ico-digestion-discomfort ico" />{" "}
+                                 <span>ปัญหาอาการไม่สบายท้อง</span>
+                              </a>
+                           </li>
+                        </ul>
+                     </div>
                   </div>
-                  <div className="mobile-nav__section">
-                     <ul className="menu">
-                        <li className="menu-item"><a target="_blank" href="https://nutriciaexpert.com/testings">ประเมินสุขภาพลูกน้อย</a></li>
-                        <li className="menu-item"><a target="_blank" href="https://nutriciaexpert.com/faqs">คำถามที่พบบ่อย</a></li>
-                        <li className="menu-item"><a target="_blank" href="https://nutriciaexpert.com/talk-to-doctors">ฝากคำถามถึงคุณหมอ</a></li>
-                        <li className="menu-item"><a target="_blank" href="https://nutriciaexpert.com/expert-talks">สาระน่ารู้จากคุณหมอ</a></li>
-                     </ul>
+                  <div className="mobile-nav">
+                     <div className="mobile-nav__section">
+                        <ul className="menu">
+                           <li className="menu-item nav-allergy-prevention">
+                              <a
+                                 target="_blank"
+                                 href="https://nutriciaexpert.com/allergy-prevention"
+                              >
+                                 <i className="ico-allergy-prevention ico" />{" "}
+                                 <span>มีโอกาสเสี่ยงแพ้โปรตีนนมวัว</span>
+                              </a>
+                           </li>
+                           <li className="menu-item nav-allergy-treatment">
+                              <a
+                                 target="_blank"
+                                 href="https://nutriciaexpert.com/allergy-treatment"
+                              >
+                                 <i className="ico-allergy-treatment ico" />{" "}
+                                 <span>แพ้โปรตีนนมวัว</span>
+                              </a>
+                           </li>
+                           <li className="menu-item nav-growth">
+                              <a
+                                 target="_blank"
+                                 href="https://nutriciaexpert.com/growth"
+                              >
+                                 <i className="ico-growth ico" />{" "}
+                                 <span>เติบโตต่ำกว่าเกณฑ์</span>
+                              </a>
+                           </li>
+                           <li className="menu-item nav-digestion-discomfort">
+                              <a
+                                 target="_blank"
+                                 href="https://nutriciaexpert.com/digestion-discomfort"
+                              >
+                                 <i className="ico-digestion-discomfort ico" />{" "}
+                                 <span>ปัญหาอาการไม่สบายท้อง</span>
+                              </a>
+                           </li>
+                        </ul>
+                     </div>
+                     <div className="mobile-nav__section">
+                        <ul className="menu">
+                           <li className="menu-item">
+                              <a
+                                 target="_blank"
+                                 href="https://nutriciaexpert.com/testings"
+                              >
+                                 ประเมินสุขภาพลูกน้อย
+                              </a>
+                           </li>
+                           <li className="menu-item">
+                              <a
+                                 target="_blank"
+                                 href="https://nutriciaexpert.com/faqs"
+                              >
+                                 คำถามที่พบบ่อย
+                              </a>
+                           </li>
+                           <li className="menu-item">
+                              <a
+                                 target="_blank"
+                                 href="https://nutriciaexpert.com/talk-to-doctors"
+                              >
+                                 ฝากคำถามถึงคุณหมอ
+                              </a>
+                           </li>
+                           <li className="menu-item">
+                              <a
+                                 target="_blank"
+                                 href="https://nutriciaexpert.com/expert-talks"
+                              >
+                                 สาระน่ารู้จากคุณหมอ
+                              </a>
+                           </li>
+                        </ul>
+                     </div>
                   </div>
-               </div>
-            </header>
+               </header>
                <div className="site-content">
                   <div className="app">
                      <Main />
