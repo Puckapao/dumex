@@ -44,7 +44,7 @@ var input_edit = (el) => {
 };
 
 var apply_spinner_input_val = ( el ) => {
-	console.log('in2');
+	//console.log('in2');
 	if ( el == null ) { return; }
 
 	var min_v = parseInt( el.getAttribute( 'min' ) ),

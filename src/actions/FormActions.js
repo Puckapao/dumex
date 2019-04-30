@@ -122,7 +122,7 @@ export const pregnantDeadlineAction = (
    childrenId
 ) => dispatch => {
    const baby_name = "FETUS";
-   const birthday = "2019-04-30";
+   const birthday = due_date;
    const birth_term = "full-term";
    const labor = "normal";
    const allergy = "yes";
