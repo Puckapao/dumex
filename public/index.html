@@ -1,72 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-   <head>
-      <meta charset="utf-8" />
-      <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
-      <meta
-         name="viewport"
-         content="width=device-width, initial-scale=1, shrink-to-fit=no"
-      />
-      <meta name="theme-color" content="#000000" />
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-      <script src="https://unpkg.com/react/umd/react.development.js"></script>
 
-      <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+<head>
+   <meta charset="utf-8" />
+   <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+   <meta name="theme-color" content="#000000" />
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+   <script src="https://unpkg.com/react/umd/react.development.js"></script>
 
-      <title>ข้อมูลเด็กแพ้นมวัว ลูกโตช้ากว่าเกณฑ์</title>
-   </head>
+   <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+
+   <title>ข้อมูลเด็กแพ้นมวัว ลูกโตช้ากว่าเกณฑ์</title>
+</head>
+
+<body>
+   <noscript>You need to enable JavaScript to run this app.</noscript>
 
    <body>
       <noscript>You need to enable JavaScript to run this app.</noscript>
 
-<<<<<<< HEAD
-<body>
-   <noscript>You need to enable JavaScript to run this app.</noscript>
-
-   <div id="root"></div>
-   <div class="hello" id="date_spinner">
-      <input type="hidden" id="day" name="day" value="">
-      <input type="hidden" id="month" name="month" value="">
-      <input type="hidden" id="year" name="year" value="">
-      <div class="date-spinner date-spinner_expect-date">
-         <div class="date-spinner__block">
-            <div class="date-spinner__track date-spinner__track_date">
-               <div class="item-list item-list_date"></div>
+      <div id="root"></div>
+      <div class="hello" id="date_spinner">
+         <input type="hidden" id="day" name="day" value="">
+         <input type="hidden" id="month" name="month" value="">
+         <input type="hidden" id="year" name="year" value="">
+         <div class="date-spinner date-spinner_expect-date">
+            <div class="date-spinner__block">
+               <div class="date-spinner__track date-spinner__track_date">
+                  <div class="item-list item-list_date"></div>
+               </div>
+               <span class="spinner-arrow spinner-arrow_up"></span>
+               <span class="spinner-arrow spinner-arrow_down"></span>
+               <span class="spinner-label">วันที่</span>
+               <input tabindex="1" class="spinner-input" type="number" id="temp_day" name="temp_day" min="1" max="31"
+                  maxlength="2">
             </div>
-            <span class="spinner-arrow spinner-arrow_up"></span>
-            <span class="spinner-arrow spinner-arrow_down"></span>
-            <span class="spinner-label">วันที่</span>
-            <input tabindex="1" class="spinner-input" type="number" id="temp_day" name="temp_day" min="1" max="31"
-               maxlength="2">
-         </div>
-         <div class="date-spinner__block">
-            <div class="date-spinner__track date-spinner__track_month">
-               <div class="item-list item-list_month"></div>
+            <div class="date-spinner__block">
+               <div class="date-spinner__track date-spinner__track_month">
+                  <div class="item-list item-list_month"></div>
+               </div>
+               <span class="spinner-arrow spinner-arrow_up"></span>
+               <span class="spinner-arrow spinner-arrow_down"></span>
+               <span class="spinner-label">เดือน</span>
+               <input tabindex="2" class="spinner-input" type="number" id="temp_month" name="temp_month" min="1"
+                  max="12" maxlength="2">
             </div>
-            <span class="spinner-arrow spinner-arrow_up"></span>
-            <span class="spinner-arrow spinner-arrow_down"></span>
-            <span class="spinner-label">เดือน</span>
-            <input tabindex="2" class="spinner-input" type="number" id="temp_month" name="temp_month" min="1" max="12"
-               maxlength="2">
-         </div>
-         <div class="date-spinner__block">
-            <div class="date-spinner__track date-spinner__track_year">
-               <div class="item-list item-list_year"></div>
+            <div class="date-spinner__block">
+               <div class="date-spinner__track date-spinner__track_year">
+                  <div class="item-list item-list_year"></div>
+               </div>
+               <span class="spinner-arrow spinner-arrow_up"></span>
+               <span class="spinner-arrow spinner-arrow_down"></span>
+               <span class="spinner-label">ปี</span>
+               <input tabindex="3" class="spinner-input" type="number" id="temp_year" name="temp_year" min="2016"
+                  max="2019" maxlength="4">
             </div>
-            <span class="spinner-arrow spinner-arrow_up"></span>
-            <span class="spinner-arrow spinner-arrow_down"></span>
-            <span class="spinner-label">ปี</span>
-            <input tabindex="3" class="spinner-input" type="number" id="temp_year" name="temp_year" min="2016"
-               max="2019" maxlength="4">
          </div>
       </div>
-   </div>
-   <script id="calendar_script" src="js/main.js"></script>
-</body>
+      <script id="calendar_script" src="js/main.js"></script>
+   </body>
 
 </html>
-=======
-      <div id="root"></div>
-   </body>
-</html>
->>>>>>> 202e28c8943c9329e9bad5537647c9964bc0d9a6
