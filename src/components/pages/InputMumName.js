@@ -10,10 +10,10 @@ import { TextInput, Button } from "../reuse";
 
 class InputMumName extends Component {
    state = {
-      firstname: "nutricia66",
-      lastname: "expert66",
-      phone: "0812345678",
-      email: "nutricia66@nutriciaexpert.com",
+      firstname: "nutricia88",
+      lastname: "expert88",
+      phone: "0812345688",
+      email: "nutricia88@nutriciaexpert.com",
       error: {}
    };
 
@@ -95,10 +95,10 @@ class InputMumName extends Component {
             <Button onClick={this.handleSubmitForm}>
                เริ่มต้นทำแบบประเมิน
             </Button> */}
-            <h1 className="header">
-               ทดสอบความเสี่ยง <strong>ภูมิแพ้</strong> ของลูกน้อย
+            <h1 className="header responsive">
+               <span>ทดสอบความเสี่ยง</span> <strong>ภูมิแพ้</strong> <span>ของลูกน้อย</span>
                <br />
-               รู้เร็ว รู้ง่าย เพียง 1 นาที
+               <span>รู้เร็ว รู้ง่าย เพียง 1 นาที</span>
             </h1>
             <h2 className="sub-header">กรุณากรอกข้อมูลของคุณ</h2>
             <p>
