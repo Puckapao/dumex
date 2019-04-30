@@ -89,8 +89,7 @@ class MainQuiz extends Component {
    };
 
    changeStep = newStep => {
-      this.props.changeStepAction(newStep);
-      console.log(this.props.sibling);
+      // console.log(this.props.sibling);
 
       // Todo: Form Validate ****
       if(this.props.sibling === "no" || this.props.sibling === "0") {
@@ -104,11 +103,13 @@ class MainQuiz extends Component {
             brother_food: "no",
             brother_conjunctivitis: "no"
          }, () => {
-            console.log(this.state);
+            console.log(this.state.brother_asthma);
             this.props.mainQuizAction(this.state, this.props.children_id);
+            this.props.changeStepAction(newStep);
          })
       } else {
          this.props.mainQuizAction(this.state, this.props.children_id);
+         this.props.changeStepAction(newStep);
       }
 
    };
