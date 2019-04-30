@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { childInfoAction, changeStepAction } from "../../actions";
 
-const script = document.createElement("script");
+// const script = document.createElement("script");
 
 class ChildInfo extends Component {
    constructor(props) {
@@ -35,15 +35,15 @@ class ChildInfo extends Component {
    }
 
    componentWillMount() {
-      script.src = "../../js/main.js";
-      script.async = true;
-      script.id = "calendar";
-      script.unload = () => this.scriptLoaded();
-      document.body.appendChild(script);
+      // script.src = "../../js/main.js";
+      // script.async = true;
+      // script.id = "calendar";
+      // script.unload = () => this.scriptLoaded();
+      // document.body.appendChild(script);
    }
 
    componentWillUnmount() {
-      document.body.removeChild(script);
+      // document.body.removeChild(script);
    }
 
    handleChange = e => {

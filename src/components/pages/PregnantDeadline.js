@@ -2,7 +2,13 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { pregnantDeadlineAction, changeStepAction } from "../../actions";
 
-const script = document.createElement("script");
+// const script = document.createElement("script");
+let dateInput = null;
+let monthInput = null;
+let yearInput = null;
+let dateSpinner = null;
+let calendarScript = null;
+let newSpinner = null;
 
 class PregnantDeadline extends Component {
    constructor(props) {
@@ -17,7 +23,9 @@ class PregnantDeadline extends Component {
       year: ""
    };
 
-   componentDidMount() {
+   componentWillMount() {
+      dateSpinner = document.getElementById("date_spinner");
+      
       let { due_date } = this.props.Member;
       if (due_date === "1970-01-01" || !due_date) due_date = "2019-04-30";
 
@@ -25,22 +33,35 @@ class PregnantDeadline extends Component {
       const month = due_date.split("-")[1];
       const year = due_date.split("-")[0];
 
-      this.setState({ day, month, year });
-
-      // console.log(this.props.childrenId);
+      this.setState({ day, month, year }, () => {
+         dateInput = document.getElementById("day").setAttribute("value", this.state.day);
+         monthInput = document.getElementById("month").setAttribute("value", this.state.month);
+         yearInput = document.getElementById("year").setAttribute("value", this.state.year);
+      });
    }
 
-   componentWillMount() {
-      script.src = "../../js/main.js";
-      script.async = true;
-      script.id = "calendar";
-      script.unload = () => this.scriptLoaded();
+   componentDidMount() {
+      
+      newSpinner = document.getElementById("new_spinner");
+      dateSpinner.removeAttribute("class");
 
-      document.body.appendChild(script);
+      while(dateSpinner.childNodes.length > 0) {
+         newSpinner.appendChild(dateSpinner.childNodes[0]);
+      }
    }
 
    componentWillUnmount() {
-      document.body.removeChild(script);
+      // document.body.removeChild(script);
+      while(newSpinner.childNodes.length > 0) {
+         dateSpinner.appendChild(newSpinner.childNodes[0]);
+      }
+      dateSpinner.setAttribute("class", "hidden");
+      dateInput = null;
+      monthInput = null;
+      yearInput = null;
+      dateSpinner = null;
+      calendarScript = null;
+      newSpinner = null;
    }
 
    handleChange = e => {
@@ -53,19 +74,24 @@ class PregnantDeadline extends Component {
 
    handleSubmitForm = e => {
       e.preventDefault();
-      // console.log(this.dateInput.current.value);
-      // console.log(this.monthInput.current.value);
-      // console.log(this.yearInput.current.value);
+      dateInput = document.getElementById("day");
+      monthInput = document.getElementById("month");
+      yearInput = document.getElementById("year");
+
+      console.log(dateInput.value);
+      console.log(monthInput.value);
+      console.log(yearInput.value);
 
       this.setState(
          {
-            day: this.dateInput.current.value,
-            month: this.monthInput.current.value,
-            year: this.yearInput.current.value
+            day: dateInput.value,
+            month: monthInput.value,
+            year: yearInput.value
          },
          () => {
             const { day, month, year } = this.state;
             const due_date = `${year}-${month}-${day}`;
+            console.log(due_date);
 
             // Todo: Form Validate *****
             this.props.pregnantDeadlineAction(
@@ -121,7 +147,8 @@ class PregnantDeadline extends Component {
             <h1 className="header">คุณแม่ที่กำลังตั้งครรภ์</h1>
             <h2 className="sub-header">กำหนดคลอด</h2>
 
-            <input
+            <div id="new_spinner"></div>
+            {/* <input
                type="hidden"
                id="date_input"
                ref={this.dateInput}
@@ -195,7 +222,7 @@ class PregnantDeadline extends Component {
                      maxLength="4"
                   />
                </div>
-            </div>
+            </div> */}
 
             {/* <div className="form-notice">สามารถเลื่อนซ้ายขวาเพื่อเลือกได้</div> */}
 

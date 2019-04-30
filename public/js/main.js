@@ -1,5 +1,3 @@
-// import moment from './libs/moment/src/moment' // quiet
-
 const curr_date = {
 	year : moment().year(),
 	month: moment().month(),
@@ -15,12 +13,26 @@ var date_input_val = ( date_input ? date_input.value : null ),
 	month_input_val = ( month_input ? month_input.value : null ),
 	year_input_val = ( year_input ? year_input.value : null );
 
+const { get, set } = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value');
+
+Object.defineProperty(date_input, 'value', {
+	get() {
+		return get.call(this);
+	},
+	set(newVal) {
+		console.log('New value assigned to input: ' + newVal);
+		return set.call(this, newVal);
+	}
+});
+
+date_input.addEventListener('change', function (e) {
+	date_input_val = date_input.value;
+});
+
 var date_list = document.querySelector( '.item-list_date' ),
 	month_list = document.querySelector( '.item-list_month' ),
 	year_list = document.querySelector( '.item-list_year' ),
-	date_track = document.querySelector( '.date-spinner__track_date' ),
-	month_track = document.querySelector( '.date-spinner__track_month' ),
-	year_track = document.querySelector( '.date-spinner__track_year' );
+	date_track = document.querySelector( '.date-spinner__track_date' );
 
 let new_birth_date = moment( year_input_val +'-'+ month_input_val +'-'+ date_input_val, 'YYYY-M-D' );
 
@@ -30,8 +42,6 @@ let birth_date = {
 	date: new_birth_date.date(),
 	total_days: new_birth_date.daysInMonth()
 };
-
-//console.log( birth_date );
 
 var input_edit = (el) => {
 	let spinner_blocks = document.querySelectorAll( '.date-spinner__block' ),
@@ -47,10 +57,10 @@ var input_edit = (el) => {
 			spinner_block.classList.remove( 'edit' );
 		}
 	}
-}
+};
 
 var apply_spinner_input_val = ( el ) => {
-	if ( el == null ) return;
+	if ( el == null ) { return; }
 
 	var min_v = parseInt( el.getAttribute( 'min' ) ),
 		max_v = parseInt( el.getAttribute( 'max' ) ),
@@ -67,7 +77,7 @@ var apply_spinner_input_val = ( el ) => {
 		if ( target ) {
 			curr_selected.classList.remove( 'selected' );
 			target.classList.add( 'selected' );
-			setTimeout( () => { spinner_select( target ) }, 300 );
+			setTimeout( () => { spinner_select( target, 150 ) }, 300 );
 
 			if ( el_name === 'temp_day' ) {
 				date_input.value = el.value;
@@ -76,6 +86,8 @@ var apply_spinner_input_val = ( el ) => {
 			} else if ( el_name === 'temp_year' ) {
 				year_input.value = el.value;
 			}
+
+			remove_spinner_edit( el );
 		}
 
 	} else if ( el.value !== '' && el.valueAsNumber < min_v || el.valueAsNumber > max_v ) {
@@ -84,17 +96,15 @@ var apply_spinner_input_val = ( el ) => {
 		el.value = '';
 
 	} else {
-
-		let block_edit = document.querySelectorAll( '.date-spinner__block' );
-		for ( let item of block_edit ) {
-			item.classList.remove( 'edit' );
-		}
-
+		remove_spinner_edit( el );
 	}
-}
 
+};
+
+// Check Spinner Input Value
 var check_spinner_input_val = ( el ) => {
-	if ( el == null ) return;
+	if ( el == null ) { return; }
+
 	el.addEventListener(
 		'blur',
 		() => {
@@ -107,19 +117,18 @@ var check_spinner_input_val = ( el ) => {
 		(e) => {
 			if ( e.keyCode === 13 ) {
 				apply_spinner_input_val( el );
-			} else {
-				// Act Normal
 			}
 		}
 	);
-}
+};
 
 var set_current_date_input = ( obj ) => {
 	date_input.setAttribute( 'value', obj.date );
 	month_input.setAttribute( 'value', obj.month );
 	year_input.setAttribute( 'value', obj.year );
-}
+};
 
+// Set Current Date Spinner
 var set_current_date_spinner = ( obj ) => {
 	for ( let i = 1; i <= obj.total_days; i++ ) {
 		let item = document.createElement( 'span' );
@@ -177,8 +186,9 @@ var set_current_date_spinner = ( obj ) => {
 
 		year_list.appendChild( item );
 	}
-}
+};
 
+// Set Birthday Date Spinner
 var set_birth_date_spinner = ( obj ) => {
 
 	for ( let i = 1; i <= obj.total_days; i++ ) {
@@ -194,7 +204,7 @@ var set_birth_date_spinner = ( obj ) => {
 		item.addEventListener('click', () => {
 			input_edit(item);
 		});
-		
+
 		if ( date_list ) {
 			date_list.appendChild( item );
 		}
@@ -213,7 +223,7 @@ var set_birth_date_spinner = ( obj ) => {
 		item.addEventListener('click', () => {
 			input_edit(item);
 		});
-		
+
 		if ( month_list ) {
 			month_list.appendChild( item );
 		}
@@ -243,7 +253,7 @@ var set_birth_date_spinner = ( obj ) => {
 			year_list.appendChild( item );
 		}
 	}
-}
+};
 
 if ( date_input_val === '' || month_input_val === '' || year_input_val === '' ) {
 	set_current_date_input( curr_date );
@@ -252,29 +262,38 @@ if ( date_input_val === '' || month_input_val === '' || year_input_val === '' ) 
 	set_birth_date_spinner( birth_date );
 }
 
-var selected_items = document.querySelectorAll( '.item-list .selected' ),
-	selected_date = document.querySelector( '.item-list_date .selected' ),
-	selected_month = document.querySelector( '.item-list_month .selected' ),
-	selected_year = document.querySelector( '.item-list_year .selected' );
+var selected_items = document.querySelectorAll( '.item-list .selected' );
 
-var spinner_select = ( el ) => {
-	el.scrollIntoView({
-		behavior : 'smooth',
-		block : 'center'
-	});
+var spinner_select = ( el, dur ) => {
+
+	if ( dur <= 0 ) { return; }
+
+	let track = el.closest( '.date-spinner__track' ),
+		target_pos = el.offsetTop - 60,
+		difference = target_pos - track.scrollTop,
+		distance = difference / dur * 10;
 
 	setTimeout( () => {
-		let spinner_blocks = document.querySelectorAll( '.date-spinner__block' );
-		for ( let spinner_block of spinner_blocks ) {
-			spinner_block.classList.remove( 'edit' );
-		}
-	}, 300 );
-}
+		track.scrollTop = track.scrollTop + distance;
+		if ( track.scrollTop === target_pos ) { return; }
+		spinner_select( el, dur - 10 )
+	}, 10 )
+};
+
+var remove_spinner_edit = ( input ) => {
+	var active_input_parent = input.closest( '.date-spinner__block' );
+
+	setTimeout( () => {
+		input.blur();
+		active_input_parent.classList.remove( 'edit' );
+	}, 150 );
+};
 
 check_spinner_input_val( document.querySelector( 'input[name="temp_day"]' ) );
 check_spinner_input_val( document.querySelector( 'input[name="temp_month"]' ) );
 check_spinner_input_val( document.querySelector( 'input[name="temp_year"]' ) );
 
+// Repopulate Date Spinner
 var repopulate_date_spinner = () => {
 	let remove_date = date_list.querySelectorAll( 'span' );
 	for ( let item of remove_date ) {
@@ -307,23 +326,28 @@ var repopulate_date_spinner = () => {
 
 		date_list.appendChild( item );
 	}
-
-	date_track.scroll(0,( ( max_select_date - 1 ) * 60 ));
+	
+	let target_pos = document.querySelector( 'span[data-value="'+max_select_date+'"]' ).offsetTop - 60;
+	
+	date_track.scroll(0,target_pos);
 
 	document.querySelector( 'input[name="temp_day"]' ).setAttribute( 'max', selected_date_obj.total_days );
 	check_spinner_input_val( document.querySelector( 'input[name="temp_day"]' ) );
-}
+};
 
 // Set Initial Date
-for ( let i = 0; i < selected_items.length; i++ ) {
-	selected_items[i].scrollIntoView({
-		block : 'center'
-	});
+for ( let selected_item of selected_items ) {
+	let track = selected_item.closest( '.date-spinner__track' ),
+		target_pos = selected_item.offsetTop - 60;
+
+	track.scroll(0,target_pos);
 }
 
+// Spinner Buttons
 let spinner_down = document.querySelectorAll( '.spinner-arrow_down' ),
 	spinner_up = document.querySelectorAll( '.spinner-arrow_up' );
 
+// Spinner Down Button
 for ( let i of spinner_down ) {
 	i.addEventListener(
 		'click',
@@ -352,7 +376,7 @@ for ( let i of spinner_down ) {
 					repopulate_date_spinner();
 				}
 
-				spinner_select( target );
+				spinner_select( target, 150 );
 
 			}
 
@@ -360,6 +384,7 @@ for ( let i of spinner_down ) {
 	);
 }
 
+// Spinner Up Button
 for ( let i of spinner_up ) {
 	i.addEventListener(
 		'click',
@@ -389,7 +414,7 @@ for ( let i of spinner_up ) {
 					repopulate_date_spinner();
 				}
 
-				spinner_select( target );
+				spinner_select( target, 150 );
 
 			}
 
@@ -397,8 +422,44 @@ for ( let i of spinner_up ) {
 	);
 }
 
-document.addEventListener( 'keyup', (e) => {
-	if ( e.keyCode === 27 ) {
-		document.querySelector( '.date-spinner__block.edit' ).classList.remove( 'edit' );
+// Check ESC Key
+document.addEventListener(
+	'keyup',
+	(e) => {
+		if ( e.keyCode === 27 ) {
+			document.querySelector( '.date-spinner__block.edit' ).classList.remove( 'edit' );
+		}
 	}
-});
+);
+
+// Next Spinner Input via Tab Key
+var spinner_input_nodes = document.querySelectorAll( '.spinner-input' );
+
+for ( let input of spinner_input_nodes ) {
+	input.addEventListener(
+		'keyup',
+		(e) => {
+			if ( e.keyCode === 9 ) {
+				let curr_input = input.tabIndex - 1,
+					next_input = document.querySelector( '.spinner-input[tabindex="'+( curr_input + 1 )+'"]' ),
+					next_input_parent = next_input.closest( '.date-spinner__block' );
+
+				if ( next_input ) {
+					next_input_parent.classList.add( 'edit' );
+					next_input.focus();
+				}
+			}
+		}
+	);
+}
+
+// // Mobile Menu Trigger
+// var nav_trigger = document.querySelector( '.menu-trigger' );
+
+// nav_trigger.addEventListener(
+// 	'click',
+// 	(e) => {
+// 		e.preventDefault();
+// 		document.querySelector( 'body' ).classList.toggle( 'showmenu' );
+// 	}
+// );
