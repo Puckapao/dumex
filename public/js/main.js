@@ -13,22 +13,6 @@ var date_input_val = ( date_input ? date_input.value : null ),
 	month_input_val = ( month_input ? month_input.value : null ),
 	year_input_val = ( year_input ? year_input.value : null );
 
-const { get, set } = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value');
-
-Object.defineProperty(date_input, 'value', {
-	get() {
-		return get.call(this);
-	},
-	set(newVal) {
-		console.log('New value assigned to input: ' + newVal);
-		return set.call(this, newVal);
-	}
-});
-
-date_input.addEventListener('change', function (e) {
-	date_input_val = date_input.value;
-});
-
 var date_list = document.querySelector( '.item-list_date' ),
 	month_list = document.querySelector( '.item-list_month' ),
 	year_list = document.querySelector( '.item-list_year' ),
@@ -60,6 +44,7 @@ var input_edit = (el) => {
 };
 
 var apply_spinner_input_val = ( el ) => {
+	console.log('in2');
 	if ( el == null ) { return; }
 
 	var min_v = parseInt( el.getAttribute( 'min' ) ),
@@ -364,14 +349,14 @@ for ( let i of spinner_down ) {
 				target.classList.add( 'selected' );
 
 				if ( track.classList.contains( 'date-spinner__track_date' ) ) {
-					date_input.setAttribute( 'value', target_val );
+					date_input.value = target_val;
 
 				} else if ( track.classList.contains( 'date-spinner__track_month' ) ) {
-					month_input.setAttribute( 'value', target_val );
+					month_input.value = target_val;
 					date_track.scroll(0,0);
 					repopulate_date_spinner();
 				} else if ( track.classList.contains( 'date-spinner__track_year' ) ) {
-					year_input.setAttribute( 'value', target_val );
+					year_input.value = target_val;
 					date_track.scroll(0,0);
 					repopulate_date_spinner();
 				}
@@ -452,6 +437,51 @@ for ( let input of spinner_input_nodes ) {
 		}
 	);
 }
+
+const { get, set } = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value');
+
+Object.defineProperty(document.querySelector( 'input[name="temp_day"]' ), 'value', {
+	get() {
+		return get.call(this);
+	},
+	set(newVal) {
+		if(newVal.length > 1 && newVal.slice(0,1) === "0") {
+			newVal = newVal.slice(1);
+		}
+		// console.log('New value assigned to input: ' + newVal);
+		apply_spinner_input_val( document.querySelector( 'input[name="temp_day"]' ) );
+		return set.call(this, newVal);
+	}
+});
+
+Object.defineProperty(document.querySelector( 'input[name="temp_month"]' ), 'value', {
+	get() {
+		return get.call(this);
+	},
+	set(newVal) {
+		if(newVal.length > 1 && newVal.slice(0,1) === "0") {
+			newVal = newVal.slice(1);
+			console.log(newVal);
+		}
+		// console.log('New value assigned to input: ' + newVal);
+		apply_spinner_input_val( document.querySelector( 'input[name="temp_month"]' ) );
+		return set.call(this, newVal);
+	}
+});
+
+Object.defineProperty(document.querySelector( 'input[name="temp_year"]' ), 'value', {
+	get() {
+		return get.call(this);
+	},
+	set(newVal) {
+		if(newVal.length > 1 && newVal.slice(0,1) === "0") {
+			newVal = newVal.slice(1);
+		}
+		// console.log('New value assigned to input: ' + newVal);
+		apply_spinner_input_val( document.querySelector( 'input[name="temp_year"]' ) );
+		return set.call(this, newVal);
+	}
+});
 
 // // Mobile Menu Trigger
 // var nav_trigger = document.querySelector( '.menu-trigger' );

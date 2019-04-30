@@ -345,7 +345,7 @@ export const resultAction = state => dispatch => {
                birth_term,
                allergy,
                status,
-               force: false
+               force: true
             })
          }
       )

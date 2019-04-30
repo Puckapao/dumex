@@ -6,6 +6,9 @@ import { pregnantDeadlineAction, changeStepAction } from "../../actions";
 let dateInput = null;
 let monthInput = null;
 let yearInput = null;
+let tempDayInput = null;
+let tempMonthInput = null;
+let tempYearInput = null;
 let dateSpinner = null;
 let calendarScript = null;
 let newSpinner = null;
@@ -34,9 +37,16 @@ class PregnantDeadline extends Component {
       const year = due_date.split("-")[0];
 
       this.setState({ day, month, year }, () => {
-         dateInput = document.getElementById("day").setAttribute("value", this.state.day);
-         monthInput = document.getElementById("month").setAttribute("value", this.state.month);
-         yearInput = document.getElementById("year").setAttribute("value", this.state.year);
+         tempDayInput = document.getElementById("temp_day");
+         tempMonthInput = document.getElementById("temp_month");
+         tempYearInput = document.getElementById("temp_year");
+         console.log(tempDayInput.value);
+         console.log(tempMonthInput.value);
+         console.log(tempYearInput.value);
+
+         tempDayInput.value = this.state.day;
+         tempMonthInput.value = this.state.month;
+         tempYearInput.value = this.state.year;
       });
    }
 
@@ -51,7 +61,6 @@ class PregnantDeadline extends Component {
    }
 
    componentWillUnmount() {
-      // document.body.removeChild(script);
       while(newSpinner.childNodes.length > 0) {
          dateSpinner.appendChild(newSpinner.childNodes[0]);
       }
@@ -59,6 +68,9 @@ class PregnantDeadline extends Component {
       dateInput = null;
       monthInput = null;
       yearInput = null;
+      tempDayInput = null;
+      tempMonthInput = null;
+      tempYearInput = null;
       dateSpinner = null;
       calendarScript = null;
       newSpinner = null;

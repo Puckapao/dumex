@@ -3,14 +3,19 @@ import { connect } from "react-redux";
 import { childInfoAction, changeStepAction } from "../../actions";
 
 // const script = document.createElement("script");
+let dateInput = null;
+let monthInput = null;
+let yearInput = null;
+let tempDayInput = null;
+let tempMonthInput = null;
+let tempYearInput = null;
+let dateSpinner = null;
+let calendarScript = null;
+let newSpinner = null;
 
 class ChildInfo extends Component {
    constructor(props) {
       super(props);
-
-      this.dateInput = React.createRef();
-      this.monthInput = React.createRef();
-      this.yearInput = React.createRef();
    }
 
    state = {
@@ -21,8 +26,19 @@ class ChildInfo extends Component {
    };
 
    componentDidMount() {
+      newSpinner = document.getElementById("new_spinner");
+      dateSpinner.removeAttribute("class");
+
+      while(dateSpinner.childNodes.length > 0) {
+         newSpinner.appendChild(dateSpinner.childNodes[0]);
+      }
+   }
+
+   componentWillMount() {
       let { birthday } = this.props.Children;
       const { baby_name } = this.props.Children;
+
+      dateSpinner = document.getElementById("date_spinner");
 
       if (!birthday) birthday = "--";
       if (birthday === "1970-01-01" || !birthday) birthday = "2019-04-30";
@@ -31,19 +47,34 @@ class ChildInfo extends Component {
       const month = birthday.split("-")[1];
       const year = birthday.split("-")[0];
 
-      this.setState({ baby_name, day, month, year });
-   }
+      this.setState({ day, month, year }, () => {
+         tempDayInput = document.getElementById("temp_day");
+         tempMonthInput = document.getElementById("temp_month");
+         tempYearInput = document.getElementById("temp_year");
+         console.log(tempDayInput.value);
+         console.log(tempMonthInput.value);
+         console.log(tempYearInput.value);
 
-   componentWillMount() {
-      // script.src = "../../js/main.js";
-      // script.async = true;
-      // script.id = "calendar";
-      // script.unload = () => this.scriptLoaded();
-      // document.body.appendChild(script);
+         tempDayInput.value = this.state.day;
+         tempMonthInput.value = this.state.month;
+         tempYearInput.value = this.state.year;
+      });
    }
 
    componentWillUnmount() {
-      // document.body.removeChild(script);
+      while(newSpinner.childNodes.length > 0) {
+         dateSpinner.appendChild(newSpinner.childNodes[0]);
+      }
+      dateSpinner.setAttribute("class", "hidden");
+      dateInput = null;
+      monthInput = null;
+      yearInput = null;
+      tempDayInput = null;
+      tempMonthInput = null;
+      tempYearInput = null;
+      dateSpinner = null;
+      calendarScript = null;
+      newSpinner = null;
    }
 
    handleChange = e => {
@@ -56,15 +87,19 @@ class ChildInfo extends Component {
 
    handleSubmitForm = e => {
       e.preventDefault();
-      // console.log(this.dateInput.current.value);
-      // console.log(this.monthInput.current.value);
-      // console.log(this.yearInput.current.value);
+      dateInput = document.getElementById("day");
+      monthInput = document.getElementById("month");
+      yearInput = document.getElementById("year");
+
+      console.log(dateInput.value);
+      console.log(monthInput.value);
+      console.log(yearInput.value);
 
       this.setState(
          {
-            day: this.dateInput.current.value,
-            month: this.monthInput.current.value,
-            year: this.yearInput.current.value
+            day: dateInput.value,
+            month: monthInput.value,
+            year: yearInput.value
          },
          () => {
             const { baby_name, day, month, year } = this.state;
@@ -144,31 +179,7 @@ class ChildInfo extends Component {
             </p>
             <h3>วันเกิด</h3>
 
-            {/* need to change */}
-            {/* <input
-               type="hidden"
-               id="date_input"
-               ref={this.dateInput}
-               name="day"
-               value={Number(this.state.day)}
-               onChange={this.handleChange}
-            />
-            <input
-               type="hidden"
-               id="month_input"
-               ref={this.monthInput}
-               name="month"
-               value={Number(this.state.month)}
-               onChange={this.handleChange}
-            />
-            <input
-               type="hidden"
-               id="year_input"
-               ref={this.yearInput}
-               name="year"
-               value={Number(this.state.year)}
-               onChange={this.handleChange}
-            /> */}
+            <div id="new_spinner"></div>
 
             {/* <div className="form-notice">สามารถเลื่อนซ้ายขวาเพื่อเลือกได้</div> */}
             <div className="form-step">
