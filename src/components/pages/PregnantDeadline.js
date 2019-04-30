@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import ReactDOM from 'react-dom';
+import ReactDOM from "react-dom";
 import { connect } from "react-redux";
 import { pregnantDeadlineAction, changeStepAction } from "../../actions";
 
@@ -13,7 +13,7 @@ class PregnantDeadline extends Component {
       this.dateInput = React.createRef();
       this.monthInput = React.createRef();
       this.yearInput = React.createRef();
-   };
+   }
    state = {
       day: "",
       month: "",
@@ -24,7 +24,7 @@ class PregnantDeadline extends Component {
       //script = document.createElement("script");
       script.src = "../../js/main.js";
       script.async = true;
-      script.id = "calendar"
+      script.id = "calendar";
       script.unload = () => this.scriptLoaded();
 
       document.body.appendChild(script);
@@ -37,7 +37,9 @@ class PregnantDeadline extends Component {
       const year = due_date.split("-")[0];
 
       this.setState({ day, month, year });
-   };
+
+      console.log(this.props.childrenId);
+   }
 
    handleChange = e => {
       this.setState({ [e.target.name]: e.target.value });
@@ -53,21 +55,28 @@ class PregnantDeadline extends Component {
       // console.log(this.monthInput.current.value);
       // console.log(this.yearInput.current.value);
 
-      this.setState({
-         day: this.dateInput.current.value,
-         month: this.monthInput.current.value,
-         year: this.yearInput.current.value
-      }, () => {
-         const { day, month, year } = this.state;
-         const due_date = `${year}-${month}-${day}`;
+      this.setState(
+         {
+            day: this.dateInput.current.value,
+            month: this.monthInput.current.value,
+            year: this.yearInput.current.value
+         },
+         () => {
+            const { day, month, year } = this.state;
+            const due_date = `${year}-${month}-${day}`;
 
-         // Todo: Form Validate *****
-         this.props.pregnantDeadlineAction(due_date, this.props.memberId);
-         
-         this.props.changeStepAction("6");
-         
-         document.body.removeChild(script);
-      })
+            // Todo: Form Validate *****
+            this.props.pregnantDeadlineAction(
+               due_date,
+               this.props.memberId,
+               this.props.childrenId || null
+            );
+
+            this.props.changeStepAction("6");
+
+            document.body.removeChild(script);
+         }
+      );
    };
 
    render() {
@@ -130,10 +139,10 @@ class PregnantDeadline extends Component {
             <div className="date-spinner date-spinner_expect-date">
                <div className="date-spinner__block">
                   <div className="date-spinner__track date-spinner__track_date">
-                     <div className="item-list item-list_date"></div>
+                     <div className="item-list item-list_date" />
                   </div>
-                  <span className="spinner-arrow spinner-arrow_up"></span>
-                  <span className="spinner-arrow spinner-arrow_down"></span>
+                  <span className="spinner-arrow spinner-arrow_up" />
+                  <span className="spinner-arrow spinner-arrow_down" />
                   <span className="spinner-label">วันที่</span>
                   <input
                      className="spinner-input"
@@ -146,10 +155,10 @@ class PregnantDeadline extends Component {
                </div>
                <div className="date-spinner__block">
                   <div className="date-spinner__track date-spinner__track_month">
-                     <div className="item-list item-list_month"></div>
+                     <div className="item-list item-list_month" />
                   </div>
-                  <span className="spinner-arrow spinner-arrow_up"></span>
-                  <span className="spinner-arrow spinner-arrow_down"></span>
+                  <span className="spinner-arrow spinner-arrow_up" />
+                  <span className="spinner-arrow spinner-arrow_down" />
                   <span className="spinner-label">เดือน</span>
                   <input
                      className="spinner-input"
@@ -162,10 +171,10 @@ class PregnantDeadline extends Component {
                </div>
                <div className="date-spinner__block">
                   <div className="date-spinner__track date-spinner__track_year">
-                     <div className="item-list item-list_year"></div>
+                     <div className="item-list item-list_year" />
                   </div>
-                  <span className="spinner-arrow spinner-arrow_up"></span>
-                  <span className="spinner-arrow spinner-arrow_down"></span>
+                  <span className="spinner-arrow spinner-arrow_up" />
+                  <span className="spinner-arrow spinner-arrow_down" />
                   <span className="spinner-label">ปี</span>
                   <input
                      className="spinner-input"
@@ -176,7 +185,7 @@ class PregnantDeadline extends Component {
                      maxLength="4"
                   />
                </div>
-			   </div>
+            </div>
 
             {/* <div className="form-notice">สามารถเลื่อนซ้ายขวาเพื่อเลือกได้</div> */}
 
@@ -228,7 +237,11 @@ class PregnantDeadline extends Component {
 }
 
 const mapStateToProps = state => {
-   return { Member: state.form.Member, memberId: state.form.memberId };
+   return {
+      Member: state.form.Member,
+      memberId: state.form.memberId,
+      childrenId: state.form.Children.id
+   };
 };
 
 export default connect(

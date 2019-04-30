@@ -116,7 +116,11 @@ export const pregnantOrHaveChildAction = (mom_status, status) => {
    };
 };
 
-export const pregnantDeadlineAction = (due_date, memberId) => dispatch => {
+export const pregnantDeadlineAction = (
+   due_date,
+   memberId,
+   childrenId
+) => dispatch => {
    const baby_name = "FETUS";
    const birthday = "2019-04-30";
    const birth_term = "full-term";
@@ -124,37 +128,45 @@ export const pregnantDeadlineAction = (due_date, memberId) => dispatch => {
    const allergy = "yes";
    const status = "fetus";
 
-   fetch(
-      `https://api.careline.dumex.rgb72.net/client/members/${memberId}/children`,
-      {
-         method: "POST",
-         headers: {
-            "Content-Type": "application/json"
-         },
-         body: JSON.stringify({
-            baby_name,
-            birthday,
-            gender: "male",
-            labor,
-            birth_term,
-            allergy,
-            status,
-            force: true
+   if (!childrenId) {
+      fetch(
+         `https://api.careline.dumex.rgb72.net/client/members/${memberId}/children`,
+         {
+            method: "POST",
+            headers: {
+               "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+               baby_name,
+               birthday,
+               gender: "male",
+               labor,
+               birth_term,
+               allergy,
+               status,
+               force: true
+            })
+         }
+      )
+         .then(res => {
+            return res.json();
          })
-      }
-   )
-      .then(res => {
-         return res.json();
-      })
-      .then(data => {
-         return dispatch({
-            type: PREGNANT_DEADLINE,
-            payload: { due_date, data }
+         .then(data => {
+            return dispatch({
+               type: PREGNANT_DEADLINE,
+               payload: { due_date, data }
+            });
+         })
+         .catch(err => {
+            console.log(err);
          });
-      })
-      .catch(err => {
-         console.log(err);
+   } else {
+      const data = { id: childrenId };
+      dispatch({
+         type: PREGNANT_DEADLINE,
+         payload: { due_date, data }
       });
+   }
 };
 
 export const childInfoAction = (baby_name, birthday, memberId) => dispatch => {
