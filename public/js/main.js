@@ -448,8 +448,12 @@ Object.defineProperty(document.querySelector( 'input[name="temp_day"]' ), 'value
 		if(newVal.length > 1 && newVal.slice(0,1) === "0") {
 			newVal = newVal.slice(1);
 		}
+		
+		// console.log(newVal);
 		// console.log('New value assigned to input: ' + newVal);
-		apply_spinner_input_val( document.querySelector( 'input[name="temp_day"]' ) );
+		if(newVal) {
+			apply_spinner_input_val( document.querySelector( 'input[name="temp_day"]' ) );
+		};
 		return set.call(this, newVal);
 	}
 });
@@ -461,10 +465,13 @@ Object.defineProperty(document.querySelector( 'input[name="temp_month"]' ), 'val
 	set(newVal) {
 		if(newVal.length > 1 && newVal.slice(0,1) === "0") {
 			newVal = newVal.slice(1);
-			console.log(newVal);
 		}
+		
+		// console.log(newVal);
 		// console.log('New value assigned to input: ' + newVal);
-		apply_spinner_input_val( document.querySelector( 'input[name="temp_month"]' ) );
+		if(newVal) {
+			apply_spinner_input_val( document.querySelector( 'input[name="temp_month"]' ) );
+		};
 		return set.call(this, newVal);
 	}
 });
@@ -477,8 +484,11 @@ Object.defineProperty(document.querySelector( 'input[name="temp_year"]' ), 'valu
 		if(newVal.length > 1 && newVal.slice(0,1) === "0") {
 			newVal = newVal.slice(1);
 		}
+		// console.log(newVal);
 		// console.log('New value assigned to input: ' + newVal);
-		apply_spinner_input_val( document.querySelector( 'input[name="temp_year"]' ) );
+		if(newVal) {
+			apply_spinner_input_val( document.querySelector( 'input[name="temp_year"]' ) );
+		};
 		return set.call(this, newVal);
 	}
 });
