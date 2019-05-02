@@ -453,7 +453,7 @@ Object.defineProperty(document.querySelector( 'input[name="temp_day"]' ), 'value
 		console.log(newVal);
 		// console.log('New value assigned to input: ' + newVal);
 		if(newVal) {
-			console.log('in');
+			console.log('in day');
 			apply_spinner_input_val( document.querySelector( 'input[name="temp_day"]' ) );
 		};
 		return set.call(this, newVal);
@@ -472,6 +472,7 @@ Object.defineProperty(document.querySelector( 'input[name="temp_month"]' ), 'val
 		// console.log(newVal);
 		// console.log('New value assigned to input: ' + newVal);
 		if(newVal) {
+			console.log('in month');
 			apply_spinner_input_val( document.querySelector( 'input[name="temp_month"]' ) );
 		};
 		return set.call(this, newVal);
@@ -489,6 +490,7 @@ Object.defineProperty(document.querySelector( 'input[name="temp_year"]' ), 'valu
 		// console.log(newVal);
 		// console.log('New value assigned to input: ' + newVal);
 		if(newVal) {
+			console.log('in year');
 			apply_spinner_input_val( document.querySelector( 'input[name="temp_year"]' ) );
 		};
 		return set.call(this, newVal);

@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { pregnantDeadlineAction, changeStepAction } from "../../actions";
 
 // const script = document.createElement("script");
-var dateInput = null;
+var dayInput = null;
 var monthInput = null;
 var yearInput = null;
 var tempDayInput = null;
@@ -45,18 +45,16 @@ class PregnantDeadline extends Component {
       const year = due_date.split("-")[0];
 
       this.setState({ day, month, year }, () => {
-         tempDayInput = document.getElementById("temp_day");
-         tempMonthInput = document.getElementById("temp_month");
-         tempYearInput = document.getElementById("temp_year");
-         console.log(tempDayInput.value);
-         console.log(tempMonthInput.value);
-         console.log(tempYearInput.value);
+         dayInput = document.getElementById("day");
+         monthInput = document.getElementById("month");
+         yearInput = document.getElementById("year");
+         console.log(dayInput.value);
+         console.log(monthInput.value);
+         console.log(yearInput.value);
 
-         tempMonthInput.value = this.state.month;
-         tempYearInput.value = this.state.year;
-         setTimeout(() => {
-            tempDayInput.value = this.state.day;
-         }, 100);
+         dayInput.value = this.state.day;
+         monthInput.value = this.state.month;
+         yearInput.value = this.state.year;
       });
 
       while (dateSpinner.childNodes.length > 0) {
@@ -69,7 +67,7 @@ class PregnantDeadline extends Component {
          dateSpinner.appendChild(newSpinner.childNodes[0]);
       }
       dateSpinner.setAttribute("class", "hidden");
-      dateInput = null;
+      dayInput = null;
       monthInput = null;
       yearInput = null;
       tempDayInput = null;
@@ -90,7 +88,7 @@ class PregnantDeadline extends Component {
 
    handleSubmitForm = e => {
       e.preventDefault();
-      dateInput = document.getElementById("day");
+      dayInput = document.getElementById("day");
       monthInput = document.getElementById("month");
       yearInput = document.getElementById("year");
 
@@ -100,7 +98,7 @@ class PregnantDeadline extends Component {
 
       this.setState(
          {
-            day: dateInput.value,
+            day: dayInput.value,
             month: monthInput.value,
             year: yearInput.value
          },
