@@ -34,21 +34,23 @@ class PregnantDeadline extends Component {
       dateSpinner = document.getElementById("date_spinner");
       newSpinner = document.getElementById("new_spinner");
       dateSpinner.removeAttribute("class");
-      
-      let { due_date } = this.props.Member;
-      if (due_date === "1970-01-01" || !due_date) due_date = "2019-04-30";
 
-      const day = due_date.split("-")[2];
-      const month = due_date.split("-")[1];
-      const year = due_date.split("-")[0];
+      let { birthday } = this.props.Children;
+      const { baby_name } = this.props.Children;
+      
+      if (birthday === "1970-01-01" || !birthday) birthday = "2019-04-30";
+
+      const day = birthday.split("-")[2];
+      const month = birthday.split("-")[1];
+      const year = birthday.split("-")[0];
 
       this.setState({ day, month, year }, () => {
          tempDayInput = document.getElementById("temp_day");
          tempMonthInput = document.getElementById("temp_month");
          tempYearInput = document.getElementById("temp_year");
-         // console.log(tempDayInput.value);
-         // console.log(tempMonthInput.value);
-         // console.log(tempYearInput.value);
+         console.log(tempDayInput.value);
+         console.log(tempMonthInput.value);
+         console.log(tempYearInput.value);
 
          tempDayInput.value = this.state.day;
          tempMonthInput.value = this.state.month;
@@ -101,14 +103,13 @@ class PregnantDeadline extends Component {
             year: yearInput.value
          },
          () => {
-            const { day, month, year } = this.state;
-            // const due_date = `${year}-${month}-${day}`;
-            const due_date = "2019-04-30";
-            //console.log(due_date);
+            const { baby_name, day, month, year } = this.state;
+            const birthday = `${year}-${month}-${day}`;
+            console.log(birthday);
 
             // Todo: Form Validate *****
             this.props.pregnantDeadlineAction(
-               due_date,
+               birthday,
                this.props.memberId,
                this.props.childrenId || null
             );
@@ -290,6 +291,7 @@ const mapStateToProps = state => {
    return {
       Member: state.form.Member,
       memberId: state.form.memberId,
+      Children: state.form.Children,
       childrenId: state.form.Children.id
    };
 };

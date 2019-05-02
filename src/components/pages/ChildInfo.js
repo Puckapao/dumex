@@ -105,6 +105,7 @@ class ChildInfo extends Component {
          () => {
             const { baby_name, day, month, year } = this.state;
             const birthday = `${year}-${month}-${day}`;
+            console.log(birthday);
 
             // Todo: Form Validate ****
             this.props.childInfoAction(
