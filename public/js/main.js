@@ -317,6 +317,7 @@ var repopulate_date_spinner = () => {
 	date_track.scroll(0,target_pos);
 
 	document.querySelector( 'input[name="temp_day"]' ).setAttribute( 'max', selected_date_obj.total_days );
+	document.querySelector( 'input[name="temp_day"]' ).value = selected_date_obj.total_days;
 	check_spinner_input_val( document.querySelector( 'input[name="temp_day"]' ) );
 };
 
