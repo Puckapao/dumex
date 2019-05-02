@@ -84,7 +84,7 @@ export const youOrWhoAction = (newMember, state) => dispatch => {
             is_call: false,
             is_email: false,
             mom_status: "mom-child",
-            due_date: "2019-04-30",
+            due_date: null,
             mom_allergy: "yes",
             force: true
          })

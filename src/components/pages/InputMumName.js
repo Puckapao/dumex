@@ -8,8 +8,8 @@ import { inputMumNameAction } from "../../actions";
 
 class InputMumName extends Component {
    state = {
-      firstname: "nutricia89",
-      lastname: "expert89",
+      firstname: "abcde",
+      lastname: "abcde",
       phone: "0812345689",
       email: "nutricia89@nutriciaexpert.com",
       error: {}
