@@ -48,9 +48,9 @@ class PregnantDeadline extends Component {
          tempDayInput = document.getElementById("temp_day");
          tempMonthInput = document.getElementById("temp_month");
          tempYearInput = document.getElementById("temp_year");
-         // console.log(tempDayInput.value);
-         // console.log(tempMonthInput.value);
-         // console.log(tempYearInput.value);
+         console.log(tempDayInput.value);
+         console.log(tempMonthInput.value);
+         console.log(tempYearInput.value);
 
          tempDayInput.value = this.state.day;
          tempMonthInput.value = this.state.month;
@@ -292,8 +292,13 @@ const mapStateToProps = state => {
    return {
       Member: state.form.Member,
       memberId: state.form.memberId,
+<<<<<<< HEAD
       childrenId: state.form.Children.id,
       Children: state.form.Children
+=======
+      Children: state.form.Children,
+      childrenId: state.form.Children.id
+>>>>>>> 47ea734048ac00655b4e5596e6aeb1437b5c8c7c
    };
 };
 

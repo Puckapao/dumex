@@ -449,9 +449,10 @@ Object.defineProperty(document.querySelector( 'input[name="temp_day"]' ), 'value
 			newVal = newVal.slice(1);
 		}
 		
-		// console.log(newVal);
+		console.log(newVal);
 		// console.log('New value assigned to input: ' + newVal);
 		if(newVal) {
+			console.log('in');
 			apply_spinner_input_val( document.querySelector( 'input[name="temp_day"]' ) );
 		};
 		return set.call(this, newVal);
