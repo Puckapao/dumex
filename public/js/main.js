@@ -241,10 +241,10 @@ var set_birth_date_spinner = ( obj ) => {
 };
 
 if ( date_input_val === '' || month_input_val === '' || year_input_val === '' ) {
-	set_current_date_input( curr_date );
-	set_current_date_spinner( curr_date );
+	// set_current_date_input( curr_date );
+	// set_current_date_spinner( curr_date );
 } else {
-	set_birth_date_spinner( birth_date );
+	// set_birth_date_spinner( birth_date );
 }
 
 var spinner_select = ( el, dur = 150 ) => {

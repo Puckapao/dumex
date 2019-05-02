@@ -13,14 +13,96 @@ var dateSpinner = null;
 var calendarScript = null;
 var newSpinner = null;
 
-var set_initial_date = () => {
-	console.log('in');
+const set_initial_date = () => {
+   console.log('in');
 	for ( let selected_item of document.querySelectorAll( '.item-list .selected' ) ) {
 		let track = selected_item.closest( '.date-spinner__track' ),
 			target_pos = selected_item.offsetTop - 60;
-	
 		track.scroll(0,target_pos);
 	}
+}
+
+const date_list = document.querySelector( '.item-list_date' ),
+	month_list = document.querySelector( '.item-list_month' ),
+   year_list = document.querySelector( '.item-list_year' );
+
+const input_edit = (el) => {
+   let spinner_blocks = document.querySelectorAll( '.date-spinner__block' ),
+      parent_spinner_block = el.closest( '.date-spinner__block' ),
+      target_spinner_input = parent_spinner_block.querySelector( '.spinner-input' );
+
+   parent_spinner_block.classList.add( 'edit' );
+   target_spinner_input.value = '';
+   target_spinner_input.focus();
+
+   for ( let spinner_block of spinner_blocks ) {
+      if ( spinner_block !== parent_spinner_block ) {
+         spinner_block.classList.remove( 'edit' );
+      }
+   }
+};
+
+const set_current_date_spinner = ( obj ) => {
+   for ( let i = 1; i <= obj.total_days; i++ ) {
+      let item = document.createElement( 'span' );
+      item.setAttribute( 'data-value', i );
+
+      if ( i === obj.date ) {
+         item.setAttribute( 'class', 'selected' );
+      }
+
+      item.innerHTML = i;
+
+      item.addEventListener('click', () => {
+         input_edit(item);
+      });
+
+      date_list.appendChild( item );
+   }
+
+   for ( let i = 1; i <= 12; i++ ) {
+      let item = document.createElement( 'span' );
+      item.setAttribute( 'data-value', i );
+
+      if ( i === obj.month ) {
+         item.setAttribute( 'class', 'selected' );
+      }
+
+      item.innerHTML = i;
+
+      item.addEventListener('click', () => {
+         input_edit(item);
+      });
+
+      month_list.appendChild( item );
+   }
+
+   for ( let i = obj.year - 5; i <= obj.year + 5; i++ ) {
+      let item = document.createElement( 'span' );
+      item.setAttribute( 'data-value', i );
+
+      if ( i === obj.year ) {
+         item.setAttribute( 'class', 'selected' );
+      }
+
+      if ( i === obj.year - 5 ) {
+         document.querySelector( 'input[name="temp_year"]' ).setAttribute( 'min', obj.year - 5 );
+      } else if ( i === obj.year + 5 ) {
+         document.querySelector( 'input[name="temp_year"]' ).setAttribute( 'max', obj.year + 5 );
+      }
+
+      item.innerHTML = i;
+
+      item.addEventListener('click', () => {
+         input_edit(item);
+      });
+
+      year_list.appendChild( item );
+   }
+};
+
+const total_days_in_month = ( year, month ) => {
+   return new Date(year, month, 0).getDate();
 }
 
 class PregnantDeadline extends Component {
@@ -52,19 +134,39 @@ class PregnantDeadline extends Component {
       const month = due_date.split("-")[1];
       const year = due_date.split("-")[0];
 
-      this.setState({ day, month, year }, () => {
-         tempDayInput = document.getElementById("temp_day");
-         tempMonthInput = document.getElementById("temp_month");
-         tempYearInput = document.getElementById("temp_year");
-         
-         tempDayInput.value = this.state.day;
-         tempMonthInput.value = parseInt(this.state.month - 1);
-         tempYearInput.value = this.state.year;
+      const now = new Date();
+      const current_date_obj = {
+         year : now.getFullYear(),
+         month: now.getMonth() + 1,
+         date: now.getDate(),
+         total_days: total_days_in_month( parseInt(year), parseInt(month) )
+      };
 
+      let remove_date = document.querySelector('.item-list').querySelectorAll( 'span' );
+      for ( let item of remove_date ) {
+         item.remove();
+      }
+
+      set_current_date_spinner( current_date_obj )
+
+      this.setState({ day, month, year }, () => {
+         // tempDayInput = document.getElementById("temp_day");
+         // tempMonthInput = document.getElementById("temp_month");
+         // tempYearInput = document.getElementById("temp_year");
          
-         console.log("tempDay", tempDayInput.value);
-         console.log("tempMonth", tempMonthInput.value);
-         console.log("tempYear", tempYearInput.value);
+         // tempDayInput.value = this.state.day;
+         // tempMonthInput.value = parseInt(this.state.month - 1);
+         // tempYearInput.value = this.state.year;
+
+         set_initial_date();
+
+         document.querySelector('input[name="day"]').value = current_date_obj.date;
+         document.querySelector('input[name="month"]').value = current_date_obj.month;
+         document.querySelector('input[name="year"]').value = current_date_obj.year;
+         
+         // console.log("tempDay", tempDayInput.value);
+         // console.log("tempMonth", tempMonthInput.value);
+         // console.log("tempYear", tempYearInput.value);
       });
 
       while (dateSpinner.childNodes.length > 0) {
