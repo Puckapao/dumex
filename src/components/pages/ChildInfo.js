@@ -3,15 +3,15 @@ import { connect } from "react-redux";
 import { childInfoAction, changeStepAction } from "../../actions";
 
 // const script = document.createElement("script");
-let dateInput = null;
-let monthInput = null;
-let yearInput = null;
-let tempDayInput = null;
-let tempMonthInput = null;
-let tempYearInput = null;
-let dateSpinner = null;
-let calendarScript = null;
-let newSpinner = null;
+var dateInput = null;
+var monthInput = null;
+var yearInput = null;
+var tempDayInput = null;
+var tempMonthInput = null;
+var tempYearInput = null;
+var dateSpinner = null;
+var calendarScript = null;
+var newSpinner = null;
 
 class ChildInfo extends Component {
    constructor(props) {
@@ -53,17 +53,15 @@ class ChildInfo extends Component {
          tempYearInput.value = this.state.year;
       });
 
-      while(dateSpinner.childNodes.length > 0) {
+      while (dateSpinner.childNodes.length > 0) {
          newSpinner.appendChild(dateSpinner.childNodes[0]);
       }
    }
 
-   componentWillMount() {
-      
-   }
+   componentWillMount() {}
 
    componentWillUnmount() {
-      while(newSpinner.childNodes.length > 0) {
+      while (newSpinner.childNodes.length > 0) {
          dateSpinner.appendChild(newSpinner.childNodes[0]);
       }
       dateSpinner.setAttribute("class", "hidden");
@@ -180,7 +178,7 @@ class ChildInfo extends Component {
             </p>
             <h3>วันเกิด</h3>
 
-            <div id="new_spinner"></div>
+            <div id="new_spinner" />
 
             {/* <div className="form-notice">สามารถเลื่อนซ้ายขวาเพื่อเลือกได้</div> */}
             <div className="form-step">
