@@ -16,11 +16,12 @@
 
 <body>
    <noscript>You need to enable JavaScript to run this app.</noscript>
+
    <div id="root"></div>
    <div class="hidden" id="date_spinner">
-      <input type="hidden" id="day" name="day" value="">
-      <input type="hidden" id="month" name="month" value="">
-      <input type="hidden" id="year" name="year" value="">
+      <input type="text" id="day" name="day" value="" hidden>
+      <input type="text" id="month" name="month" value="" hidden>
+      <input type="text" id="year" name="year" value="" hidden>
       <div class="date-spinner date-spinner_expect-date">
          <div class="date-spinner__block">
             <div class="date-spinner__track date-spinner__track_date">
@@ -29,8 +30,8 @@
             <span class="spinner-arrow spinner-arrow_up"></span>
             <span class="spinner-arrow spinner-arrow_down"></span>
             <span class="spinner-label">วันที่</span>
-            <input tabindex="1" value="30" class="spinner-input" type="number" id="temp_day" name="temp_day" min="1"
-               max="30" maxlength="2">
+            <input tabindex="1" class="spinner-input" type="number" id="temp_day" name="temp_day" min="1" max="31"
+               maxlength="2">
          </div>
          <div class="date-spinner__block">
             <div class="date-spinner__track date-spinner__track_month">
@@ -39,8 +40,8 @@
             <span class="spinner-arrow spinner-arrow_up"></span>
             <span class="spinner-arrow spinner-arrow_down"></span>
             <span class="spinner-label">เดือน</span>
-            <input tabindex="2" value="4" class="spinner-input" type="number" id="temp_month" name="temp_month" min="1"
-               max="12" maxlength="2">
+            <input tabindex="2" class="spinner-input" type="number" id="temp_month" name="temp_month" min="1" max="12"
+               maxlength="2">
          </div>
          <div class="date-spinner__block">
             <div class="date-spinner__track date-spinner__track_year">
@@ -49,12 +50,13 @@
             <span class="spinner-arrow spinner-arrow_up"></span>
             <span class="spinner-arrow spinner-arrow_down"></span>
             <span class="spinner-label">ปี</span>
-            <input tabindex="3" value="2019" class="spinner-input" type="number" id="temp_year" name="temp_year"
-               min="2016" max="2019" maxlength="4">
+            <input tabindex="3" class="spinner-input" type="number" id="temp_year" name="temp_year" min="2016"
+               max="2019" maxlength="4">
          </div>
       </div>
    </div>
    <script id="calendar_script" src="js/main.js"></script>
+
 </body>
 
 </html>

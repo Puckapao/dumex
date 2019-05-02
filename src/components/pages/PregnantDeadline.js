@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { pregnantDeadlineAction, changeStepAction } from "../../actions";
 
 // const script = document.createElement("script");
-var dayInput = null;
+var dateInput = null;
 var monthInput = null;
 var yearInput = null;
 var tempDayInput = null;
@@ -12,6 +12,16 @@ var tempYearInput = null;
 var dateSpinner = null;
 var calendarScript = null;
 var newSpinner = null;
+
+var set_initial_date = () => {
+	console.log('in');
+	for ( let selected_item of document.querySelectorAll( '.item-list .selected' ) ) {
+		let track = selected_item.closest( '.date-spinner__track' ),
+			target_pos = selected_item.offsetTop - 60;
+	
+		track.scroll(0,target_pos);
+	}
+}
 
 class PregnantDeadline extends Component {
    constructor(props) {
@@ -26,18 +36,16 @@ class PregnantDeadline extends Component {
       year: ""
    };
 
-   componentWillMount() {}
+   componentWillMount() {
+      set_initial_date();
+   }
 
    componentDidMount() {
       dateSpinner = document.getElementById("date_spinner");
       newSpinner = document.getElementById("new_spinner");
       dateSpinner.removeAttribute("class");
 
-      // let { due_date } = this.props.Member;
-      const { birthday } = this.props.Children;
-      let due_date = birthday;
-      console.log("due_date", due_date);
-
+      let { due_date } = this.props.Member;
       if (due_date === "1970-01-01" || !due_date) due_date = "2019-04-30";
 
       const day = due_date.split("-")[2];
@@ -45,16 +53,18 @@ class PregnantDeadline extends Component {
       const year = due_date.split("-")[0];
 
       this.setState({ day, month, year }, () => {
-         dayInput = document.getElementById("day");
-         monthInput = document.getElementById("month");
-         yearInput = document.getElementById("year");
-         console.log(dayInput.value);
-         console.log(monthInput.value);
-         console.log(yearInput.value);
+         tempDayInput = document.getElementById("temp_day");
+         tempMonthInput = document.getElementById("temp_month");
+         tempYearInput = document.getElementById("temp_year");
+         
+         tempDayInput.value = this.state.day;
+         tempMonthInput.value = parseInt(this.state.month - 1);
+         tempYearInput.value = this.state.year;
 
-         dayInput.value = this.state.day;
-         monthInput.value = this.state.month;
-         yearInput.value = this.state.year;
+         
+         console.log("tempDay", tempDayInput.value);
+         console.log("tempMonth", tempMonthInput.value);
+         console.log("tempYear", tempYearInput.value);
       });
 
       while (dateSpinner.childNodes.length > 0) {
@@ -67,7 +77,7 @@ class PregnantDeadline extends Component {
          dateSpinner.appendChild(newSpinner.childNodes[0]);
       }
       dateSpinner.setAttribute("class", "hidden");
-      dayInput = null;
+      dateInput = null;
       monthInput = null;
       yearInput = null;
       tempDayInput = null;
@@ -88,7 +98,7 @@ class PregnantDeadline extends Component {
 
    handleSubmitForm = e => {
       e.preventDefault();
-      dayInput = document.getElementById("day");
+      dateInput = document.getElementById("day");
       monthInput = document.getElementById("month");
       yearInput = document.getElementById("year");
 
@@ -98,13 +108,15 @@ class PregnantDeadline extends Component {
 
       this.setState(
          {
-            day: dayInput.value,
+            day: dateInput.value,
             month: monthInput.value,
             year: yearInput.value
          },
          () => {
             const { day, month, year } = this.state;
             const due_date = `${year}-${month}-${day}`;
+            // const due_date = "2019-04-30";
+            //console.log(due_date);
 
             // Todo: Form Validate *****
             this.props.pregnantDeadlineAction(
@@ -113,17 +125,11 @@ class PregnantDeadline extends Component {
                this.props.childrenId || null
             );
 
-            console.log("due_date", due_date);
-
             this.props.changeStepAction("6");
 
             // document.body.removeChild(script);
          }
       );
-   };
-
-   backStep = () => {
-      this.props.changeStepAction("4");
    };
 
    render() {
@@ -132,7 +138,7 @@ class PregnantDeadline extends Component {
             <p className="backButton">
                <button
                   className="button button_solid backButton_small"
-                  onClick={this.backStep}
+                  onClick={this.changeStep.bind(this, "4")}
                >
                   กลับ
                </button>
@@ -275,7 +281,7 @@ class PregnantDeadline extends Component {
                <a
                   className="form-step__nav form-step__nav_prev"
                   href="#"
-                  onClick={this.backStep}
+                  onClick={this.changeStep.bind(this, "4")}
                >
                   กลับ
                </a>

@@ -9,9 +9,9 @@ var date_input = document.querySelector( 'input[name="day"]' ),
 	month_input = document.querySelector( 'input[name="month"]'),
 	year_input = document.querySelector( 'input[name="year"]' );
 
-var date_input_val = ( date_input ? date_input.value : null ),
-	month_input_val = ( month_input ? month_input.value : null ),
-	year_input_val = ( year_input ? year_input.value : null );
+var date_input_val = ( date_input ? date_input.value : '' ),
+	month_input_val = ( month_input ? month_input.value : '' ),
+	year_input_val = ( year_input ? year_input.value : '' );
 
 var date_list = document.querySelector( '.item-list_date' ),
 	month_list = document.querySelector( '.item-list_month' ),
@@ -108,9 +108,9 @@ var check_spinner_input_val = ( el ) => {
 };
 
 var set_current_date_input = ( obj ) => {
-	date_input.setAttribute( 'value', obj.date );
-	month_input.setAttribute( 'value', obj.month );
-	year_input.setAttribute( 'value', obj.year );
+	date_input.value = obj.date;
+	month_input.value = obj.month;
+	year_input.value = obj.year;
 };
 
 // Set Current Date Spinner
@@ -247,9 +247,7 @@ if ( date_input_val === '' || month_input_val === '' || year_input_val === '' ) 
 	set_birth_date_spinner( birth_date );
 }
 
-var selected_items = document.querySelectorAll( '.item-list .selected' );
-
-var spinner_select = ( el, dur ) => {
+var spinner_select = ( el, dur = 150 ) => {
 
 	if ( dur <= 0 ) { return; }
 
@@ -317,17 +315,21 @@ var repopulate_date_spinner = () => {
 	date_track.scroll(0,target_pos);
 
 	document.querySelector( 'input[name="temp_day"]' ).setAttribute( 'max', selected_date_obj.total_days );
-	document.querySelector( 'input[name="temp_day"]' ).value = selected_date_obj.total_days;
+	document.querySelector( 'input[name="day"]' ).value = selected_date_obj.date;
 	check_spinner_input_val( document.querySelector( 'input[name="temp_day"]' ) );
 };
 
 // Set Initial Date
-for ( let selected_item of selected_items ) {
-	let track = selected_item.closest( '.date-spinner__track' ),
-		target_pos = selected_item.offsetTop - 60;
-
-	track.scroll(0,target_pos);
+var set_initial_date = () => {
+	for ( let selected_item of document.querySelectorAll( '.item-list .selected' ) ) {
+		let track = selected_item.closest( '.date-spinner__track' ),
+			target_pos = selected_item.offsetTop - 60;
+	
+		track.scroll(0,target_pos);
+	}
 }
+
+set_initial_date();
 
 // Spinner Buttons
 let spinner_down = document.querySelectorAll( '.spinner-arrow_down' ),
@@ -441,61 +443,57 @@ for ( let input of spinner_input_nodes ) {
 
 const { get, set } = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value');
 
-Object.defineProperty(document.querySelector( 'input[name="temp_day"]' ), 'value', {
-	get() {
-		return get.call(this);
-	},
-	set(newVal) {
-		if(newVal.length > 1 && newVal.slice(0,1) === "0") {
-			newVal = newVal.slice(1);
-		}
-		
-		console.log(newVal);
-		// console.log('New value assigned to input: ' + newVal);
-		if(newVal) {
-			console.log('in day');
-			apply_spinner_input_val( document.querySelector( 'input[name="temp_day"]' ) );
-		};
-		return set.call(this, newVal);
-	}
-});
+// Object.defineProperty(document.querySelector( 'input[name="temp_day"]' ), 'value', {
+// 	get() {
+// 		return get.call(this);
+// 	},
+// 	set(newVal) {
+// 		if(newVal.length > 1 && newVal.slice(0,1) === "0") {
+// 			newVal = newVal.slice(1);
+// 		}
+// 		console.log("updated value: " + newVal);
+// 		// console.log('New value assigned to input: ' + newVal);
+// 		if(newVal) {
+// 			apply_spinner_input_val(document.querySelector( 'input[name="temp_day"]' ));
+// 		};
+// 		return set.call(this, newVal);
+// 	}
+// });
 
-Object.defineProperty(document.querySelector( 'input[name="temp_month"]' ), 'value', {
-	get() {
-		return get.call(this);
-	},
-	set(newVal) {
-		if(newVal.length > 1 && newVal.slice(0,1) === "0") {
-			newVal = newVal.slice(1);
-		}
+// Object.defineProperty(document.querySelector( 'input[name="temp_month"]' ), 'value', {
+// 	get() {
+// 		return get.call(this);
+// 	},
+// 	set(newVal) {
+// 		if(newVal.length > 1 && newVal.slice(0,1) === "0") {
+// 			newVal = newVal.slice(1);
+// 		}
 		
-		// console.log(newVal);
-		// console.log('New value assigned to input: ' + newVal);
-		if(newVal) {
-			console.log('in month');
-			apply_spinner_input_val( document.querySelector( 'input[name="temp_month"]' ) );
-		};
-		return set.call(this, newVal);
-	}
-});
+// 		// console.log(newVal);
+// 		// console.log('New value assigned to input: ' + newVal);
+// 		if(newVal) {
+// 			apply_spinner_input_val(document.querySelector( 'input[name="temp_month"]' ));
+// 		};
+// 		return set.call(this, newVal);
+// 	}
+// });
 
-Object.defineProperty(document.querySelector( 'input[name="temp_year"]' ), 'value', {
-	get() {
-		return get.call(this);
-	},
-	set(newVal) {
-		if(newVal.length > 1 && newVal.slice(0,1) === "0") {
-			newVal = newVal.slice(1);
-		}
-		// console.log(newVal);
-		// console.log('New value assigned to input: ' + newVal);
-		if(newVal) {
-			console.log('in year');
-			apply_spinner_input_val( document.querySelector( 'input[name="temp_year"]' ) );
-		};
-		return set.call(this, newVal);
-	}
-});
+// Object.defineProperty(document.querySelector( 'input[name="temp_year"]' ), 'value', {
+// 	get() {
+// 		return get.call(this);
+// 	},
+// 	set(newVal) {
+// 		if(newVal.length > 1 && newVal.slice(0,1) === "0") {
+// 			newVal = newVal.slice(1);
+// 		}
+// 		// console.log(newVal);
+// 		// console.log('New value assigned to input: ' + newVal);
+// 		if(newVal) {
+// 			apply_spinner_input_val(document.querySelector( 'input[name="temp_year"]' ));
+// 		};
+// 		return set.call(this, newVal);
+// 	}
+// });
 
 // // Mobile Menu Trigger
 // var nav_trigger = document.querySelector( '.menu-trigger' );
