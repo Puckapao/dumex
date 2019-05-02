@@ -33,7 +33,11 @@ class PregnantDeadline extends Component {
       newSpinner = document.getElementById("new_spinner");
       dateSpinner.removeAttribute("class");
 
-      let { due_date } = this.props.Member;
+      // let { due_date } = this.props.Member;
+      const { birthday } = this.props.Children;
+      let due_date = birthday;
+      console.log("due_date", due_date);
+
       if (due_date === "1970-01-01" || !due_date) due_date = "2019-04-30";
 
       const day = due_date.split("-")[2];
@@ -103,8 +107,6 @@ class PregnantDeadline extends Component {
          () => {
             const { day, month, year } = this.state;
             const due_date = `${year}-${month}-${day}`;
-            // const due_date = "2019-04-30";
-            //console.log(due_date);
 
             // Todo: Form Validate *****
             this.props.pregnantDeadlineAction(
@@ -113,11 +115,17 @@ class PregnantDeadline extends Component {
                this.props.childrenId || null
             );
 
+            console.log("due_date", due_date);
+
             this.props.changeStepAction("6");
 
             // document.body.removeChild(script);
          }
       );
+   };
+
+   backStep = () => {
+      this.props.changeStepAction("4");
    };
 
    render() {
@@ -126,7 +134,7 @@ class PregnantDeadline extends Component {
             <p className="backButton">
                <button
                   className="button button_solid backButton_small"
-                  onClick={this.changeStep.bind(this, "4")}
+                  onClick={this.backStep}
                >
                   กลับ
                </button>
@@ -269,7 +277,7 @@ class PregnantDeadline extends Component {
                <a
                   className="form-step__nav form-step__nav_prev"
                   href="#"
-                  onClick={this.changeStep.bind(this, "4")}
+                  onClick={this.backStep}
                >
                   กลับ
                </a>
