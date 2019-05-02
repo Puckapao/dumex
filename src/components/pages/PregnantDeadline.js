@@ -36,9 +36,9 @@ class PregnantDeadline extends Component {
       let { due_date } = this.props.Member;
       if (due_date === "1970-01-01" || !due_date) due_date = "2019-04-30";
 
-      const day = birthday.split("-")[2];
-      const month = birthday.split("-")[1];
-      const year = birthday.split("-")[0];
+      const day = due_date.split("-")[2];
+      const month = due_date.split("-")[1];
+      const year = due_date.split("-")[0];
 
       this.setState({ day, month, year }, () => {
          tempDayInput = document.getElementById("temp_day");
@@ -106,7 +106,7 @@ class PregnantDeadline extends Component {
 
             // Todo: Form Validate *****
             this.props.pregnantDeadlineAction(
-               birthday,
+               due_date,
                this.props.memberId,
                this.props.childrenId || null
             );
