@@ -40,7 +40,7 @@ export const inputMumNameAction = state => dispatch => {
          is_call: false,
          is_email: false,
          mom_status: "mom-child",
-         due_date: "2019-04-30",
+         due_date: null,
          mom_allergy: "yes",
          force: false
       })
@@ -372,6 +372,7 @@ export const resultAction = state => dispatch => {
             lastname,
             phone,
             mom_allergy,
+            due_date: birthday,
             force: false
          })
       })

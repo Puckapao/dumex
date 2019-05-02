@@ -42,7 +42,7 @@ class ChildInfo extends Component {
       const month = birthday.split("-")[1];
       const year = birthday.split("-")[0];
 
-      this.setState({ day, month, year }, () => {
+      this.setState({ baby_name, day, month, year }, () => {
          tempDayInput = document.getElementById("temp_day");
          tempMonthInput = document.getElementById("temp_month");
          tempYearInput = document.getElementById("temp_year");
@@ -123,13 +123,17 @@ class ChildInfo extends Component {
       );
    };
 
+   backStep = () => {
+      this.props.changeStepAction("4");
+   };
+
    render() {
       return (
          <React.Fragment>
             <p className="backButton">
                <button
                   className="button button_solid backButton_small"
-                  onClick={this.changeStep.bind(this, "4")}
+                  onClick={this.backStep}
                >
                   กลับ
                </button>
@@ -216,7 +220,7 @@ class ChildInfo extends Component {
                <a
                   className="form-step__nav form-step__nav_prev"
                   href="#"
-                  onClick={this.changeStep.bind(this, "4")}
+                  onClick={this.backStep}
                >
                   กลับ
                </a>

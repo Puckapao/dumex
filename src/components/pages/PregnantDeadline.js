@@ -122,13 +122,17 @@ class PregnantDeadline extends Component {
       );
    };
 
+   backStep = () => {
+      this.props.changeStepAction("4");
+   };
+
    render() {
       return (
          <React.Fragment>
             <p className="backButton">
                <button
                   className="button button_solid backButton_small"
-                  onClick={this.changeStep.bind(this, "4")}
+                  onClick={this.backStep}
                >
                   กลับ
                </button>
@@ -271,7 +275,7 @@ class PregnantDeadline extends Component {
                <a
                   className="form-step__nav form-step__nav_prev"
                   href="#"
-                  onClick={this.changeStep.bind(this, "4")}
+                  onClick={this.backStep}
                >
                   กลับ
                </a>
@@ -292,13 +296,8 @@ const mapStateToProps = state => {
    return {
       Member: state.form.Member,
       memberId: state.form.memberId,
-<<<<<<< HEAD
-      childrenId: state.form.Children.id,
-      Children: state.form.Children
-=======
       Children: state.form.Children,
       childrenId: state.form.Children.id
->>>>>>> 47ea734048ac00655b4e5596e6aeb1437b5c8c7c
    };
 };
 
