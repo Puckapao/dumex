@@ -52,11 +52,9 @@ class PregnantDeadline extends Component {
          console.log(tempMonthInput.value);
          console.log(tempYearInput.value);
 
-         tempMonthInput.value = this.state.month;
+         tempMonthInput.value = parseInt( this.state.month - 1 );
          tempYearInput.value = this.state.year;
-         setTimeout(() => {
-            tempDayInput.value = this.state.day;
-         }, 100);
+         tempDayInput.value = this.state.day;
       });
 
       while (dateSpinner.childNodes.length > 0) {
