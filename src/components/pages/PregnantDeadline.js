@@ -3,15 +3,15 @@ import { connect } from "react-redux";
 import { pregnantDeadlineAction, changeStepAction } from "../../actions";
 
 // const script = document.createElement("script");
-let dateInput = null;
-let monthInput = null;
-let yearInput = null;
-let tempDayInput = null;
-let tempMonthInput = null;
-let tempYearInput = null;
-let dateSpinner = null;
-let calendarScript = null;
-let newSpinner = null;
+var dateInput = null;
+var monthInput = null;
+var yearInput = null;
+var tempDayInput = null;
+var tempMonthInput = null;
+var tempYearInput = null;
+var dateSpinner = null;
+var calendarScript = null;
+var newSpinner = null;
 
 class PregnantDeadline extends Component {
    constructor(props) {
@@ -26,19 +26,15 @@ class PregnantDeadline extends Component {
       year: ""
    };
 
-   componentWillMount() {
-      
-   }
+   componentWillMount() {}
 
    componentDidMount() {
       dateSpinner = document.getElementById("date_spinner");
       newSpinner = document.getElementById("new_spinner");
       dateSpinner.removeAttribute("class");
 
-      let { birthday } = this.props.Children;
-      const { baby_name } = this.props.Children;
-      
-      if (birthday === "1970-01-01" || !birthday) birthday = "2019-04-30";
+      let { due_date } = this.props.Member;
+      if (due_date === "1970-01-01" || !due_date) due_date = "2019-04-30";
 
       const day = birthday.split("-")[2];
       const month = birthday.split("-")[1];
@@ -57,13 +53,13 @@ class PregnantDeadline extends Component {
          tempYearInput.value = this.state.year;
       });
 
-      while(dateSpinner.childNodes.length > 0) {
+      while (dateSpinner.childNodes.length > 0) {
          newSpinner.appendChild(dateSpinner.childNodes[0]);
       }
    }
 
    componentWillUnmount() {
-      while(newSpinner.childNodes.length > 0) {
+      while (newSpinner.childNodes.length > 0) {
          dateSpinner.appendChild(newSpinner.childNodes[0]);
       }
       dateSpinner.setAttribute("class", "hidden");
@@ -103,9 +99,10 @@ class PregnantDeadline extends Component {
             year: yearInput.value
          },
          () => {
-            const { baby_name, day, month, year } = this.state;
-            const birthday = `${year}-${month}-${day}`;
-            console.log(birthday);
+            const { day, month, year } = this.state;
+            const due_date = `${year}-${month}-${day}`;
+            // const due_date = "2019-04-30";
+            //console.log(due_date);
 
             // Todo: Form Validate *****
             this.props.pregnantDeadlineAction(
@@ -161,7 +158,7 @@ class PregnantDeadline extends Component {
             <h1 className="header">คุณแม่ที่กำลังตั้งครรภ์</h1>
             <h2 className="sub-header">กำหนดคลอด</h2>
 
-            <div id="new_spinner"></div>
+            <div id="new_spinner" />
             {/* <input
                type="hidden"
                id="date_input"
