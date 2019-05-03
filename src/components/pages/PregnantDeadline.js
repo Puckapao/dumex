@@ -135,9 +135,9 @@ class PregnantDeadline extends Component {
       newSpinner = document.getElementById("new_spinner");
       dateSpinner.removeAttribute("class");
 
-      // let { due_date } = this.props.Member;
-      const { birthday } = this.props.Children;
-      let due_date = birthday;
+      let { due_date } = this.props.Member;
+      // const { birthday } = this.props.Children;
+      // let due_date = birthday;
 
       if (due_date === "1970-01-01" || !due_date) due_date = "2019-04-30";
 
@@ -146,10 +146,16 @@ class PregnantDeadline extends Component {
       const year = due_date.split("-")[0];
 
       const now = new Date();
+      // const current_date_obj = {
+      //    year: now.getFullYear(),
+      //    month: now.getMonth() + 1,
+      //    date: now.getDate(),
+      //    total_days: total_days_in_month(parseInt(year), parseInt(month))
+      // };
       const current_date_obj = {
-         year: now.getFullYear(),
-         month: now.getMonth() + 1,
-         date: now.getDate(),
+         year: parseInt(year),
+         month: parseInt(month),
+         date: parseInt(day),
          total_days: total_days_in_month(parseInt(year), parseInt(month))
       };
 
@@ -174,11 +180,11 @@ class PregnantDeadline extends Component {
          set_initial_date();
 
          document.querySelector('input[name="day"]').value =
-            current_date_obj.date;
+            day;
          document.querySelector('input[name="month"]').value =
-            current_date_obj.month;
+            month;
          document.querySelector('input[name="year"]').value =
-            current_date_obj.year;
+            year;
 
          // console.log("tempDay", tempDayInput.value);
          // console.log("tempMonth", tempMonthInput.value);

@@ -110,6 +110,10 @@ class ChildInfo extends Component {
       year: ""
    };
 
+   componentWillMount() {
+      set_initial_date();
+   };
+
    componentDidMount() {
       dateSpinner = document.getElementById("date_spinner");
       newSpinner = document.getElementById("new_spinner");
@@ -118,7 +122,7 @@ class ChildInfo extends Component {
       let { birthday } = this.props.Children;
       const { baby_name } = this.props.Children;
 
-      console.log("birthday", birthday);
+      // console.log("birthday", birthday);
 
       if (!birthday) birthday = "--";
       if (birthday === "1970-01-01" || !birthday) birthday = "2019-04-30";
@@ -142,17 +146,6 @@ class ChildInfo extends Component {
       set_birth_date_spinner( birth_date_obj );
 
       this.setState({ baby_name, day, month, year }, () => {
-         tempDayInput = document.getElementById("temp_day");
-         tempMonthInput = document.getElementById("temp_month");
-         tempYearInput = document.getElementById("temp_year");
-         // console.log(tempDayInput.value);
-         // console.log(tempMonthInput.value);
-         // console.log(tempYearInput.value);
-
-         tempDayInput.value = this.state.day;
-         tempMonthInput.value = this.state.month;
-         tempYearInput.value = this.state.year;
-
          set_initial_date();
 
          document.querySelector('input[name="day"]').value = day;
@@ -164,8 +157,6 @@ class ChildInfo extends Component {
          newSpinner.appendChild(dateSpinner.childNodes[0]);
       }
    }
-
-   componentWillMount() {}
 
    componentWillUnmount() {
       while (newSpinner.childNodes.length > 0) {
