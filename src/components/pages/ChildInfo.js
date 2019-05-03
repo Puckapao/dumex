@@ -14,7 +14,6 @@ var calendarScript = null;
 var newSpinner = null;
 
 const set_initial_date = () => {
-   console.log('in');
 	for ( let selected_item of document.querySelectorAll( '.item-list .selected' ) ) {
 		let track = selected_item.closest( '.date-spinner__track' ),
 			target_pos = selected_item.offsetTop - 60;
@@ -201,7 +200,7 @@ class ChildInfo extends Component {
          () => {
             const { baby_name, day, month, year } = this.state;
             const birthday = `${year}-${month}-${day}`;
-            console.log(birthday);
+            // console.log(birthday);
 
             // Todo: Form Validate ****
             this.props.childInfoAction(
@@ -210,7 +209,7 @@ class ChildInfo extends Component {
                this.props.memberId
             );
 
-            console.log("birthday", birthday);
+            // console.log("birthday", birthday);
 
             this.props.changeStepAction("5.2B");
 

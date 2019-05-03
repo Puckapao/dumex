@@ -70,10 +70,58 @@ class MainQuiz extends Component {
       brother_conjunctivitis: ""
    };
 
+   brotherYes = (brothers) => {
+      // console.log("checking brothers' allergy");
+      let yesCount = 0;
+      for(let symptom in brothers) {
+         // console.log(symptom);
+         // console.log(yesCount);
+         if(brothers[symptom] === "no") {
+            yesCount += 1;
+         };
+      }
+      if(yesCount >= 7) {
+         this.setState(
+            {
+               brother_asthma: "yes",
+               brother_milk_intolerance: "yes",
+               brother_rhinitis: "yes",
+               brother_atopic_dermatitis: "yes",
+               brother_urticaria: "yes",
+               brother_drug: "yes",
+               brother_food: "yes",
+               brother_conjunctivitis: "yes"
+            },
+            () => {
+               // console.log('user has pressed back to AllergyOrNot and choose Yes for sibling');
+            }
+         );
+      }
+   }
+
    componentDidMount() {
       const allSyndrome = { ...this.props.AllergyPrevention };
 
-      this.setState(allSyndrome);
+      this.setState(allSyndrome, () => {
+         // console.log('finised set allergy data');
+         if(this.props.sibling === "yes") {
+            // console.log('user has sibling');
+            const brothers = {
+               brother_asthma: this.state.brother_asthma,
+               brother_milk_intolerance: this.state.brother_milk_intolerance,
+               brother_rhinitis: this.state.brother_rhinitis,
+               brother_atopic_dermatitis: this.state.brother_atopic_dermatitis,
+               brother_urticaria: this.state.brother_urticaria,
+               brother_drug: this.state.brother_drug,
+               brother_food: this.state.brother_food,
+               brother_conjunctivitis: this.state.brother_conjunctivitis
+            };
+
+            this.brotherYes(brothers);
+         } else {
+            // console.log('user has no sibling');
+         };
+      });
    }
 
    changeMember = updateMember => {
