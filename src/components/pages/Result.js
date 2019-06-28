@@ -135,6 +135,8 @@ class Result extends Component {
                             ควรปรึกษาแพทย์ เพื่อการวินิจฉัยอย่างถูกต้อง
                             และการเลือกโภชนาการที่เหมาะสม
                         </p>
+                        <br />
+                        <br />
                     </div>
                     <div className="result-action">
                         <a
@@ -280,7 +282,7 @@ class Result extends Component {
                         this.calcScore(this.props.form.AllergyPrevention)
                     )}
                 </div>
-                <div className="form-step">
+                {/* <div className="form-step">
                     <div className="step">
                         <a href="#" className="step__item">
                             <span>1</span>
@@ -314,7 +316,7 @@ class Result extends Component {
                     >
                         กลับ
                     </a>
-                </div>
+                </div> */}
             </React.Fragment>
         );
     }

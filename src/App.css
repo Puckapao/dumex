@@ -1,7 +1,15 @@
 .backButton {
     text-align: left;
+    position: fixed;
+    z-index: 9999;
 }
 
 .backButton_small {
     padding: 1rem 2rem !important;
+}
+
+@media (max-width: 46.24em) {
+    .backButton {
+        display: none;
+    }
 }
