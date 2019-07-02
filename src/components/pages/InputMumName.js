@@ -8,10 +8,10 @@ import { inputMumNameAction } from '../../actions';
 
 class InputMumName extends Component {
     state = {
-        firstname: 'abcde',
-        lastname: 'abcde',
-        phone: '0812345689',
-        email: 'nutricia89@nutriciaexpert.com',
+        firstname: '',
+        lastname: '',
+        phone: '',
+        email: '',
         is_call: false,
         error: {},
     };
@@ -31,16 +31,16 @@ class InputMumName extends Component {
         let error = {};
 
         if (isEmpty(this.state.firstname)) {
-            error.firstname = 'First name is not empty';
+            error.firstname = 'กรุณากรอกชื่อ';
         }
         if (isEmpty(this.state.lastname)) {
-            error.lastname = 'Last name is not empty';
+            error.lastname = 'กรุณากรอกนามสกุล';
         }
         if (!isLength(this.state.phone, { min: 8, max: 10 })) {
-            error.phone = 'Phone length must be 9-10 digits';
+            error.phone = 'เลขโทรศัพท์ควรอยู่ระหว่าง 9-10 ตัว';
         }
         if (!isEmail(this.state.email)) {
-            error.email = 'Invalid email';
+            error.email = 'อีเมลล์ไม่ถูกต้อง';
         }
 
         // send to redux
@@ -104,8 +104,8 @@ class InputMumName extends Component {
                     <span>รู้เร็ว รู้ง่าย เพียง 1 นาที</span>
                 </h1>
                 <h2 className="sub-header">กรุณากรอกข้อมูลของคุณ</h2>
-                <p>
-                    <span className="input-wrapper req">
+                <div className="input-row">
+                    <span className="input-wrapper req input-stack">
                         <input
                             className="input input_type_text"
                             required
@@ -116,10 +116,7 @@ class InputMumName extends Component {
                             placeholder="ชื่อ"
                         />
                     </span>
-                    {this.state.error.firstname || null}
-                </p>
-                <p>
-                    <span className="input-wrapper req">
+                    <span className="input-wrapper req input-stack">
                         <input
                             className="input input_type_text"
                             required
@@ -130,10 +127,10 @@ class InputMumName extends Component {
                             placeholder="นามสกุล"
                         />
                     </span>
-                    {this.state.error.lastname || null}
-                </p>
-                <p>
-                    <span className="input-wrapper req">
+                </div>
+                <div style={{ clear: 'both' }} />
+                <div className="input-row">
+                    <span className="input-wrapper req input-stack">
                         <input
                             className="input input_type_text"
                             required
@@ -144,10 +141,7 @@ class InputMumName extends Component {
                             placeholder="เบอร์โทร"
                         />
                     </span>
-                    {this.state.error.phone || null}
-                </p>
-                <p>
-                    <span className="input-wrapper req">
+                    <span className="input-wrapper req input-stack">
                         <input
                             className="input input_type_text"
                             required
@@ -158,9 +152,9 @@ class InputMumName extends Component {
                             placeholder="อีเมล์"
                         />
                     </span>
-                    {this.state.error.email || null}
-                </p>
-                <p className="align-left">
+                </div>
+                <div style={{ clear: 'both' }} />
+                <div className="input-row">
                     <span className="input-wrapper">
                         <label>
                             <input
@@ -175,6 +169,21 @@ class InputMumName extends Component {
                             ข้าพเจ้ายินดีให้ผู้เชี่ยวชาญติดต่อกลับ
                         </label>
                     </span>
+                </div>
+                <div style={{ clear: 'both' }} />
+                <p>
+                    {this.state.error.firstname && (
+                        <div class="error-p">{this.state.error.firstname}</div>
+                    )}
+                    {this.state.error.lastname && (
+                        <div class="error-p">{this.state.error.lastname}</div>
+                    )}
+                    {this.state.error.phone && (
+                        <div class="error-p">{this.state.error.phone}</div>
+                    )}
+                    {this.state.error.email && (
+                        <div class="error-p">{this.state.error.email}</div>
+                    )}
                 </p>
                 <p>
                     <button

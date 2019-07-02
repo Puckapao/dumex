@@ -269,7 +269,8 @@ class SaveResult extends Component {
                     </button>
                 </p>
                 <h1 className="header">
-                    ผลทดสอบความเสี่ยงเป็นภูมิแพ้ของคนในครอบครัว
+                    ผลทดสอบความเสี่ยงเป็น <strong>ภูมิแพ้</strong>{' '}
+                    ของคนในครอบครัว
                 </h1>
                 {this.mother()}
                 {this.father()}
