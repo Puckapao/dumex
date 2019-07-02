@@ -104,8 +104,8 @@ class InputMumName extends Component {
                     <span>รู้เร็ว รู้ง่าย เพียง 1 นาที</span>
                 </h1>
                 <h2 className="sub-header">กรุณากรอกข้อมูลของคุณ</h2>
-                <div className="input-row">
-                    <span className="input-wrapper req input-stack">
+                <p>
+                    <span className="input-wrapper req">
                         <input
                             className="input input_type_text"
                             required
@@ -116,7 +116,9 @@ class InputMumName extends Component {
                             placeholder="ชื่อ"
                         />
                     </span>
-                    <span className="input-wrapper req input-stack">
+                    </p>
+                    <p>
+                    <span className="input-wrapper req">
                         <input
                             className="input input_type_text"
                             required
@@ -127,10 +129,9 @@ class InputMumName extends Component {
                             placeholder="นามสกุล"
                         />
                     </span>
-                </div>
-                <div style={{ clear: 'both' }} />
-                <div className="input-row">
-                    <span className="input-wrapper req input-stack">
+                </p>
+                <p>
+                    <span className="input-wrapper req">
                         <input
                             className="input input_type_text"
                             required
@@ -141,7 +142,9 @@ class InputMumName extends Component {
                             placeholder="เบอร์โทร"
                         />
                     </span>
-                    <span className="input-wrapper req input-stack">
+                    </p>
+                    <p>
+                    <span className="input-wrapper req">
                         <input
                             className="input input_type_text"
                             required
@@ -152,9 +155,8 @@ class InputMumName extends Component {
                             placeholder="อีเมล์"
                         />
                     </span>
-                </div>
-                <div style={{ clear: 'both' }} />
-                <div className="input-row">
+                </p>
+                <p className="align-left">
                     <span className="input-wrapper">
                         <label>
                             <input
@@ -169,8 +171,7 @@ class InputMumName extends Component {
                             ข้าพเจ้ายินดีให้ผู้เชี่ยวชาญติดต่อกลับ
                         </label>
                     </span>
-                </div>
-                <div style={{ clear: 'both' }} />
+                </p>
                 <p>
                     {this.state.error.firstname && (
                         <div class="error-p">{this.state.error.firstname}</div>
@@ -193,6 +194,27 @@ class InputMumName extends Component {
                         เริ่มต้นทำแบบประเมิน
                     </button>
                 </p>
+                <br />
+                <br />
+                <h2 className="sub-header">ข้อมูลนมแม่</h2>
+                <p className="small-p">
+                    นมแม่คือโภชนาการที่ดีที่สุดสำหรับทารกและให้ประโยชน์หลายด้านต่อทารกและมารดา
+                    การรับประทานอาหารที่ดีต่อสุขภาพอย่างสมดุลของมารดาในช่วงก่อนและขณะให้นมลูกมีความสำคัญ
+                    การเลี้ยงลูกด้วยนมแม่ร่วมกับนมขวดในช่วงสัปดาห์แรกๆ
+                    หลังคลอดอาจทำให้ปริมาณน้ำนมแม่ลดลง
+                    และทำให้การตัดสินใจกลับมาเลี้ยงลูกด้วยนมแม่ยากขึ้น
+                    ควรคำนึงถึงผลกระทบด้านสังคมและเศรษฐกิจในการใช้นมดัดแปลงสำหรับทารก
+                    การให้นมแก่ทารกอย่างไม่ถูกวิธี
+                    หรือการให้อาหารทารกด้วยชนิดหรือวิธีการที่ไม่เหมาะสมอาจก่อให้เกิดอันตรายแก่สุขภาพได้
+                    ในกรณีที่มารดาใช้นมดัดแปลงสำหรับทารก
+                    ควรต้องปฏิบัติตามคำแนะนำในการใช้โดยผู้ผลิตอย่างเคร่งครัด
+                    มิฉะนั้นอาจทำให้ทารกไม่สบายได้
+                    มารดาควรปรึกษาบุคลากรทางการแพทย์
+                    เพื่อขอคำแนะนำเรื่องโภชนาการสำหรับทารก
+                </p>
+
+                <br />
+                <br />
             </React.Fragment>
         );
     }

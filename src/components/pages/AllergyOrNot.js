@@ -147,6 +147,7 @@ class AllergyOrNot extends Component {
                         ลูกคุณเป็น <strong>ภูมิแพ้</strong> หรือไม่
                     </h2>
                 )}
+                <br/>
                 <ul className="group-choice">
                     <li className="choice-item">
                         <label className="choice-item__trigger">
