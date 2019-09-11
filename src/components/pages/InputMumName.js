@@ -12,7 +12,7 @@ class InputMumName extends Component {
         lastname: '',
         phone: '',
         email: '',
-        is_call: false,
+        is_call: true,
         error: {},
     };
 
