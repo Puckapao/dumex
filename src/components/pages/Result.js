@@ -89,12 +89,6 @@ class Result extends Component {
                         </h4>
                         <br />
                         <br />
-                        <p>
-                            ควรปรึกษาแพทย์ เพื่อการวินิจฉัยอย่างถูกต้อง
-                            และการเลือกโภชนาการที่เหมาะสม
-                        </p>
-                        <br />
-                        <br />
                     </div>
                     <div className="result-action">
                         <a
