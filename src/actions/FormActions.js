@@ -27,7 +27,7 @@ export const inputMumNameAction = state => dispatch => {
     const { firstname, lastname, phone, email, is_call } = state;
     console.log(state);
 
-    fetch('https://api.careline.dumex.rgb72.net/client/members', {
+    fetch('https://api.careline.nutriciaexpert.com/client/members', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -71,7 +71,7 @@ export const youOrWhoAction = (newMember, state) => dispatch => {
     const { firstname, lastname, phone, email } = state;
 
     if (newMember) {
-        fetch('https://api.careline.dumex.rgb72.net/client/members', {
+        fetch('https://api.careline.nutriciaexpert.com/client/members', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -131,7 +131,7 @@ export const pregnantDeadlineAction = (
 
     if (!childrenId) {
         fetch(
-            `https://api.careline.dumex.rgb72.net/client/members/${memberId}/children`,
+            `https://api.careline.nutriciaexpert.com/client/members/${memberId}/children`,
             {
                 method: 'POST',
                 headers: {
@@ -172,7 +172,7 @@ export const pregnantDeadlineAction = (
 
 export const childInfoAction = (baby_name, birthday, memberId) => dispatch => {
     fetch(
-        `https://api.careline.dumex.rgb72.net/client/members/${memberId}/children`,
+        `https://api.careline.nutriciaexpert.com/client/members/${memberId}/children`,
         {
             method: 'POST',
             headers: {
@@ -268,7 +268,7 @@ export const mainQuizAction = (
 
     if (isFetch) {
         fetch(
-            'https://api.careline.dumex.rgb72.net/client/allergy-preventions',
+            'https://api.careline.nutriciaexpert.com/client/allergy-preventions',
             {
                 method: 'POST',
                 headers: {
@@ -333,7 +333,7 @@ export const resultAction = state => dispatch => {
     // status -> born || fetus
     if (status === 'born') {
         fetch(
-            `https://api.careline.dumex.rgb72.net/client/members/${
+            `https://api.careline.nutriciaexpert.com/client/members/${
                 state.memberId
             }/children`,
             {
@@ -366,7 +366,7 @@ export const resultAction = state => dispatch => {
             });
     } else {
         // status = fetus
-        fetch('https://api.careline.dumex.rgb72.net/client/members', {
+        fetch('https://api.careline.nutriciaexpert.com/client/members', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -392,7 +392,7 @@ export const callBackLaterAction = (state, props) => dispatch => {
     const { mom_status, mom_allergy } = props;
     const due_date = props.due_date || '2019-04-30';
 
-    return fetch('https://api.careline.dumex.rgb72.net/client/members', {
+    return fetch('https://api.careline.nutriciaexpert.com/client/members', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
